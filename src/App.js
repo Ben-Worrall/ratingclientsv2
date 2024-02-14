@@ -26,22 +26,22 @@ function App() {
         <Routes>
 
   
-          <Route  path="/">
+          <Route  path="#/">
             < Home/>
           </Route>
-          <Route  path="/routes/JoinRoom">
+          <Route  path="#/routes/JoinRoom">
             < JoinRoute/>
           </Route>
-          <Route  path="/routes/CreateRoom">
+          <Route  path="#/routes/CreateRoom">
             < CreateRoomHTML/>
           </Route>
-          <Route  path="/routes/HostRoom">
+          <Route  path="#/routes/HostRoom">
             <HostRoomHTML />
           </Route>
-          <Route  path="/routes/UserJoinedRoom">
+          <Route  path="#/routes/UserJoinedRoom">
             <UserJoinedRoom />
           </Route>
-          <Route  path="/routes/SuccessfullySubmitted">
+          <Route  path="#/routes/SuccessfullySubmitted">
             < Success/>
           </Route>
          
