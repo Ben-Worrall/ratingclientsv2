@@ -27,8 +27,8 @@ function App() {
     <Router>
 
        <div className="App">
-       <button onClick={() => navigate('/')}>Home</button>
-   <button onClick={() => navigate('/about')}>About</button>
+      
+   
         <Routes>
 
   
