@@ -2,7 +2,7 @@
 import './App.css';
 import {  HashRouter as Router,
   Routes,
-  Route,
+  Route,useNavigate
   } from "react-router-dom";
 import JoinRoute from './routes/JoinRoom'
 import Home from './Home'
@@ -19,7 +19,7 @@ import Success from './routes/SuccessfullySubmitted';
 
 
 function App() {
-  
+  const navigate = useNavigate();
   return (
     
     
