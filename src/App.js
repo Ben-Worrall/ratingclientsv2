@@ -25,12 +25,12 @@ function App() {
        <div className="App">
         <Routes>
 
-          <Route exact path='/' element={<Home/>} />
-          <Route exact path='/routes/JoinRoom' element={<JoinRoute/>} />
-          <Route exact path='/routes/CreateRoom' element={<CreateRoomHTML/>} />
-          <Route exact path='/routes/HostRoom' element={<HostRoomHTML/>} />
-          <Route exact path='/routes/UserJoinedRoom' element={<UserJoinedRoom/>} />
-          <Route exact path='/routes/SuccessfullySubmitted' element={<Success/>} />
+          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/' element={<Home/>} />
+          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/JoinRoom' element={<JoinRoute/>} />
+          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/CreateRoom' element={<CreateRoomHTML/>} />
+          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/HostRoom' element={<HostRoomHTML/>} />
+          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/UserJoinedRoom' element={<UserJoinedRoom/>} />
+          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/SuccessfullySubmitted' element={<Success/>} />
           
 
         </Routes>
