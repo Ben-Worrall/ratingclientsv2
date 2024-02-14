@@ -1,0 +1,279 @@
+
+.HostRoomApp{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#HostRoomMainDisplay{
+    background-color: white;
+    width: 95%;
+    height: 70%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+}
+#ShowResultDisplay{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#RoomPasswordText{
+    border-radius:  15px 15px 15px 15px;
+    font-size: 400%;
+    border: 0.25vh solid black;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5%;
+    width: 20%;
+    height: fit-content;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space:nowrap;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#ShowResultBNT{
+    background-color: green;
+    color: white;
+    border-radius:  15px 15px 15px 15px;
+    font-size: 175%;
+    border: 0.25vh solid black;
+    height: 15%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+#ParticipantsDisplay{
+    width: 50%;
+    float: right;
+    height: 100%;
+    overflow: hidden;
+    outline: 0.2vw black solid;
+   
+}
+
+#Participant-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 200%;
+    height: 20%;
+    width: 100%;
+    text-align: center;
+    border-bottom: 0.1vw solid black;
+    
+}
+#ParticipantsList{
+    margin-top: 5%;
+    height: 75%;
+    width: 100%;
+    overflow: auto;
+   
+}
+.Participants-name{
+    text-align: center;
+}
+
+
+#ButtonHolder-WaitingRoom{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 1%;
+    width: 100%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#CloseRoomButton{
+    background-color: red;
+    color: white;
+    font-size: 200%;
+    border-radius:  15px 15px 15px 15px;
+    
+    border: 0.25vh solid black;
+    margin-right: 1%;
+}
+
+
+.Resultfactor{
+    outline: 0.25vh solid black;
+    width: 48%;
+    height: 12.5%;
+    float: left;
+    text-align: center;
+    display: flex;
+    
+    align-items: center;
+    margin: 1%;
+}
+.ResultfactorText{
+    width: 50%;
+    float: left;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0vh solid black;
+    border-right: 0.25vh solid black;
+    overflow-X: auto;
+    height: 100%;
+    font-size: 175%;
+    outline: 0px solid transparent;
+
+}
+.ResultfactorRating{
+    width: 50%;
+    float: right;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 200%;
+    outline: 0px solid transparent;
+    
+}
+.ResultratingOutOf{
+    outline: 0px solid transparent;
+    width:40%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+}
+.ResultratingFor{
+    width: 33%;
+    border: 0vh solid black;
+    outline: 0px solid transparent;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 95%;
+    height: 90%;
+    border-right: 0.35vw solid black;
+}
+.Resultslash{
+    margin-right: 5%;
+}
+
+.ResultDetailBnt{
+    position: relative;
+    float: right;
+    margin-top: 0;
+    background-color: lightgray;
+    color: black;
+    outline: 0.1vw black solid;
+    font-size: 50%;
+    border: 0vw solid black;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    
+}
+
+/*  make overlat for when user presses details  */
+#black_overlay {
+    
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .60;
+    filter: alpha(opacity=60);
+  }
+  #white_content {
+    
+    position: absolute;
+    width: 55%;
+    height: 55%;
+    padding: 16px;
+    
+    background-color: white;
+    z-index: 10010;
+    overflow-y: auto;
+    display: block;
+  }
+
+#UsernameText{
+    width: 45%;
+    float: left;
+    outline: 0.1vw black solid;
+    height: 10%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#RatingText{
+    width: 45%;
+    float: left;
+    outline: 0.1vw black solid;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+}
+.NotesBNTResults{
+    width: 10%;
+    float: right;
+    outline: 0.1vw black solid;
+    background-color: lightgray;
+    border: 0vw solid black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+
+
+
+}
+.NotesClassListHost{
+    position: absolute;
+    width: 55%;
+    height: 55%;
+    padding: 16px;
+    
+    background-color: white;
+    z-index: 10010;
+    overflow-y: auto;
+    display: block;
+}
+#black_overlay_NOTES{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .70;
+    filter: alpha(opacity=70);
+}

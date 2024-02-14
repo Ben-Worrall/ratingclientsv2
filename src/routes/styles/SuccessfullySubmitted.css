@@ -1,0 +1,23 @@
+#SuccessApp{
+    width: max-content;
+    height: max-content;
+    background-color: chocolate;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+#SuccessApp-Text{
+    color: white;
+    font-size: 400%;
+}
+#SuccessApp-Button{
+    
+    border-radius:  15px 15px 15px 15px;
+    font-size: 400%;
+    border: 0.25vh solid black;
+    height: fit-content;
+    background-color: white;
+    overflow: hidden;
+    user-select: none;
+    margin-top: 3%;
+  }

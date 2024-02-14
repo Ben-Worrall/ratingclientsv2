@@ -1,0 +1,64 @@
+
+#JoinRoomHolder{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+#JoinRoomMain{
+    text-align: center;
+    width: 75%;
+    height: 40%;
+    
+    
+}
+#JoinRoomBNT{
+    width: 55%;
+    height: 12vh;
+    border-radius:  15px 15px 15px 15px;
+    border: 0.2vh solid black;
+    font-size: 250%;
+    text-align: center;
+    display:inline-block;
+    
+    
+    
+}
+#JoinRoomInput{
+    width: 65%;
+    height: 12vh;
+    border-radius:  15px 15px 15px 15px;
+    border: 0.2vh solid black;
+    font-size: 250%;
+    text-align: center;
+    display:inline-block;
+    
+
+}
+#JoinRoomUserName{
+    width: 75%;
+    height: 12vh;
+    border-radius:  15px 15px 15px 15px;
+    border: 0.2vh solid black;
+    font-size: 250%;
+    text-align: center;
+    display:inline-block;
+    
+
+}
+
+#JoinRoomBackBNT{
+    width: max-content;
+    height: max-content;
+    border-radius:  15px 15px 15px 15px;
+    border: 0.2vh solid black;
+    font-size: 200%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1%;
+}

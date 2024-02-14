@@ -1,0 +1,267 @@
+#root{
+    background-color: chocolate;
+}
+.App{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
+#CreateRoomBackBNT{
+    width: max-content;
+    height: max-content;
+    border-radius:  15px 15px 15px 15px;
+    border: 0.2vh solid black;
+    font-size: 200%;
+    
+    margin: 1%;
+}
+
+
+/* custom factor rating board stuff */
+
+#RatingBoard{
+    position: absolute;
+    width: 95%;
+    height: 70%;
+    background-color: white;
+    overflow-y: scroll;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+/* add factor div and button */
+#AddFactorDiv{
+    outline: 0.25vh solid black;
+    width: 48%;
+    height: 12.5%;
+    float: left;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    margin:1%;
+}
+.AddFactorBNT{
+    background-color: green;
+    color: white;
+    border-radius:  15px 15px 15px 15px;
+    border: 0.25vh solid black;
+    height: 60%;
+    width: 25%;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 175%;
+    user-select: none;
+    padding: 0px 0px;
+
+}
+
+/* the factor and its conponents */
+.factor{
+    outline: 0.25vh solid black;
+    width: 48%;
+    height: 12.5%;
+    float: left;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+}
+.CreateFactorText{
+    width: 65%;
+    float: left;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0vh solid black;
+    border-right: 0.25vh solid black;
+    overflow-X: auto;
+    height: max-content;
+    font-size: 175%;
+    outline: 0px solid transparent;
+    height: 100%;
+
+}
+.CreatefactorRating{
+    width: 37.5%;
+    float: right;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 200%;
+    
+}
+.CreateratingOutOf{
+    outline: 0px solid transparent;
+    width:45%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 95%;
+}
+.CreateratingFor{
+    width: 45%;
+    border: 0vh solid black;
+    outline: 0px solid transparent;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 95%;
+    height: 100%;
+    border-right: 0.55vh solid black;
+
+
+    
+}
+.slash{
+    margin-right: 5%;
+}
+.DelFactorHolder{
+    height: 100%;
+    display: flex;
+    align-items: start;
+}
+.CreateDelFactor{
+    position: relative;
+   float: right;
+   font-size: 100%;
+   background-color: red;
+   color:white;
+   border: 0px solid transparent;
+
+
+}
+
+
+
+/* room password stuff */
+
+#RoomPassword{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+    margin-top: 1%;
+}
+#RoomPasswordTextOnly{
+    font-size: 500%;
+    margin-right: 1%;
+    color: white;
+    height: fit-content;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+
+}
+#RoomPasswordText{
+    border-radius:  15px 15px 15px 15px;
+    font-size: 400%;
+    border: 0.25vh solid black;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5%;
+    width: 20%;
+    height: fit-content;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space:nowrap;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    
+}
+
+
+#CopyPassword{
+    border-radius:  15px 15px 15px 15px;
+    font-size: 450%;
+    border: 0.25vh solid black;
+    height: fit-content;
+    background-color: white;
+    overflow: hidden;
+    user-select: none;
+}
+#copiedToolTip{
+    
+    position: absolute;
+    bottom: 0;
+    background-color:rgb(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 6px;
+    width: min-content;
+    text-align: center;
+    height: min-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 275%;
+    margin-bottom: 1%;
+
+
+}
+
+
+
+
+
+
+/* start and go back button stuff */
+
+
+
+#ButtonHolder-CreateRoom{
+    position: absolute;
+    bottom: 0;
+   
+    margin-bottom: 1%;
+    margin-top: 1%;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#StartRoomBNT{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    border-radius:  15px 15px 15px 15px;
+    font-size: 250%;
+    border: 0.25vh solid black;
+    margin-right: 1%;
+    user-select: none;
+}
+#CreateRoomBackBNT{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    border-radius:  15px 15px 15px 15px;
+    font-size: 250%;
+    border: 0.25vh solid black;
+    margin-left: 1%;
+    user-select: none;
+}
+
