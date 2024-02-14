@@ -25,13 +25,26 @@ function App() {
        <div className="App">
         <Routes>
 
-          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/' element={<Home/>} />
-          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/JoinRoom' element={<JoinRoute/>} />
-          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/CreateRoom' element={<CreateRoomHTML/>} />
-          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/HostRoom' element={<HostRoomHTML/>} />
-          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/UserJoinedRoom' element={<UserJoinedRoom/>} />
-          <Route exact path='https://ben-worrall.github.io/ratingclientsv2/routes/SuccessfullySubmitted' element={<Success/>} />
-          
+  
+          <Route exact path="/">
+            < Home/>
+          </Route>
+          <Route exact path="/routes/JoinRoom">
+            < JoinRoute/>
+          </Route>
+          <Route exact path="/routes/CreateRoom">
+            < CreateRoomHTML/>
+          </Route>
+          <Route exact path="/routes/HostRoom">
+            <HostRoomHTML />
+          </Route>
+          <Route exact path="/routes/UserJoinedRoom">
+            <UserJoinedRoom />
+          </Route>
+          <Route exact path="/routes/SuccessfullySubmitted">
+            < Success/>
+          </Route>
+         
 
         </Routes>
         </div>
@@ -41,7 +54,15 @@ function App() {
     
   );
 }
+/*
+<Route exact path='/' element={<Home/>} />
+          <Route exact path='/routes/JoinRoom' element={<JoinRoute/>} />
+          <Route exact path='/routes/CreateRoom' element={<CreateRoomHTML/>} />
+          <Route exact path='/routes/HostRoom' element={<HostRoomHTML/>} />
+          <Route exact path='/routes/UserJoinedRoom' element={<UserJoinedRoom/>} />
+          <Route exact path='/routes/SuccessfullySubmitted' element={<Success/>} />
 
+*/
 
  
 
