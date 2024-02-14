@@ -21,8 +21,14 @@ import Success from './routes/SuccessfullySubmitted';
 function App() {
   
   return (
+    
+    
+
     <Router>
+
        <div className="App">
+       <button onClick={() => navigate('/')}>Home</button>
+   <button onClick={() => navigate('/about')}>About</button>
         <Routes>
 
   
