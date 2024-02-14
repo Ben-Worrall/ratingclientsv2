@@ -26,22 +26,22 @@ function App() {
         <Routes>
 
   
-          <Route  path="https://ben-worrall.github.io/ratingclientsv2/">
+          <Route  path="/">
             < Home/>
           </Route>
-          <Route  path="https://ben-worrall.github.io/ratingclientsv2/routes/JoinRoom">
+          <Route  path="/routes/JoinRoom">
             < JoinRoute/>
           </Route>
-          <Route  path="https://ben-worrall.github.io/ratingclientsv2/routes/CreateRoom">
+          <Route  path="/routes/CreateRoom">
             < CreateRoomHTML/>
           </Route>
-          <Route  path="https://ben-worrall.github.io/ratingclientsv2/routes/HostRoom">
+          <Route  path="/routes/HostRoom">
             <HostRoomHTML />
           </Route>
-          <Route  path="https://ben-worrall.github.io/ratingclientsv2/routes/UserJoinedRoom">
+          <Route  path="/routes/UserJoinedRoom">
             <UserJoinedRoom />
           </Route>
-          <Route  path="https://ben-worrall.github.io/ratingclientsv2/routes/SuccessfullySubmitted">
+          <Route  path="/routes/SuccessfullySubmitted">
             < Success/>
           </Route>
          
