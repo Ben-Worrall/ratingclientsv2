@@ -12,7 +12,7 @@ const GetResult = () => {
 
 
  let factors = JSON.parse(localStorage.getItem('factors'))
- //sort factors into right order
+ //sort factors into right order.
 
  factors = factors.sort((a,b) => a?.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))
 
