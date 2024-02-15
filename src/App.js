@@ -1,6 +1,6 @@
 
 import './App.css';
-import {  HashRouter as Router,
+import {  BrowserRouter as Router,
   Routes,
   Route,useNavigate
   } from "react-router-dom";
@@ -19,7 +19,7 @@ import Success from './routes/SuccessfullySubmitted';
 
 
 function App() {
-  const navigate = useNavigate();
+  
   return (
     
     
@@ -29,32 +29,15 @@ function App() {
        <div className="App">
       
    
-        <Routes>
-
-  
-          <Route  path="/">
-            < Home/>
-          </Route>
-          <Route  path="/routes/JoinRoom">
-            < JoinRoute/>
-          </Route>
-          <Route  path="/routes/CreateRoom">
-            < CreateRoomHTML/>
-          </Route>
-          <Route  path="/routes/HostRoom">
-            <HostRoomHTML />
-          </Route>
-          <Route  path="/routes/UserJoinedRoom">
-            <UserJoinedRoom />
-          </Route>
-          <Route  path="/routes/SuccessfullySubmitted">
-            < Success/>
-          </Route>
-         
-
-        </Routes>
-        </div>
-
+     <Routes>
+        <Route exact path='/' element={<Home/>} />
+          <Route exact path='/routes/JoinRoom' element={<JoinRoute/>} />
+          <Route exact path='/routes/CreateRoom' element={<CreateRoomHTML/>} />
+          <Route exact path='/routes/HostRoom' element={<HostRoomHTML/>} />
+          <Route exact path='/routes/UserJoinedRoom' element={<UserJoinedRoom/>} />
+          <Route exact path='/routes/SuccessfullySubmitted' element={<Success/>} />
+      </Routes>
+     </div>
     </Router>
       
     
