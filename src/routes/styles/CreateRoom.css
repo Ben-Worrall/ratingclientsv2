@@ -74,7 +74,7 @@
     margin: 1%;
 }
 .CreateFactorText{
-    width: 65%;
+    width: 50%;
     float: left;
     text-align: center;
     display: flex;
@@ -90,7 +90,7 @@
 
 }
 .CreatefactorRating{
-    width: 37.5%;
+    width: 50%;
     float: right;
     text-align: center;
     display: flex;
@@ -110,7 +110,7 @@
     font-size: 95%;
 }
 .CreateratingFor{
-    width: 45%;
+    width: 50%;
     border: 0vh solid black;
     outline: 0px solid transparent;
     text-align: center;

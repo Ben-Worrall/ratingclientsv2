@@ -64,7 +64,7 @@
     margin: 1%;
 }
 .UserfactorText{
-    width: 65%;
+    width: 50%;
     float: left;
     text-align: center;
     display: flex;
@@ -80,7 +80,7 @@
 
 }
 .UserfactorRating{
-    width: 37.5%;
+    width: 50%;
     float: right;
     text-align: center;
     display: flex;
@@ -99,7 +99,7 @@
     font-size: 95%;
 }
 .UserratingFor{
-    width: 45%;
+    width: 50%;
     border: 0vh solid black;
     outline: 0px solid transparent;
     text-align: center;
@@ -130,7 +130,7 @@
     background-color: lightgray;
     color: black;
     outline: 0.1vw black solid;
-    font-size: 50%;
+    font-size: 45%;
     border: 0vw solid black;
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
