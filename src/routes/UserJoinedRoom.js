@@ -75,6 +75,8 @@ async function addFactorsAuto(){
              div1.classList.add('UserratingFor')
              div1.placeholder = "?"
              div1.contentEditable = "true"
+             div1.min = "0"
+             div1.max = "10"
              div1.type = "number"
              factorRating.appendChild(div1)
          
