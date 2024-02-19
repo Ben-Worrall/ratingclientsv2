@@ -63,6 +63,7 @@ body{
   overflow-y: auto;
   font-size: 150%;
   
+  
 }
 #LoginRegisterPOPUP-background{
   position: absolute;
@@ -79,24 +80,29 @@ body{
 
 #LoginHolderBNT{
   width: 100%;
-  height: 40%;
+  height: 49%;
   display: table;
+  margin-top: 1%;
   
+  border-bottom: 0.5vh solid black;
 
 }
 #RegisterHolderBNT{
   width: 100%;
-  height: 40%;
+  height: 49%;
   display: table;
-
+  
+  margin-bottom: 1%;
+  border-top: 0.5vh solid black;
 }
 
-.infoClassLogRes{
+.infoClassLogReg{
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 110%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 
@@ -105,11 +111,30 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  float: left;
+  font-size: 90%;
+  
 }
 .TextClassLogReg{
   width: 30%;
-  
-  
+  font-weight: bold;
   float: left;
+}
+
+#LoginBNT-logres{
+  background-color: green;
+  color: white;
+  border-radius:  5px 5px 5px 5px;
+  border: 0vh solid black;
+  font-size: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+#RegisterBNT-logres{
+  background-color: blue;
+  color: white;
+  border-radius:  5px 5px 5px 5px;
+  border: 0vh solid black;
+  font-size: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }

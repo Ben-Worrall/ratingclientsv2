@@ -101,17 +101,31 @@ root.render(
       <div id="Holder">
         <div id="LoginRegisterPOPUP">
              <div id="LoginHolderBNT">
-                <p>Login:</p>
-                <div className="infoClassLogRes"><div className="TextClassLogReg">Username:</div> <input className="InputClassLogReg"></input></div>
-                <div className="infoClassLogRes"><div className="TextClassLogReg">Password:</div> <input className="InputClassLogReg"></input></div>
-                <button>Login</button>
+                <p style={{margin:"1%", fontWeight:"bold"}}>Login:</p>
+                <div className="infoClassLogReg">
+                  <div className="TextClassLogReg">Username:</div> 
+                  <input className="InputClassLogReg"></input>
+                </div>
+
+                <div className="infoClassLogReg">
+                  <div className="TextClassLogReg">Password:</div> 
+                  <input className="InputClassLogReg"></input>
+                </div>
+                <button id="LoginBNT-logres">Login</button>
               </div>
 
               <div id="RegisterHolderBNT">
-                <p>Register:</p>
-                <div className="infoClassLogRes">Username: <input className="InputClassLogReg"></input></div>
-                <div className="infoClassLogRes">Password: <input className="InputClassLogReg"></input></div>
-                <button>Register</button>
+                <p style={{margin:"1%", fontWeight:"bold"}}>Register:</p>
+                <div className="infoClassLogReg">
+                  <div className="TextClassLogReg">Username:</div> 
+                  <input className="InputClassLogReg"></input>
+                </div>
+
+                <div className="infoClassLogReg">
+                  <div className="TextClassLogReg">Password:</div>
+                  <input className="InputClassLogReg"></input>
+                </div>
+                <button id="RegisterBNT-logres">Register</button>
               </div>
         </div>
         <div id="LoginRegisterPOPUP-background" ></div>
