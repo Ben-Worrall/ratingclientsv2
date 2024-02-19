@@ -76,7 +76,7 @@ const CreateRoomHTML= () => {
        const docRef = doc(db, "AvailableCodes", "bTqLQ7U8f7ScZu6uXXjj")
       
         await updateDoc(docRef, CurData)
-        localStorage.clear()
+        localStorage.removeItem("code")
         
          await navigate('/')
           

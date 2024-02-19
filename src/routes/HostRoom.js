@@ -87,12 +87,35 @@ window.addEventListener("beforeunload", beforeUnloadListener);
 
      //back to normal
      
-    localStorage.clear()
+    localStorage.removeItem("code")
+    localStorage.removeItem("factors")
+    localStorage.removeItem("DocId")
     navigate('/')
     window.location.reload()
      
     
     
+  }
+
+
+
+  //save and close room function
+  function SaveGoHomeBNT(){
+    //console.log('test')
+    //show popup
+    let div111 = document.createElement('div')
+    div111.id = "SaveAndClosePOPUP"
+    //background for popup
+    let div222 = document.createElement('div')
+    div222.id = "BackgroundSaveClose"
+
+
+
+
+    document.getElementById('HostRoomMainDisplay').appendChild(div111)
+    document.getElementById('HostRoomMainDisplay').appendChild(div222)
+    
+
   }
 
 
@@ -135,6 +158,7 @@ window.addEventListener("beforeunload", beforeUnloadListener);
 
             <div id="ButtonHolder-WaitingRoom">
                 <button id="CloseRoomButton"  onClick={GoHomeBNT}>Close Room</button>
+                <button id="SaveCloseRoomButton"  onClick={SaveGoHomeBNT}>Save & Close Room</button>
                 
             </div>
 

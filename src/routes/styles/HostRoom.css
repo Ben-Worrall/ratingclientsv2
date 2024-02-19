@@ -109,11 +109,24 @@
     color: white;
     font-size: 200%;
     border-radius:  15px 15px 15px 15px;
-    
     border: 0.25vh solid black;
     margin-right: 1%;
+    text-shadow:
+    0 0 5px rgb(206, 96, 96);
 }
+#SaveCloseRoomButton{
+    background-color: rgb(0, 105, 0);
+    color: rgb(255, 255, 255);
+    font-size: 200%;
+    border-radius:  15px 15px 15px 15px;
+    border: 0.25vh solid black;
+    margin-right: 1%;
+    color: #ffffff;
+    text-shadow:
+    0 0 5px rgb(4, 190, 4);
 
+        
+}
 
 .Resultfactor{
     outline: 0.25vh solid black;
@@ -278,3 +291,36 @@
     opacity: .70;
     filter: alpha(opacity=70);
 }
+
+
+/* saveandclose popup */
+#SaveAndClosePOPUP{
+    position: absolute;
+    width: 55%;
+    height: 55%;
+    padding: 16px;
+    font-size: 150%;
+    background-color: white;
+    z-index: 10010;
+    overflow-y: auto;
+    display: block;
+             
+}
+#BackgroundSaveClose{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 1009;
+    -moz-opacity: 0.8;
+    opacity: .70;
+    filter: alpha(opacity=70);
+}
+
+
+
+
+
+
