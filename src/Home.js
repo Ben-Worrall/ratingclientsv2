@@ -98,15 +98,33 @@ root.render(
  }
 
     return (
-      
-        <div id="holder">
+      <div id="Holder">
+        <div id="LoginRegisterPOPUP">
+             <div id="LoginHolderBNT">
+                <p>Login:</p>
+                <div className="infoClassLogRes"><div className="TextClassLogReg">Username:</div> <input className="InputClassLogReg"></input></div>
+                <div className="infoClassLogRes"><div className="TextClassLogReg">Password:</div> <input className="InputClassLogReg"></input></div>
+                <button>Login</button>
+              </div>
+
+              <div id="RegisterHolderBNT">
+                <p>Register:</p>
+                <div className="infoClassLogRes">Username: <input className="InputClassLogReg"></input></div>
+                <div className="infoClassLogRes">Password: <input className="InputClassLogReg"></input></div>
+                <button>Register</button>
+              </div>
+        </div>
+        <div id="LoginRegisterPOPUP-background" ></div>
+
+
+        <div id="ButtonHolder">
           
-            
+          
           <button className="BNT" onClick={CreateRoomURL}>CreateRoom</button>
-         
-        
           <button className="BNT" onClick={JoinRoomURL}>JoinRoom</button>
+          <button id="SavedResultsHomeScreen" className="BNT">Saved Results</button>
         
+        </div>
         </div>
   
     )
