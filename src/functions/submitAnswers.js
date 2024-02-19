@@ -54,7 +54,7 @@ const SubmitAnswer = async () => {
                 if((document.getElementById("NoteText"+CurFac))){
                     
                     await addDoc(CurFactorCol, {
-                        Notes: document.getElementById("NoteText"+CurFac).innerText,
+                        Notes: document.getElementById("NoteText"+CurFac).value,
                         Rating: FactorVal,
                         Username: localStorage.getItem('UserName')
                         
