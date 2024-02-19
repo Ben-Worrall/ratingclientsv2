@@ -110,9 +110,8 @@ async function addFactorsAuto(){
 
 
              //for the notes (inside note button)
-             let div5 = document.createElement('div')
+             let div5 = document.createElement('textarea')
              div5.classList.add('UserNoteContent')
-             div5.contentEditable = "true"
              div5.style.textAlign = "left"
              div5.id = "NoteText"+ArrOfFactors[i]
              div5.innerHTML += '&nbsp;'
