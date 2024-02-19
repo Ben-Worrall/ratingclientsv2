@@ -104,12 +104,12 @@ root.render(
                 <p style={{margin:"1%", fontWeight:"bold"}}>Login:</p>
                 <div className="infoClassLogReg">
                   <div className="TextClassLogReg">Username:</div> 
-                  <input className="InputClassLogReg"></input>
+                  <input className="InputClassLogReg" id="LoginNameInput"></input>
                 </div>
 
                 <div className="infoClassLogReg">
                   <div className="TextClassLogReg">Password:</div> 
-                  <input className="InputClassLogReg"></input>
+                  <input className="InputClassLogReg" id="LoginPasswordInput"></input>
                 </div>
                 <button id="LoginBNT-logres">Login</button>
               </div>
@@ -118,12 +118,12 @@ root.render(
                 <p style={{margin:"1%", fontWeight:"bold"}}>Register:</p>
                 <div className="infoClassLogReg">
                   <div className="TextClassLogReg">Username:</div> 
-                  <input className="InputClassLogReg"></input>
+                  <input className="InputClassLogReg" id="RegNameInput"></input>
                 </div>
 
                 <div className="infoClassLogReg">
                   <div className="TextClassLogReg">Password:</div>
-                  <input className="InputClassLogReg"></input>
+                  <input className="InputClassLogReg" id="RegPasswordInput"></input>
                 </div>
                 <button id="RegisterBNT-logres">Register</button>
               </div>
