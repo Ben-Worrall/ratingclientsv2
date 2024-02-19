@@ -260,7 +260,7 @@
     width: 55%;
     height: 55%;
     padding: 16px;
-    
+    font-size: 150%;
     background-color: white;
     z-index: 10010;
     overflow-y: auto;
