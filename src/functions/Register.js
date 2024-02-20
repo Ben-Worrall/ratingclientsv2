@@ -14,7 +14,7 @@ const Register = async () => {
      //check though database to see if password has already been used
 
      //get password
-     let password = document.getElementById('RegPasswordInput').value
+     let Password = document.getElementById('RegPasswordInput').value
      let Username = document.getElementById('RegNameInput').value
      //loop through db to see if a doc matches the password
      var UsernameCur = 0
@@ -30,7 +30,11 @@ const Register = async () => {
     
      if(UsernameCur == 0){
         addDoc(dbUsers, data)
-        alert('Registered, you will be redirected now')
+        alert('Registered')
+        document.getElementById('LoginRegisterPOPUP').style.display = "none"
+        document.getElementById('LoginRegisterPOPUP-background').style.display = "none"
+        localStorage.setItem('User-Name',Username)
+        localStorage.setItem('User-Password',Password)
      }
      if(UsernameCur == 1){
         console.log(UsernameCur)

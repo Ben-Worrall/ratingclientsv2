@@ -10,7 +10,7 @@ const Login = async () => {
     const dbUsers = collection(db, "Users")
     const dbUsersDocs = await getDocs(collection(db, "Users"))
     //get password and username
-    let password = document.getElementById('LoginPasswordInput').value
+    let Password = document.getElementById('LoginPasswordInput').value
     let Username = document.getElementById('LoginNameInput').value
 
     var access =0
@@ -18,9 +18,13 @@ const Login = async () => {
     dbUsersDocs.forEach((doc) => {
         
         if(Username == doc.data().Username){
-            if(password == doc.data().Password){
-                alert('logged in')
+            if(Password == doc.data().Password){
+                alert('Logged in')
                 access++
+                document.getElementById('LoginRegisterPOPUP').style.display = "none"
+                document.getElementById('LoginRegisterPOPUP-background').style.display = "none"
+                localStorage.setItem('User-Name',Username)
+                localStorage.setItem('User-Password',Password)
                 return
             } 
             
