@@ -10,7 +10,7 @@ import addFactor from '../functions/addQuestion.js'
 import HostRoomHTML from './HostRoom.js';
 //import ClearText from '../functions/CreateRoomFunc.js'
 //import CloseFactor from '../functions/CreateRoomFunc.js'
-import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, addDoc, getDoc, setDoc} from 'firebase/firestore'
+import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, addDoc, getDoc, setDoc, where} from 'firebase/firestore'
 import { txtDB } from '../firebase/firebaseConfig';
 import { useBeforeunload } from 'react-beforeunload' 
 

@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import JoinRoom from "./routes/JoinRoom";
 import { useBeforeunload } from 'react-beforeunload'
 import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, addDoc, getDoc, setDoc} from 'firebase/firestore'
-
+import Register from "./functions/Register";
 const db = getFirestore()
 
 
@@ -125,7 +125,7 @@ root.render(
                   <div className="TextClassLogReg">Password:</div>
                   <input className="InputClassLogReg" id="RegPasswordInput"></input>
                 </div>
-                <button id="RegisterBNT-logres">Register</button>
+                <button id="RegisterBNT-logres" onClick={Register}>Register</button>
               </div>
         </div>
         <div id="LoginRegisterPOPUP-background" ></div>
