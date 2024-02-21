@@ -40,9 +40,11 @@ body{
 
 
 #Holder{
-  text-align: center;
   height: 100%;
   width: 100%;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
