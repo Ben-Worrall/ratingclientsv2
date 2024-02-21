@@ -31,10 +31,11 @@ const Register = async () => {
      if(UsernameCur == 0){
         addDoc(dbUsers, data)
         alert('Registered')
-        document.getElementById('LoginRegisterPOPUP').style.display = "none"
-        document.getElementById('LoginRegisterPOPUP-background').style.display = "none"
+        document.getElementById('LoginRegisterPOPUP').remove()
+        document.getElementById('LoginRegisterPOPUP-background').remove()
         localStorage.setItem('User-Name',Username)
         localStorage.setItem('User-Password',Password)
+        localStorage.setItem('logged-in','true')
      }
      if(UsernameCur == 1){
         console.log(UsernameCur)

@@ -1,6 +1,6 @@
 import { Link, useParams} from "react-router-dom";
 import CreateRoomHTML from "./routes/CreateRoom";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom/client';
 import { useNavigate } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom'
@@ -20,6 +20,26 @@ const db = getFirestore()
 
 
 const Home = () => {
+  const initialized = useRef(false)
+
+  useEffect(()=>{
+    if (!initialized.current) {
+      
+      if(localStorage.getItem('logged-in') == "true"){
+        console.log(document.getElementById('LoginRegisterPOPUP'))
+        console.log(document.getElementById('LoginRegisterPOPUP-background'))
+        document.getElementById('LoginRegisterPOPUP').style.display = "none"
+        document.getElementById('LoginRegisterPOPUP-background').style.display = "none"
+
+
+
+      }
+      initialized.current = true
+      
+    }
+    
+  }, [])
+ 
   
   
   let navigate = useNavigate();

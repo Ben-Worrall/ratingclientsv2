@@ -21,18 +21,21 @@ const Login = async () => {
             if(Password == doc.data().Password){
                 alert('Logged in')
                 access++
-                document.getElementById('LoginRegisterPOPUP').style.display = "none"
-                document.getElementById('LoginRegisterPOPUP-background').style.display = "none"
+                document.getElementById('LoginRegisterPOPUP').remove()
+                document.getElementById('LoginRegisterPOPUP-background').remove()
                 localStorage.setItem('User-Name',Username)
                 localStorage.setItem('User-Password',Password)
+                localStorage.setItem('logged-in','true')
                 return
             } 
             
         }
 
      })
+
      if(access == 0){
         alert('wrong username or password')
+        localStorage.setItem('logged-in','false')
      }
      
 }

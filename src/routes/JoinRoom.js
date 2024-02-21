@@ -13,13 +13,8 @@ const JoinRoom = () => {
     let navigate = useNavigate();
     async function GoHomeBNT(){
         navigate('/')
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(
-      <BrowserRouter>
-        <Home />
-      </BrowserRouter>,
-      document.getElementById('root')
-    )
+        window.location.reload()
+        
 }
 
 async function JoinRoomBNT(){
