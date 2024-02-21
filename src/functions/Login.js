@@ -19,13 +19,14 @@ const Login = async () => {
         
         if(Username == doc.data().Username){
             if(Password == doc.data().Password){
-                alert('Logged in')
+                
                 access++
                 document.getElementById('LoginRegisterPOPUP').remove()
                 document.getElementById('LoginRegisterPOPUP-background').remove()
                 localStorage.setItem('User-Name',Username)
                 localStorage.setItem('User-Password',Password)
                 localStorage.setItem('logged-in','true')
+                window.location.reload()
                 return
             } 
             

@@ -30,7 +30,7 @@ body{
 
 
 .BNT{
-  font-size: 300%;
+  font-size: 350%;
   width: 100%;
   margin-bottom: 2%;
   margin-top: 2%;
@@ -50,7 +50,10 @@ body{
   justify-content: center;
   position: absolute;
 }
-
+#ButtonHolder{
+  margin-top: 5%;
+  width: 75%;
+}
 
 
 #LoginRegisterPOPUP{
@@ -138,3 +141,53 @@ body{
   margin-top: 2%;
   margin-bottom: 2%;
 }
+
+#ShowUsername{
+  position: absolute;
+  top: 1%;
+  left:1%;
+  font-size: 175%;
+  border-radius:  5px 5px 5px 5px;
+  border: 0.1vh solid black;
+  background-color: white;
+  width: 40%;
+  height: 7%;
+  overflow-x: auto;
+  text-align: center;
+  
+
+}
+
+#SavedResultsHomeScreen{
+  position: absolute;
+  top: 10%;
+  left:1%;
+  height: 7%;
+  font-size: 175%;
+  border-radius:  5px 5px 5px 5px;
+  border: 0.1vh solid black;
+  background-color: white;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#LogOutBNT{
+  
+  position: absolute;
+  top: 1%;
+  right:1%;
+  font-size: 175%;
+  border-radius:  5px 5px 5px 5px;
+  border: 0.1vh solid black;
+  background-color: white;
+}
+
+
+
+
+
+
+

@@ -9,6 +9,7 @@ import { useBeforeunload } from 'react-beforeunload'
 import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, addDoc, getDoc, setDoc} from 'firebase/firestore'
 import Register from "./functions/Register";
 import Login from "./functions/Login";
+import LogOut from "./functions/LogOut";
 const db = getFirestore()
 
 
@@ -30,7 +31,7 @@ const Home = () => {
         console.log(document.getElementById('LoginRegisterPOPUP-background'))
         document.getElementById('LoginRegisterPOPUP').style.display = "none"
         document.getElementById('LoginRegisterPOPUP-background').style.display = "none"
-
+        document.getElementById('ShowUsername').value = ((localStorage.getItem('User-Name')))
 
 
       }
@@ -120,6 +121,11 @@ root.render(
 
     return (
       <div id="Holder">
+
+        <input id="ShowUsername"></input>
+        <button id="SavedResultsHomeScreen" >Saved Results</button>
+
+        <button id="LogOutBNT" onClick={LogOut}>Log Out</button>
         <div id="LoginRegisterPOPUP">
              <div id="LoginHolderBNT">
                 <p style={{margin:"1%", fontWeight:"bold"}}>Login:</p>
@@ -157,7 +163,7 @@ root.render(
           
           <button className="BNT" onClick={CreateRoomURL}>CreateRoom</button>
           <button className="BNT" onClick={JoinRoomURL}>JoinRoom</button>
-          <button id="SavedResultsHomeScreen" className="BNT">Saved Results</button>
+          
         
         </div>
         </div>
