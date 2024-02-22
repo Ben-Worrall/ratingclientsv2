@@ -24,6 +24,7 @@ const Home = () => {
   const initialized = useRef(false)
 
   useEffect(()=>{
+    
     if (!initialized.current) {
       
       if(localStorage.getItem('logged-in') == "true"){

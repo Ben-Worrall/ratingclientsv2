@@ -10,6 +10,7 @@ import $ from 'jquery'
 import LOADED from '../functions/HostGetCode';
 import { useEffect } from 'react';
 import GetResult from '../functions/GetResults';
+import SaveAndCloseBNT from '../functions/SaveAndCloseRoom';
 const db = getFirestore()
 
 
@@ -20,7 +21,10 @@ const db = getFirestore()
 
 
 const HostRoomHTML = () => {
-
+  function closeSave(){
+    document.getElementById('BackgroundSaveClose').remove()
+    document.getElementById('SaveAndClosePOPUP').remove()
+  }
 
 
   const beforeUnloadListener = async (event) => {
@@ -108,10 +112,22 @@ window.addEventListener("beforeunload", beforeUnloadListener);
     //background for popup
     let div222 = document.createElement('div')
     div222.id = "BackgroundSaveClose"
+    div222.onclick = closeSave
+    //choose name for project save
+    let div333 = document.createElement('input')
+    div333.id = "SaveCloseName"
+    div333.placeholder = "Save as"
+    //save button
+    let div444 = document.createElement('button')
+    div444.id = "SaveCloseButton"
+    div444.innerHTML = "Save & Close"
+    div444.onclick = SaveAndCloseBNT
 
 
 
 
+    div111.appendChild(div333)
+    div111.appendChild(div444)
     document.getElementById('HostRoomMainDisplay').appendChild(div111)
     document.getElementById('HostRoomMainDisplay').appendChild(div222)
     

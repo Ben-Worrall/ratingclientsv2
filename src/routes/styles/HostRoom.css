@@ -296,14 +296,16 @@
 /* saveandclose popup */
 #SaveAndClosePOPUP{
     position: absolute;
-    width: 55%;
-    height: 55%;
+    width: 45%;
+    height: 25%;
     padding: 16px;
     font-size: 150%;
     background-color: white;
     z-index: 10010;
     overflow-y: auto;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
              
 }
 #BackgroundSaveClose{
@@ -319,7 +321,39 @@
     filter: alpha(opacity=70);
 }
 
+#SaveCloseName{
+  position: absolute;
+  top: 0;
+  margin-top: 5%;
+  width: 75%;
+  height: 25%;
+  font-size: 100%;
+  text-align: center;
+  border-radius:  15px 15px 15px 15px;
+  border: 0.25vh solid black;
 
+}
+
+#SaveCloseButton{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5%;
+    background-color: rgb(0, 105, 0);
+    color: rgb(255, 255, 255);
+    width: 75%;
+    height: 25%;
+    font-size: 100%;
+    text-align: center;
+    border-radius:  15px 15px 15px 15px;
+    border: 0.25vh solid black;
+    margin-right: 1%;
+    color: #ffffff;
+    text-shadow:
+    0 0 5px rgb(4, 190, 4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 
