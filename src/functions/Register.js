@@ -29,7 +29,11 @@ const Register = async () => {
      })
     
      if(UsernameCur == 0){
-        addDoc(dbUsers, data)
+      
+        await addDoc(collection(db, "Users"), {
+         Username: document.getElementById('RegNameInput').value,
+        Password: document.getElementById('RegPasswordInput').value
+        })
         document.getElementById('LoginRegisterPOPUP').remove()
         document.getElementById('LoginRegisterPOPUP-background').remove()
         localStorage.setItem('User-Name',Username)
