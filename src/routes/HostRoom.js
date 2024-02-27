@@ -11,6 +11,7 @@ import LOADED from '../functions/HostGetCode';
 import { useEffect } from 'react';
 import GetResult from '../functions/GetResults';
 import SaveAndCloseBNT from '../functions/SaveAndCloseRoom';
+
 const db = getFirestore()
 
 
@@ -21,6 +22,15 @@ const db = getFirestore()
 
 
 const HostRoomHTML = () => {
+  let navigate = useNavigate();
+
+  function toSuccess(){
+    navigate('/')
+    window.location.reload()
+    console.log('should change')
+}
+
+
   function closeSave(){
     document.getElementById('BackgroundSaveClose').remove()
     document.getElementById('SaveAndClosePOPUP').remove()
@@ -41,7 +51,7 @@ window.addEventListener("beforeunload", beforeUnloadListener);
   
      
   //go home button  
-    let navigate = useNavigate();
+   
     
     async function GoHomeBNT(){ 
       
@@ -134,7 +144,7 @@ window.addEventListener("beforeunload", beforeUnloadListener);
 
   }
 
-
+  
   
    
   
@@ -175,7 +185,7 @@ window.addEventListener("beforeunload", beforeUnloadListener);
             <div id="ButtonHolder-WaitingRoom">
                 <button id="CloseRoomButton"  onClick={GoHomeBNT}>Close Room</button>
                 <button id="SaveCloseRoomButton"  onClick={SaveGoHomeBNT}>Save & Close Room</button>
-                
+                <button  id='ToHomeAfterSave' style={{display:"none"}} onClick={toSuccess} ></button>
             </div>
 
 

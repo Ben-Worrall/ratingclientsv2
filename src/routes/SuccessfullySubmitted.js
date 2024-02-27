@@ -12,7 +12,8 @@ const Success = () => {
 
 
     function GoHome(){
-        localStorage.clear()
+        localStorage.removeItem('UserName')
+        localStorage.removeItem('code')
         navigate('/')
         window.location.reload()
     }

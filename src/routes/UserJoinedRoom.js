@@ -193,13 +193,15 @@ addFactorsAuto()
 
     
     function GoBack(){
-        localStorage.clear()
+        localStorage.removeItem('UserName')
+        localStorage.removeItem('code')
         navigate('/routes/JoinRoom/')
     window.location.reload()
 
     }
     function GoHome(){
-        localStorage.clear()
+        localStorage.removeItem('UserName')
+        localStorage.removeItem('code')
         navigate('/')
         window.location.reload()
     }

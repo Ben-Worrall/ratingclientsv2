@@ -1,7 +1,7 @@
 
 import ReactDOM from 'react-dom/client'
 import { txtDB } from '../firebase/firebaseConfig';
-import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, addDoc, getDoc, setDoc} from 'firebase/firestore'
+import { getFirestore, updateDoc, doc, collection,getDocs,deleteDoc, deleteField, addDoc, getDoc, setDoc} from 'firebase/firestore'
 import $ from 'jquery'
 import LOADED from '../functions/HostGetCode';
 import { useEffect } from 'react';
@@ -85,7 +85,58 @@ const SaveAndCloseBNT = async ()=> {
     
 
   }
-  
+  async function ChangeToSuccess(){
+    // quits the website or refreshes then get put code back in data base and delete the server
+
+ //get code
+ 
+  let x = document.getElementById('RoomPasswordText').innerText
+  let y = String(x)
+  let z = Number(y)
+  //put the server code back
+  const docRef = doc(db, "AvailableCodes", "bTqLQ7U8f7ScZu6uXXjj")
+  await updateDoc(docRef, {[y]: z})
+  //delete the server from the Servers collection
+  let DocId = localStorage.getItem('DocId')
+
+  //delete the server sub collections (factors)
+  //otherwise documents will still apear and only the server code will be deleted
+  //access tlocalstorage to get the factors(collection names)
+  var AllFactorsAr = JSON.parse(localStorage.getItem('factors'))
+  for(let i = 0; i< AllFactorsAr.length; i++){
+    //get the collection
+    const querySnapshot = await getDocs(collection(db, "Servers", DocId, AllFactorsAr[i]));
+    
+     querySnapshot.forEach(async(docs) => {
+      //get collections documents ids
+        let DocRefId = docs.id
+        console.log(DocRefId)
+        //get sub collection
+        let CurCollection = collection(db, "Servers", DocId, AllFactorsAr[i])
+        //get doc from sub collection
+        let curDoc = doc(CurCollection, DocRefId)
+        await deleteDoc(curDoc)
+      
+    });
+
+   
+  }
+
+  //delete the server document
+  await deleteDoc(doc(db, "Servers", DocId))
+
+
+
+     //back to normal
+     
+    localStorage.removeItem("code")
+    localStorage.removeItem("factors")
+    localStorage.removeItem("DocId")
+
+    document.getElementById('ToHomeAfterSave').click()
+    console.log('start proceaa')
+  }
+  setTimeout(ChangeToSuccess,5000)
 
 
 
