@@ -354,7 +354,41 @@
     align-items: center;
     justify-content: center;
 }
+#ClosePOPUP{
+    position: absolute;
+    width: 45%;
+    height: max-content;
+    padding: 16px;
+    
+    background-color: white;
+    z-index: 10010;
+    overflow-y: auto;
+    display: block;
+}
 
+#BackgroundClose{
+ position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .60;
+    filter: alpha(opacity=60);
+}
 
-
-
+#ClosePopupText{
+ width: 100%;
+ 
+ font-size: 150%;
+}
+#CloseServerBNT{
+ margin-top: 5%;
+ font-size: 150%;
+ color: white;
+ background-color: red;
+ border-radius:  15px 15px 15px 15px;
+    border: 0.25vh solid black;
+}

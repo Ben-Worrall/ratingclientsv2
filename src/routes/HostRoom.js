@@ -11,7 +11,7 @@ import LOADED from '../functions/HostGetCode';
 import { useEffect } from 'react';
 import GetResult from '../functions/GetResults';
 import SaveAndCloseBNT from '../functions/SaveAndCloseRoom';
-
+import ConfirmNoSave from '../functions/ConfirmNoSave';
 const db = getFirestore()
 
 
@@ -50,11 +50,13 @@ window.addEventListener("beforeunload", beforeUnloadListener);
      }
   
      
-  //go home button  
-   
-    
-    async function GoHomeBNT(){ 
-      
+
+  //confirm going home without saving
+ 
+
+
+  //go home  
+    async function GoHome(){ 
       
     window.removeEventListener("beforeunload", beforeUnloadListener);
 
@@ -183,7 +185,8 @@ window.addEventListener("beforeunload", beforeUnloadListener);
 
 
             <div id="ButtonHolder-WaitingRoom">
-                <button id="CloseRoomButton"  onClick={GoHomeBNT}>Close Room</button>
+                <button id="CloseRoomButton"  onClick={ConfirmNoSave}>Close Room</button>
+                <button id="goHomNoSave" style={{display:"none"}}  onClick={GoHome}>Close Room</button>
                 <button id="SaveCloseRoomButton"  onClick={SaveGoHomeBNT}>Save & Close Room</button>
                 <button  id='ToHomeAfterSave' style={{display:"none"}} onClick={toSuccess} ></button>
             </div>
