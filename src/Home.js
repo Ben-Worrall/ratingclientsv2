@@ -10,6 +10,7 @@ import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, addDoc, 
 import Register from "./functions/Register";
 import Login from "./functions/Login";
 import LogOut from "./functions/LogOut";
+import ShowResultsSavedPopup from "./functions/ShowResultsSavedPopup";
 const db = getFirestore()
 
 
@@ -124,7 +125,7 @@ root.render(
       <div id="Holder">
 
         <input id="ShowUsername"></input>
-        <button id="SavedResultsHomeScreen" >Saved Results</button>
+        <button id="SavedResultsHomeScreen" onClick={ShowResultsSavedPopup}>Saved Results</button>
 
         <button id="LogOutBNT" onClick={LogOut}>Log Out</button>
         <div id="LoginRegisterPOPUP">
