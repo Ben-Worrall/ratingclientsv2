@@ -11,7 +11,7 @@ import CreateRoomHTML from "./routes/CreateRoom";
 import HostRoomHTML from "./routes/HostRoom";
 import UserJoinedRoom from './routes/UserJoinedRoom';
 import Success from './routes/SuccessfullySubmitted';
-
+import SavedResult from "./routes/SavedResult";
 //generateall the game codes
 //storeCode()
 
@@ -36,6 +36,7 @@ function App() {
           <Route exact path='/routes/HostRoom' element={<HostRoomHTML/>} />
           <Route exact path='/routes/UserJoinedRoom' element={<UserJoinedRoom/>} />
           <Route exact path='/routes/SuccessfullySubmitted' element={<Success/>} />
+          <Route exact path='/routes/SavedResult' element={<SavedResult/>} />
       </Routes>
      </div>
     </Router>

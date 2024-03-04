@@ -209,7 +209,16 @@ body{
   filter: alpha(opacity=60);
 }
 
-
+#SavedResBNT{
+  width: 75%;
+  height: 15%;
+  margin-top: 1%;
+  background-color: rgb(189, 189, 189);
+  color: rgb(0, 0, 0);
+  border-radius:  5px 5px 5px 5px;
+  border: 0.1vh solid black;
+  font-size: 125%;
+}
 
 
 

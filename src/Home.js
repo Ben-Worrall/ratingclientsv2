@@ -11,6 +11,11 @@ import Register from "./functions/Register";
 import Login from "./functions/Login";
 import LogOut from "./functions/LogOut";
 import ShowResultsSavedPopup from "./functions/ShowResultsSavedPopup";
+import SavedResult from "./routes/SavedResult";
+
+
+
+
 const db = getFirestore()
 
 
@@ -105,21 +110,35 @@ root.render(
 
 
   }
-
+  
   
   async function JoinRoomURL(){
     navigate('/routes/JoinRoom/')
-   
-   
-   const root = ReactDOM.createRoot(document.getElementById('root'));
-   root.render(
-     <BrowserRouter>
-       <JoinRoom />
-     </BrowserRouter>,
-     document.getElementById('root')
-   )
+    window.location.reload()
    
  }
+
+ function ToSavedResult(){
+  navigate('/routes/SavedResult')
+  window.location.reload()
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
       <div id="Holder">
@@ -165,7 +184,7 @@ root.render(
           
           <button className="BNT" onClick={CreateRoomURL}>CreateRoom</button>
           <button className="BNT" onClick={JoinRoomURL}>JoinRoom</button>
-          
+          <button  id='ToSavedResult' style={{display:"none"}} onClick={ToSavedResult} ></button>
         
         </div>
         </div>
