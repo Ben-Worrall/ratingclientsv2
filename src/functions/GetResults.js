@@ -237,6 +237,12 @@ function BlackClickNotes(){
 
 
 
+  
+
+
+
+
+
      //now that it has been established
      //access teh sub collections to get the data
      
