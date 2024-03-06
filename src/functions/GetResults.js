@@ -112,7 +112,7 @@ function BlackClickNotes(){
   //tallied up all the ratings for each factor
   let div1 = document.createElement('div')
   div1.classList.add('ResultratingFor')
-  //div1.innerText 
+ 
   factorRating.appendChild(div1)
   
   

@@ -1,0 +1,119 @@
+#SavedResultHolder{
+    background-color: white;
+    width: 95%;
+    height: 65%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+#SavedAs-Text{
+    position: absolute;
+    top: 0;
+    margin-top: 1%;
+    font-size: 250%;
+    background-color: white;
+    border-radius:  15px 15px 15px 15px;
+    text-align: center;
+    width: 65%;
+    border: 0.25vh solid black;
+    margin-bottom: 1%;
+}
+#ButtonHolder-SavedPage{
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 1%;
+   margin-top: 1%;
+}
+
+#HomeBNTSavedPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    border-radius:  15px 15px 15px 15px;
+    font-size: 250%;
+    border: 0.25vh solid black;
+    margin-right: 1%;
+    user-select: none;
+}
+
+#BackBNTSavedPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    border-radius:  15px 15px 15px 15px;
+    font-size: 250%;
+    border: 0.25vh solid black;
+    margin-right: 1%;
+    user-select: none;
+}
+
+#RatingBoard-SavedPage{
+    width: 100%;
+    height: 100%;
+}
+.SavedFactor{
+    outline: 0.25vh solid black;
+    width: 48%;
+    height: 12.5%;
+    float: left;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 1%;
+}
+.SavedFactorText{
+    width: 55%;
+    float: left;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0vh solid black;
+    border-right: 0.25vh solid black;
+    overflow-X: auto;
+    height: 100%;
+    font-size: 175%;
+    outline: 0px solid transparent;
+    
+}
+.SavedResultRatingOutOf{
+    outline: 0px solid transparent;
+    width:25%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    font-size: 175%;
+}
+.SavedResultDetailBnt{
+    position: relative;
+    float: right;
+    margin-top: 0;
+    background-color: lightgray;
+    color: black;
+    outline: 0.1vw black solid;
+    font-size: 90%;
+    border: 0vw solid black;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+}
+.SavedResultRatingFor{
+    width: 20%;
+    border: 0vh solid black;
+    outline: 0px solid transparent;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 175%;
+    height: 100%;
+    border-right: 0.55vh solid black;
+}
