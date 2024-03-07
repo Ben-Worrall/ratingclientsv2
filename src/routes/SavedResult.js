@@ -14,7 +14,18 @@ const db = getFirestore()
 
 
 const SavedResult = () => {
+ let navigate = useNavigate()
  
+
+  function GoHome(){
+    localStorage.removeItem('UserName')
+    localStorage.removeItem('code')
+    localStorage.removeItem('SavedAs-Name')
+    navigate('/')
+    window.location.reload()
+  }
+
+
 
   function BlackClickNotes(){
     document.getElementById('SavedWhite_content').style.display = ""
@@ -365,7 +376,7 @@ let SubDocs = await getDocs(CurFactorCol)
    
    
            <div id="ButtonHolder-SavedPage">
-               <button id="HomeBNTSavedPage" >Home</button>
+               <button id="HomeBNTSavedPage" onClick={GoHome}>Home</button>
                <button id='BackBNTSavedPage' >Download as excel file</button>
            </div>
 
