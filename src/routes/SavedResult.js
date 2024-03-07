@@ -14,7 +14,22 @@ const db = getFirestore()
 
 
 const SavedResult = () => {
-    
+ 
+
+  function BlackClickNotes(){
+    document.getElementById('SavedWhite_content').style.display = ""
+    document.getElementById('SavedBlack_overlay').style.display = ""
+    document.getElementById('SavedBlack_overlay_NOTES').style.display = "none"
+    document.querySelectorAll('.SavedNotesClassListHost').forEach(function(note){
+      note.style.display = "none"
+    })
+  }
+
+
+
+
+
+
 
  //show details function
  async function SavedShowDetails(e){
@@ -54,7 +69,7 @@ let SubDocs = await getDocs(CurFactorCol)
 
 
                         //div4.onclick = ShowNoteContent
-               console.log('test')
+              
              document.getElementById('SavedWhite_content').innerHTML +=(`<div id="UsernameText">${subDoc.data().Username}</div>`)
              document.getElementById('SavedWhite_content').innerHTML +=(`<div id="RatingText">${subDoc.data().Rating}</div>`)
          
@@ -76,7 +91,7 @@ let SubDocs = await getDocs(CurFactorCol)
              CurNoteDiv.style.display = "none"
              CurNoteDiv.classList = "SavedNotesClassListHost"
              CurNoteDiv.innerText = subDoc.data().Notes
-             document.getElementById('SavedWhite_content').appendChild(CurNoteDiv)
+             document.getElementById('root').appendChild(CurNoteDiv)
 
 
 
@@ -158,13 +173,14 @@ let SubDocs = await getDocs(CurFactorCol)
          
          
           //for the blacvk overlay of the details
-          let div7 = document.createElement('div')
-          div7.id=('black_overlay_NOTES')
-          //div7.onclick = BlackClickNotes
-          div7.style.display = "none"
+          let NotesBG = document.createElement('div')
+          NotesBG.id=('SavedBlack_overlay_NOTES')
+          NotesBG.onclick = BlackClickNotes
+          NotesBG.style.display = "none"
          
           document.getElementById('root').appendChild(detailsDiv)
           document.getElementById('root').appendChild(detailsDivBlackBg)
+          document.getElementById('root').appendChild(NotesBG)
 
 
 
@@ -285,14 +301,46 @@ let SubDocs = await getDocs(CurFactorCol)
         addFactorsAuto()
 
 
+
+
+
+
+        
+
+
+
+
+
+
     }
+
+
+
+
+
+    var wrapper = document.getElementById("root")
+    wrapper.addEventListener("click", function(ev){
+      console.log('clicked on item')
+      var btn_option = document.getElementsByClassName("SavedNotesBNTResults");
+      Object.keys(btn_option).forEach(function(key){
+        if(ev.target == btn_option[key]){
+          console.log(btn_option[key].getAttribute("value"))
+          document.getElementById(btn_option[key].getAttribute("value")).style.display = ""
+          document.getElementById('SavedBlack_overlay_NOTES').style.display = ""
+          document.getElementById('SavedBlack_overlay').style.display = "none"
+         
+        }
+      })
+    })
+
+
     document.getElementById('SavedAs-Text').value = localStorage.getItem('SavedAs-Name')
+
+
+
         return () => effectRan.current = true;
       }, []);
     
-
-
-
 
 
 
@@ -326,6 +374,10 @@ let SubDocs = await getDocs(CurFactorCol)
        
         
     )
+
+
+
+
 
 
 }
