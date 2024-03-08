@@ -42,7 +42,7 @@
     user-select: none;
 }
 
-#BackBNTSavedPage{
+#DownloadBNTSavedPage{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -179,12 +179,51 @@
     filter: alpha(opacity=70);
 }
 
+#DownloadPopupDiv{
 
+position: absolute;
+    width: 45%;
+    height: max-content;
+    padding: 16px;
+    
+    background-color: white;
+    z-index: 10010;
+    overflow: hidden;
+    
+}
 
+#DownloadPopupDivBG{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .60;
+    filter: alpha(opacity=60);
+    display: flex;
+    flex-direction: column;
+}
 
+#ClientNameInput{
+ width: 100%;
+ height: fit-content;
+ font-size: 200%;
 
-
-
+}
+#DownloadExcel{
+    
+   margin-top: 1%;
+    width: 100%;
+    border-radius:  15px 15px 15px 15px;
+    font-size: 200%;
+    border: 0.25vh solid black;
+    background-color: green;
+    color: white;
+    user-select: none;
+}
 
 
 

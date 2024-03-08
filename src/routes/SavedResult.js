@@ -25,6 +25,43 @@ const SavedResult = () => {
     window.location.reload()
   }
 
+  //create popup
+  let DownloadPopupDiv = document.createElement('div')
+  DownloadPopupDiv.id = "DownloadPopupDiv"
+  DownloadPopupDiv.style.display = "none"
+  let ClientNameInput = document.createElement('input')
+  ClientNameInput.placeholder = "Client's Name"
+  ClientNameInput.id = "ClientNameInput"
+  let DownloadExcel = document.createElement('button')
+  DownloadExcel.innerText = "Download"
+  DownloadExcel.id = "DownloadExcel"
+
+  DownloadPopupDiv.appendChild(ClientNameInput)
+  DownloadPopupDiv.appendChild(DownloadExcel)
+  //popup background
+  let DownloadPopupDivBG = document.createElement('div')
+  DownloadPopupDivBG.id = "DownloadPopupDivBG"
+  DownloadPopupDivBG.style.display = "none"
+  DownloadPopupDivBG.onclick = DownloadPopupBG
+
+  
+
+  //function to show the download popups
+  function DownloadPopup(){
+    document.getElementById("SavedResultHolder").appendChild(DownloadPopupDiv)
+  document.getElementById("SavedResultHolder").appendChild(DownloadPopupDivBG)
+    document.getElementById('DownloadPopupDiv').style.display = ""
+    document.getElementById('DownloadPopupDivBG').style.display = ""
+
+    
+  }
+   //function to close the download popups
+  function DownloadPopupBG(){
+    document.getElementById('DownloadPopupDiv').style.display = "none"
+    document.getElementById('DownloadPopupDivBG').style.display = "none"
+    
+  }
+
 
 
   function BlackClickNotes(){
@@ -377,7 +414,7 @@ let SubDocs = await getDocs(CurFactorCol)
    
            <div id="ButtonHolder-SavedPage">
                <button id="HomeBNTSavedPage" onClick={GoHome}>Home</button>
-               <button id='BackBNTSavedPage' >Download as excel file</button>
+               <button id='DownloadBNTSavedPage' onClick={DownloadPopup}>Download as excel file</button>
            </div>
 
         </div>
