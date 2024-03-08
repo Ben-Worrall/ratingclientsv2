@@ -209,7 +209,7 @@ body{
   filter: alpha(opacity=60);
 }
 
-#SavedResBNT{
+.SavedResBNT{
   width: 75%;
   height: 15%;
   margin-top: 1%;
@@ -219,6 +219,16 @@ body{
   border: 0.1vh solid black;
   font-size: 125%;
 }
-
+.downloadExcelBNT{
+  width: 10%;
+  height: 15%;
+  margin-top: 1%;
+  background-color: green;
+  color: rgb(255, 255, 255);
+  border-radius:  5px 5px 5px 5px;
+  border: 0.1vh solid black;
+  text-align: center;
+  font-size: 125%;
+}
 
 

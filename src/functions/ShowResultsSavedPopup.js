@@ -43,10 +43,16 @@ const ShowResultsSavedPopup = async () => {
             //create a button and append the saved name of the doc
             //then append it to the savedrespopups
             let SavedResButton = document.createElement('button')
-            SavedResButton.id = "SavedResBNT"
+            SavedResButton.classList.add("SavedResBNT") 
             SavedResButton.innerText = docs.data().SavedAs
             SavedResButton.onclick = ShowEachSavedResult
+            let downloadExcelBNT = document.createElement('button')
+            downloadExcelBNT.innerText = "⤓"
+            downloadExcelBNT.classList.add('downloadExcelBNT')
+
+
             document.getElementById('SavedResPopups').appendChild(SavedResButton)
+            document.getElementById('SavedResPopups').appendChild(downloadExcelBNT)
         }
     }
     })
