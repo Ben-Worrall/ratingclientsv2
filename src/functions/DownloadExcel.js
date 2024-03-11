@@ -65,7 +65,7 @@ const DownloadExcelFunc = async () => {
             let EachFactorTDavg = document.createElement('td')
             let EachFactorTR = document.createElement('tr')
             EachFactorNameTD.innerText = Factor.childNodes[0].value
-            EachFactorTDavg.innerText = "score " + Factor.childNodes[1].innerText
+            EachFactorTDavg.innerText = "Score: " + Factor.childNodes[1].innerText
             EachFactorTR.appendChild(EachFactorNameTD)
             EachFactorTR.appendChild(EachFactorTDavg)
             ExcelTable.appendChild(EachFactorTR)
@@ -121,9 +121,9 @@ let SubDocs = await getDocs(CurFactorCol)
               let EachFactorUserTR = document.createElement('tr')
 
               EachFactorName.innerText = Factor.childNodes[0].value
-              EachFactorUserNameTD.innerText = subDoc.data().Username
-              EachFactorUserRatingTD.innerText = subDoc.data().Rating
-              EachFactorUserNotesTD.innerText = subDoc.data().Notes
+              EachFactorUserNameTD.innerText = "Name: " + subDoc.data().Username
+              EachFactorUserRatingTD.innerText = "Rating: " + subDoc.data().Rating
+              EachFactorUserNotesTD.innerText = "Notes: "+subDoc.data().Notes
               
               EachFactorUserTR.appendChild(EachFactorName)
               EachFactorUserTR.appendChild(EachFactorUserNameTD)
@@ -168,26 +168,38 @@ let SubDocs = await getDocs(CurFactorCol)
 
 
 
+   //downlaod table
+   function exportTableToExcel() {
+    // Get the table element using the provided ID
+    const table = document.getElementById('ExcelTable');
+  
+    // Extract the HTML content of the table
+    const html = table.outerHTML;
+  
+    // Create a Blob containing the HTML data with Excel MIME type
+    const blob = new Blob([html], {type: 'application/vnd.ms-excel'});
+  
+    // Create a URL for the Blob
+    const url = URL.createObjectURL(blob);
+  
+    // Create a temporary anchor element for downloading
+    const a = document.createElement('a');
+    a.href = url;
+  
+    // Set the desired filename for the downloaded file
+    a.download = `${document.getElementById('ClientNameInput').value}.xls`;
+  
+    // Simulate a click on the anchor to trigger download
+    a.click();
+  
+    // Release the URL object to free up resources
+    URL.revokeObjectURL(url);
+  }
 
 
 
 
-
-
-        
-
-
-
-
-
-
-
-
-
-   
-   
-   document.getElementById('DownloadAsExcel').click()
-
+  setTimeout(function() { exportTableToExcel();; }, 5000)
     }
 
 

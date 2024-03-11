@@ -18,13 +18,10 @@ const db = getFirestore()
 const SavedResult = () => {
  let navigate = useNavigate()
 
- function DownloadAsExcel(){
-  useDownloadExcel({
-    currentTableRef: document.getElementById('ExcelTable'),
-    filename: document.getElementById('ClientNameInput').value,
-    sheet: 'Users'
-   })
- }
+
+
+
+  
  
 
   function GoHome(){
@@ -429,7 +426,7 @@ let SubDocs = await getDocs(CurFactorCol)
            <div id="ButtonHolder-SavedPage">
                <button id="HomeBNTSavedPage" onClick={GoHome}>Home</button>
                <button id='DownloadBNTSavedPage' onClick={DownloadPopup}>Download as excel file</button>
-               <button id='DownloadAsExcel' style={{display:"none"}} onClick={ DownloadAsExcel}></button>
+               <button id='DownloadAsExcel' style={{display:"none"}} ></button>
            </div>
 
         </div>
