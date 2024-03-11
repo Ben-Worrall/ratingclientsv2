@@ -8,6 +8,8 @@ import ReactDOM from 'react-dom/client'
 import { txtDB } from '../firebase/firebaseConfig';
 import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, deleteDoc, onSnapshot } from 'firebase/firestore'
 import $ from 'jquery'
+import DownloadExcelFunc from '../functions/DownloadExcel';
+import { useDownloadExcel } from 'react-export-table-to-excel';
 
 const db = getFirestore()
 
@@ -15,6 +17,14 @@ const db = getFirestore()
 
 const SavedResult = () => {
  let navigate = useNavigate()
+
+ function DownloadAsExcel(){
+  useDownloadExcel({
+    currentTableRef: document.getElementById('ExcelTable'),
+    filename: document.getElementById('ClientNameInput').value,
+    sheet: 'Users'
+   })
+ }
  
 
   function GoHome(){
@@ -35,6 +45,7 @@ const SavedResult = () => {
   let DownloadExcel = document.createElement('button')
   DownloadExcel.innerText = "Download"
   DownloadExcel.id = "DownloadExcel"
+  DownloadExcel.onclick = DownloadExcelFunc
 
   DownloadPopupDiv.appendChild(ClientNameInput)
   DownloadPopupDiv.appendChild(DownloadExcel)
@@ -72,6 +83,10 @@ const SavedResult = () => {
       note.style.display = "none"
     })
   }
+
+
+
+
 
 
 
@@ -163,15 +178,14 @@ let SubDocs = await getDocs(CurFactorCol)
 
 
 
-
-
-
-
-
-
  }
 
  
+
+
+
+
+
 
 
 
@@ -368,7 +382,7 @@ let SubDocs = await getDocs(CurFactorCol)
 
     var wrapper = document.getElementById("root")
     wrapper.addEventListener("click", function(ev){
-      console.log('clicked on item')
+      
       var btn_option = document.getElementsByClassName("SavedNotesBNTResults");
       Object.keys(btn_option).forEach(function(key){
         if(ev.target == btn_option[key]){
@@ -415,6 +429,7 @@ let SubDocs = await getDocs(CurFactorCol)
            <div id="ButtonHolder-SavedPage">
                <button id="HomeBNTSavedPage" onClick={GoHome}>Home</button>
                <button id='DownloadBNTSavedPage' onClick={DownloadPopup}>Download as excel file</button>
+               <button id='DownloadAsExcel' style={{display:"none"}} onClick={ DownloadAsExcel}></button>
            </div>
 
         </div>
