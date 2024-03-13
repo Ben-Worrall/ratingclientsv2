@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-
+import "../App.css"
 import ReactDOM from 'react-dom/client'
 import { txtDB } from '../firebase/firebaseConfig';
 import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, deleteDoc, onSnapshot } from 'firebase/firestore'
@@ -9,14 +9,68 @@ import $ from 'jquery'
 import LOADED from '../functions/HostGetCode';
 import { useEffect } from 'react';
 import ShowEachSavedResult from './ShowEachSavedResult';
+import DownloadExcelSavedPopup from './DownloadExcelSavedPopuup';
 const db = getFirestore()
 
 
 const ShowResultsSavedPopup = async () => {
+
+
+    
+         //create popup
+  let DownloadPopupDiv = document.createElement('div')
+  DownloadPopupDiv.id = "DownloadPopupDiv"
+  DownloadPopupDiv.style.display = "none"
+  let ClientNameInput = document.createElement('input')
+  ClientNameInput.placeholder = "Client's Name"
+  ClientNameInput.id = "ClientNameInputPopup"
+  let DownloadExcel = document.createElement('button')
+  DownloadExcel.innerText = "Download"
+  DownloadExcel.id = "DownloadExcelPopup"
+  DownloadExcel.onclick = DownloadExcelSavedPopup
+
+  DownloadPopupDiv.appendChild(ClientNameInput)
+  DownloadPopupDiv.appendChild(DownloadExcel)
+  //popup background
+  let DownloadPopupDivBG = document.createElement('div')
+  DownloadPopupDivBG.id = "DownloadPopupDivBG"
+  DownloadPopupDivBG.style.display = "none"
+  DownloadPopupDivBG.onclick = DownloadPopupBG
+    
+  document.getElementById("Holder").appendChild(DownloadPopupDiv)
+  document.getElementById("Holder").appendChild(DownloadPopupDivBG)
+ //function to show the download popups
+ function ShowDownloadPopup(e){
+    console.log(e.target.previousSibling.innerText)
+    localStorage.setItem('SavedAs-Name', e.target.previousSibling.innerText)
+    document.getElementById('DownloadPopupDiv').style.display = ""
+    document.getElementById('DownloadPopupDivBG').style.display = ""
+    document.getElementById('SavedResPopups')
+    document.getElementById('SavedResBackground')
+
+    
+  }
+   //function to close the download popups
+  function DownloadPopupBG(){
+    document.getElementById('ClientNameInputPopup').value = ""
+    localStorage.removeItem('SavedAs-Name')
+    document.getElementById('DownloadPopupDiv').style.display = "none"
+    document.getElementById('DownloadPopupDivBG').style.display = "none"
+    if(document.getElementById('ExcelTable')){
+      document.getElementById('ExcelTable').remove()
+    }
+    
+  }
+
+
     function CloseBackground(){
+        document.getElementById('DownloadPopupDiv').remove()
+        document.getElementById('DownloadPopupDivBG').remove()
         document.getElementById('SavedResPopups').remove()
         document.getElementById('SavedResBackground').remove()
-
+        if(document.getElementById('ExcelTable')){
+          document.getElementById('ExcelTable').remove()
+        }
     }
 
 
@@ -48,6 +102,7 @@ const ShowResultsSavedPopup = async () => {
             SavedResButton.onclick = ShowEachSavedResult
             let downloadExcelBNT = document.createElement('button')
             downloadExcelBNT.innerText = "⤓"
+            downloadExcelBNT.onclick = ShowDownloadPopup
             downloadExcelBNT.classList.add('downloadExcelBNT')
 
 

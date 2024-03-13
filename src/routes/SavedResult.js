@@ -67,6 +67,9 @@ const SavedResult = () => {
   function DownloadPopupBG(){
     document.getElementById('DownloadPopupDiv').style.display = "none"
     document.getElementById('DownloadPopupDivBG').style.display = "none"
+    if(document.getElementById('ExcelTable')){
+      document.getElementById('ExcelTable').remove()
+    }
     
   }
 
