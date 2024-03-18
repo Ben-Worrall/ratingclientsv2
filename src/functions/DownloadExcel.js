@@ -33,7 +33,9 @@ const DownloadExcelFunc = async () => {
 
     //check if user has saved put input for the clients name
     if(document.getElementById('ClientNameInput').value == ""){
-        alert(`Input can't be empty`)
+        
+        alert(`Inputs can't be empty`)
+
     }else{
 
 

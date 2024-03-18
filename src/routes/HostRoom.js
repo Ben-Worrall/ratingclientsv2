@@ -129,17 +129,22 @@ window.addEventListener("beforeunload", beforeUnloadListener);
     let div333 = document.createElement('input')
     div333.id = "SaveCloseName"
     div333.placeholder = "Save as"
+    //clients name
+    let div444 = document.createElement('input')
+    div444.id = "SaveCloseClientsName"
+    div444.placeholder = "Client's Name"
     //save button
-    let div444 = document.createElement('button')
-    div444.id = "SaveCloseButton"
-    div444.innerHTML = "Save & Close"
-    div444.onclick = SaveAndCloseBNT
+    let div555 = document.createElement('button')
+    div555.id = "SaveCloseButton"
+    div555.innerHTML = "Save & Close"
+    div555.onclick = SaveAndCloseBNT
 
 
 
 
     div111.appendChild(div333)
     div111.appendChild(div444)
+    div111.appendChild(div555)
     document.getElementById('HostRoomMainDisplay').appendChild(div111)
     document.getElementById('HostRoomMainDisplay').appendChild(div222)
     
