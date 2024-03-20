@@ -28,17 +28,73 @@ const ShowResultsSavedPopup = async () => {
   DownloadExcel.innerText = "Download"
   DownloadExcel.id = "DownloadExcelPopup"
   DownloadExcel.onclick = DownloadExcelSavedPopup
-
   DownloadPopupDiv.appendChild(ClientNameInput)
   DownloadPopupDiv.appendChild(DownloadExcel)
+
+
   //popup background
   let DownloadPopupDivBG = document.createElement('div')
   DownloadPopupDivBG.id = "DownloadPopupDivBG"
   DownloadPopupDivBG.style.display = "none"
   DownloadPopupDivBG.onclick = DownloadPopupBG
+
+  //create Delete popup
+
+  let DeletePopup = document.createElement('div')
+  DeletePopup.id = "DeletePopup"
+  DeletePopup.style.display = "none"
+  let DeletePopupText = document.createElement('p')
+  DeletePopupText.id = "DeletePopupText"
+  DeletePopup.appendChild(DeletePopupText)
+  let DeleteBNT = document.createElement('button')
+  DeleteBNT.id = "DeleteBNT"
+  DeleteBNT.innerText = "Delete Forever"
+  DeletePopup.appendChild(DeleteBNT)
+
+
+
+
+
+  //create delete background
+  let DeletePopupBG = document.createElement('div')
+  DeletePopupBG.id = "DeletePopupBG"
+  DeletePopupBG.style.display = "none"
+  DeletePopupBG.onclick = DeletePopupBGfunc
+
     
   document.getElementById("Holder").appendChild(DownloadPopupDiv)
   document.getElementById("Holder").appendChild(DownloadPopupDivBG)
+  document.getElementById("Holder").appendChild(DeletePopup)
+  document.getElementById("Holder").appendChild(DeletePopupBG)
+
+
+
+
+  //delete popup,
+ //function to show delete popups
+ function ShowDeletePopup(e){
+  console.log(e.target.nextSibling.innerText)
+
+  //show popup
+  document.getElementById('DeletePopup').style.display = ""
+  document.getElementById('DeletePopupBG').style.display = ""
+  document.getElementById('SavedResBackground').style.display = "none"
+  document.getElementById('DeletePopupText').innerText = `Are you sure you want to permanently delete "`+`${e.target.nextSibling.innerText}`+`" ? `
+
+}
+
+  //delete popup background
+  function DeletePopupBGfunc(){
+     //show popup
+  document.getElementById('DeletePopup').style.display = "none"
+  document.getElementById('DeletePopupBG').style.display = "none"
+  document.getElementById('SavedResBackground').style.display = ""
+  }
+
+
+
+
+
  //function to show the download popups
  function ShowDownloadPopup(e){
     console.log(e.target.previousSibling.innerText)
@@ -48,8 +104,16 @@ const ShowResultsSavedPopup = async () => {
     document.getElementById('SavedResPopups')
     document.getElementById('SavedResBackground')
 
+
     
   }
+
+ 
+
+
+
+
+
    //function to close the download popups
   function DownloadPopupBG(){
     document.getElementById('ClientNameInputPopup').value = ""
@@ -104,8 +168,13 @@ const ShowResultsSavedPopup = async () => {
             downloadExcelBNT.innerText = "⤓"
             downloadExcelBNT.onclick = ShowDownloadPopup
             downloadExcelBNT.classList.add('downloadExcelBNT')
+            let DeleteSaved = document.createElement('button')
+            DeleteSaved.innerText = "X"
+            DeleteSaved.id = "DeleteSavedBNT"
+            DeleteSaved.onclick = ShowDeletePopup
 
 
+            document.getElementById('SavedResPopups').appendChild(DeleteSaved)
             document.getElementById('SavedResPopups').appendChild(SavedResButton)
             document.getElementById('SavedResPopups').appendChild(downloadExcelBNT)
         }

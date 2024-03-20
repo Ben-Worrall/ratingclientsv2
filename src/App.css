@@ -187,7 +187,7 @@ body{
 
 #SavedResPopups{
   position: absolute;
-  width: 45%;
+  width: 60%;
   padding: 16px;
   height: 60%;
   background-color: white;
@@ -210,9 +210,11 @@ body{
 }
 
 .SavedResBNT{
-  width: 75%;
-  height: 15%;
+  width: 80%;
+  height: 20%;
   margin-top: 1%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
   background-color: rgb(189, 189, 189);
   color: rgb(0, 0, 0);
   border-radius:  5px 5px 5px 5px;
@@ -220,8 +222,8 @@ body{
   font-size: 125%;
 }
 .downloadExcelBNT{
-  width: 10%;
-  height: 15%;
+  width: 9%;
+  height: 20%;
   margin-top: 1%;
   background-color: green;
   color: rgb(255, 255, 255);
@@ -230,7 +232,16 @@ body{
   text-align: center;
   font-size: 125%;
 }
-
+#DeleteSavedBNT{
+  width: 9%;
+  height: 20%;
+  margin-top: 1%;
+  background-color: red;
+  color: white;
+  border-radius:  5px 5px 5px 5px;
+  border: 0.1vh solid black;
+  font-size: 125%;
+}
 
 #ClientNameInputPopup{
   width: 100%;
@@ -275,3 +286,42 @@ body{
   color: white;
   user-select: none;
 }
+
+#DeletePopup{
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  padding: 16px;
+  font-size: 135%;
+  background-color: white;
+  z-index: 1011;
+  overflow: hidden;
+}
+
+
+#DeletePopupBG{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 1010;
+  -moz-opacity: 0.8;
+  opacity: .60;
+  filter: alpha(opacity=50);
+  display: flex;
+  flex-direction: column;
+}
+#DeleteBNT{
+  color: white;
+  background-color: red;
+  border-radius:  5px 5px 5px 5px;
+  border: 0.1vh solid black;
+  font-size: 115%;
+}
+
+
+
+
+
