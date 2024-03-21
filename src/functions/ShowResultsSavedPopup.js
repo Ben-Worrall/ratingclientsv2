@@ -10,6 +10,9 @@ import LOADED from '../functions/HostGetCode';
 import { useEffect } from 'react';
 import ShowEachSavedResult from './ShowEachSavedResult';
 import DownloadExcelSavedPopup from './DownloadExcelSavedPopuup';
+import DeleteSavedResultPopup from './DeleteSavedResultPopup';
+
+
 const db = getFirestore()
 
 
@@ -49,6 +52,7 @@ const ShowResultsSavedPopup = async () => {
   let DeleteBNT = document.createElement('button')
   DeleteBNT.id = "DeleteBNT"
   DeleteBNT.innerText = "Delete Forever"
+  DeleteBNT.onclick = DeleteSavedResultPopup
   DeletePopup.appendChild(DeleteBNT)
 
 
@@ -74,7 +78,7 @@ const ShowResultsSavedPopup = async () => {
  //function to show delete popups
  function ShowDeletePopup(e){
   console.log(e.target.nextSibling.innerText)
-
+  localStorage.setItem('SavedAsText',e.target.nextSibling.innerText)
   //show popup
   document.getElementById('DeletePopup').style.display = ""
   document.getElementById('DeletePopupBG').style.display = ""
@@ -86,6 +90,7 @@ const ShowResultsSavedPopup = async () => {
   //delete popup background
   function DeletePopupBGfunc(){
      //show popup
+     localStorage.removeItem('SavedAsText')
   document.getElementById('DeletePopup').style.display = "none"
   document.getElementById('DeletePopupBG').style.display = "none"
   document.getElementById('SavedResBackground').style.display = ""
