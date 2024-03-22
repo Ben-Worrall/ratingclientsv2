@@ -49,13 +49,32 @@ const DeleteSavedResultPopup = async () => {
                             //search through the docs of the collection but pass through the host document
                             let SubDocs = await getDocs(CurFactorCol)
                             SubDocs.forEach(async (subDoc) => {
-                                 await deleteDoc(subDoc)
-                               
+                                //delete docs in all sub collections so sub collection gets deleted
+                                 await deleteDoc(subDoc.ref)
+                                //console.log(ArrOfFactors[i])
+                                //console.log(subDoc.data())
 
                  
                               })
                         }
-                        //await deleteDoc(doc)
+                        //delete server file
+                        await deleteDoc(doc.ref)
+                        //delete the buttons that corrospond to the file 
+                        document.querySelectorAll('.SavedResBNT').forEach((MainBNT)=>{
+                              if(MainBNT.innerText == SavedAs){
+                                 let del = MainBNT.previousSibling
+                                 let download = MainBNT.nextSibling
+                                 MainBNT.remove()
+                                 del.remove()
+                                 download.remove()
+                                 
+                              }
+                        })
+                        //hide the popup
+                        document.getElementById('DeletePopup').style.display = "none"
+                        document.getElementById('DeletePopupBG').style.display = "none"
+                        document.getElementById('SavedResBackground').style.display = ""
+                        
                     }
                 }
             }
