@@ -60,12 +60,11 @@ body{
   position: absolute;
   width: 75%;
   height: 75%;
-  padding: 16px;
   background-color: rgb(255, 255, 255);
   z-index: 10010;
   overflow-y: auto;
   font-size: 150%;
-  
+  border-radius:  15px 15px 15px 15px;
   
 }
 #LoginRegisterPOPUP-background{
