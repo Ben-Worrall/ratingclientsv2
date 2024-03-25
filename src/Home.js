@@ -65,8 +65,8 @@ var randomCode
 var readyToUse
 var CurStringCode
 function GenerateCode(){
-  //randomCode = Math.floor(1000 + Math.random() * 9000)
-  randomCode = 1000
+  randomCode = Math.floor(1000 + Math.random() * 9000)
+  //randomCode = 1000
 }
 
 //generate random code from database
