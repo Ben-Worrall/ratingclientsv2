@@ -65,6 +65,7 @@ async function addFactorsAuto(){
              factorText.spellcheck = "false"
              factorText.readOnly = true
              
+             
              //for the user to rate
              let factorRating = document.createElement('div')
              factorRating.classList.add('UserfactorRating')
@@ -75,9 +76,14 @@ async function addFactorsAuto(){
              div1.classList.add('UserratingFor')
              div1.placeholder = "?"
              div1.contentEditable = "true"
-             div1.min = "0"
-             div1.max = "10"
+             div1.min = 0
+             div1.max = 10
              div1.type = "number"
+             div1.oninput = function () {
+                if (this.value.length > 3) {
+                    this.value = this.value.slice(0,3); 
+                }
+            }
              factorRating.appendChild(div1)
          
          
@@ -245,7 +251,7 @@ addFactorsAuto()
         <div id="ButtonHolder-CreateRoom">
             <button id="HomeBNT" onClick={GoHome}>Home</button>
             <button id='BackBNT' onClick={GoBack}>Back</button>
-            <button id='SubmitBNT' onClick={Submit}>Submit</button>
+            <button id='SubmitBNT' type='submit' onClick={Submit}>Submit</button>
             <button  id='ToSuccess' onClick={toSuccess} ></button>
         </div>
         </div>

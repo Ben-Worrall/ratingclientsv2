@@ -39,6 +39,10 @@ const SubmitAnswer = async () => {
          var FactorVal = factor.children[1].children[0].value
          if(FactorVal == null){
             FactorVal = 0
+         }else if(FactorVal > 10){
+            FactorVal = 10
+         } else if(FactorVal < 0){
+            FactorVal = 0
          }
 
 
