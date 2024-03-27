@@ -154,6 +154,7 @@ async function CheckCodes(){
      })
      if(expectedServerAlive == false){
       localStorage.removeItem(curLocalStorageKey)
+      console.log(curLocalStorageKey)
      }
     } 
     

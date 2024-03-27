@@ -132,7 +132,17 @@ async function addFactorsAuto(){
              div5.classList.add('UserNoteContent')
              div5.style.textAlign = "left"
              div5.id = "NoteText"+ArrOfFactors[i]
-             div5.innerHTML += '&nbsp;'
+             if(localStorage.getItem(document.getElementById('RoomPasswordText').innerText + "NoteText"+ArrOfFactors[i])){
+                    div5.innerHTML = localStorage.getItem(document.getElementById('RoomPasswordText').innerText + "NoteText"+ArrOfFactors[i])
+             }else{
+                div5.innerHTML += '&nbsp;'
+             }
+
+             div5.addEventListener('input', (e)=>{
+                console.log(e.target.value)
+                console.log(document.getElementById('RoomPasswordText').innerText + e.target.id)
+                localStorage.setItem(document.getElementById('RoomPasswordText').innerText + e.target.id, e.target.value)
+             })
          
          
              //for the blacvk overlay of the notes
