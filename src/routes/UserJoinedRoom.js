@@ -79,11 +79,21 @@ async function addFactorsAuto(){
              div1.min = 0
              div1.max = 10
              div1.type = "number"
+             div1.addEventListener('input', function(e){
+                localStorage.setItem(GameCode + e.target.parentNode.parentNode.firstChild.value , e.target.value)
+                
+             })
              div1.oninput = function () {
                 if (this.value.length > 3) {
                     this.value = this.value.slice(0,3); 
                 }
             }
+            
+                if(localStorage.getItem(GameCode + ArrOfFactors[i])){
+                    div1.value = localStorage.getItem(GameCode + ArrOfFactors[i])
+                }
+            
+            
              factorRating.appendChild(div1)
          
          
@@ -172,7 +182,7 @@ async function addFactorsAuto(){
          
                          }
          
-                     }
+                     } 
                  })
           
     

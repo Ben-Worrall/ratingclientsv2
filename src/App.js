@@ -7,11 +7,11 @@ import {  BrowserRouter as Router,
 import JoinRoute from './routes/JoinRoom'
 import Home from './Home'
 import CreateRoomHTML from "./routes/CreateRoom";
-
 import HostRoomHTML from "./routes/HostRoom";
 import UserJoinedRoom from './routes/UserJoinedRoom';
 import Success from './routes/SuccessfullySubmitted';
 import SavedResult from "./routes/SavedResult";
+import storeCode from "./firebase/generateAllCodes"
 //generateall the game codes
 //storeCode()
 

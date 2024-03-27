@@ -28,14 +28,11 @@ async function JoinRoomBNT(){
             
             //now that u have a legal code, check if its in the database, 
             //if its not in the database then its being usedi n a server and u can connect
-            const querySnapshot = await getDocs(collection(db, "AvailableCodes"));
+            let ServerCodeAlive = false
+            const querySnapshot = await getDocs(collection(db, "Servers"));
                 querySnapshot.forEach((doc) => {
                 
-                if(roomcodeINPUT == doc.data()[roomcodeINPUT]){
-                    //code expected to be in the database (not being used by a server)
-                    console.log('in database')
-                    alert('There is no server with that code. Please check code and try agian')
-                } else {
+                if(roomcodeINPUT == doc.data().code){
                     //code expected to be a server and not in the databaase
                     console.log('code in database but being used in a current server')
                     let Username = document.getElementById('JoinRoomUserName').value
@@ -44,11 +41,14 @@ async function JoinRoomBNT(){
                     localStorage.setItem('code', roomcodeINPUT)
                     navigate('/routes/UserJoinedRoom')
                     window.location.reload()
-
-                    
-                }
+                    ServerCodeAlive = true
+                } 
                 
                });
+               if(ServerCodeAlive == false){
+                console.log('in database')
+                alert('There is no server with that code. Please check code and try agian')
+               }
 
 
             

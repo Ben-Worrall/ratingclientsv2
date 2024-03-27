@@ -26,6 +26,6 @@ const storeCode = async () => {
     
     
     //await addDoc(valRef, {txtVal: "test", textVal2: "test2", textVal3: "test3", textVal4: "test4"})
-    alert('test')
+    alert('added all missing codes')
 }
 export default storeCode

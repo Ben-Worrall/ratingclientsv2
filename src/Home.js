@@ -26,7 +26,7 @@ const db = getFirestore()
  
 
 
-const Home = () => {
+const Home =  () => {
   const initialized = useRef(false)
 
   useEffect(()=>{
@@ -129,6 +129,51 @@ root.render(
 
 
 
+
+async function CheckCodes(){
+
+
+
+  for(let i = 0; i < localStorage.length; i++){
+  
+    var PossibleCode = localStorage.key(i).substring(0,4)
+    let curLocalStorageKey = localStorage.key(i)
+    if(isNaN(Number(PossibleCode)) == false){
+      //console.log(Number(PossibleCode))
+      const colRef = collection(db, "Servers");
+   const docsSnap = await getDocs(colRef);
+   let expectedServerAlive = false
+   docsSnap.forEach(doc => {
+       //console.log(doc.data());
+       //if server doc.code matches with gamecode 
+       if(doc.data().code == Number(PossibleCode)){
+        console.log('servers are still live')
+        expectedServerAlive = true
+  
+       }
+     })
+     if(expectedServerAlive == false){
+      localStorage.removeItem(curLocalStorageKey)
+     }
+    } 
+    
+    
+    
+   }
+
+
+
+
+}
+
+CheckCodes()
+
+if(localStorage.getItem("code")){
+  localStorage.removeItem("code")
+}
+if(localStorage.getItem("UserName")){
+  localStorage.removeItem("UserName")
+}
 
 
 
