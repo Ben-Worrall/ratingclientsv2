@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import React from 'react';
-import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, deleteDoc, onSnapshot, addDoc } from 'firebase/firestore'
+import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, deleteDoc, onSnapshot, addDoc, getDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom';
 const db = getFirestore()
 
@@ -55,22 +55,88 @@ const SubmitAnswer = async () => {
                 // 2nd step is to access sub collection with id of (1)
                 var CurFactorCol = collection(db,'Servers/' + doc.id + '/'+ factor.children[0].value);
                 let CurFac = factor.children[0].value
-                if((document.getElementById("NoteText"+CurFac))){
+
+                //check if user already submitted, if so then just update, else submit results
+                let AlreadySubmitted = false
+
+                const SubDocsSnap = await getDocs(CurFactorCol)
+                SubDocsSnap.forEach(async (SubDoc) => {
+                    if(SubDoc.data().User_Name == localStorage.getItem("User-Name")){
+                        if(SubDoc.data().User_Password == localStorage.getItem("User-Password")){
+                            AlreadySubmitted = true
+                            
+                            
+                          //console.log('already got results in server')
+                          //console.log(SubDoc.data())
+
+                          if(localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac)){
                     
-                    await addDoc(CurFactorCol, {
-                        Notes: document.getElementById("NoteText"+CurFac).value,
-                        Rating: FactorVal,
-                        Username: localStorage.getItem('UserName')
-                        
-                    });
-                } else if(!document.getElementById("NoteText"+CurFac)){
-                    await addDoc(CurFactorCol, {
-                        Notes: "No Notes",
-                        Rating: FactorVal,
-                        Username: localStorage.getItem('UserName')
-                        
-                    });
+                            const data = {
+                                Notes: localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac),
+                                Rating: FactorVal,
+                                Username: localStorage.getItem('UserName'),
+                                User_Name: localStorage.getItem("User-Name"),
+                                User_Password: localStorage.getItem("User-Password")
+                                
+                            };
+                            const docRef =  getDoc(db,'Servers/' + doc.id + '/'+ factor.children[0].value + '/'+ SubDoc.id)
+                            await updateDoc(docRef, data)
+                        } else if(!localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac)){
+                            const data = {
+                                Notes: "No Notes",
+                                Rating: FactorVal,
+                                Username: localStorage.getItem('UserName'),
+                                User_Name: localStorage.getItem("User-Name"),
+                                User_Password: localStorage.getItem("User-Password")
+                            };
+                            const docRef = getDoc(db,'Servers/' + doc.id + '/'+ factor.children[0].value + '/'+ SubDoc.id)
+                            await updateDoc(docRef, data)
+                        }
+
+                        }
+                    }
+                })
+                
+
+
+                   
+
+
+                /*
+                if(AlreadySubmitted == false){
+                    console.log('no results in server')
+
+
+
+                    if((document.getElementById("NoteText"+CurFac))){
+                    
+                        await addDoc(CurFactorCol, {
+                            Notes: document.getElementById("NoteText"+CurFac).value,
+                            Rating: FactorVal,
+                            Username: localStorage.getItem('UserName'),
+                            User_Name: localStorage.getItem("User-Name"),
+                            User_Password: localStorage.getItem("User-Password")
+                            
+                        });
+                    } else if(!document.getElementById("NoteText"+CurFac)){
+                        await addDoc(CurFactorCol, {
+                            Notes: "No Notes",
+                            Rating: FactorVal,
+                            Username: localStorage.getItem('UserName'),
+                            User_Name: localStorage.getItem("User-Name"),
+                            User_Password: localStorage.getItem("User-Password")
+                        });
+                    }
+
+
+
+
+
+
+
                 }
+
+                */
                 
                 
                 // 3rd step is to add a new doc to that collection we accessed, with the data from (2) and (3)
@@ -100,7 +166,7 @@ function ChangeToSuccess(){
 
     FuncDone.then(  function(){ console.log('should be done now'); }).then(
         //delay function by a bit to make sure the db was updated
-        setTimeout(ChangeToSuccess,5000)
+        //setTimeout(ChangeToSuccess,5000)
         
     )
     //console.log('should be done now')
