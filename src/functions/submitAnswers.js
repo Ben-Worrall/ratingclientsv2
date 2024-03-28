@@ -60,17 +60,19 @@ const SubmitAnswer = async () => {
                 let AlreadySubmitted = false
 
                 const SubDocsSnap = await getDocs(CurFactorCol)
+
                 SubDocsSnap.forEach(async (SubDoc) => {
+                    
                     if(SubDoc.data().User_Name == localStorage.getItem("User-Name")){
                         if(SubDoc.data().User_Password == localStorage.getItem("User-Password")){
                             AlreadySubmitted = true
                             
-                            
+                           
                           //console.log('already got results in server')
                           //console.log(SubDoc.data())
-
-                          if(localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac)){
-                    
+                           if(localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac)){
+                            //console.log('got notes')
+                            //console.log(doc.data())
                             const data = {
                                 Notes: localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac),
                                 Rating: FactorVal,
@@ -79,9 +81,15 @@ const SubmitAnswer = async () => {
                                 User_Password: localStorage.getItem("User-Password")
                                 
                             };
-                            const docRef =  getDoc(db,'Servers/' + doc.id + '/'+ factor.children[0].value + '/'+ SubDoc.id)
-                            await updateDoc(docRef, data)
-                        } else if(!localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac)){
+                            
+                            await updateDoc(SubDoc.ref, data)
+                            console.log(SubDoc)
+
+
+
+                           } else if(!localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac)){
+                            //console.log('no notes')
+                            //console.log(doc.data())
                             const data = {
                                 Notes: "No Notes",
                                 Rating: FactorVal,
@@ -89,10 +97,16 @@ const SubmitAnswer = async () => {
                                 User_Name: localStorage.getItem("User-Name"),
                                 User_Password: localStorage.getItem("User-Password")
                             };
-                            const docRef = getDoc(db,'Servers/' + doc.id + '/'+ factor.children[0].value + '/'+ SubDoc.id)
-                            await updateDoc(docRef, data)
-                        }
+                            
+                            await updateDoc(SubDoc.ref, data)
+                            console.log(SubDoc)
 
+
+
+                           }
+                          
+                          
+                          return
                         }
                     }
                 })
@@ -102,7 +116,7 @@ const SubmitAnswer = async () => {
                    
 
 
-                /*
+                
                 if(AlreadySubmitted == false){
                     console.log('no results in server')
 
@@ -136,7 +150,7 @@ const SubmitAnswer = async () => {
 
                 }
 
-                */
+                
                 
                 
                 // 3rd step is to add a new doc to that collection we accessed, with the data from (2) and (3)
@@ -166,7 +180,7 @@ function ChangeToSuccess(){
 
     FuncDone.then(  function(){ console.log('should be done now'); }).then(
         //delay function by a bit to make sure the db was updated
-        //setTimeout(ChangeToSuccess,5000)
+        setTimeout(ChangeToSuccess,5000)
         
     )
     //console.log('should be done now')
@@ -189,6 +203,51 @@ export default SubmitAnswer
 
 
 /* 
+
+
+
+
+
+if(localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac)){
+                    
+                            const data = {
+                                Notes: localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac),
+                                Rating: FactorVal,
+                                Username: localStorage.getItem('UserName'),
+                                User_Name: localStorage.getItem("User-Name"),
+                                User_Password: localStorage.getItem("User-Password")
+                                
+                            };
+                            const docRef =  getDoc(db,'Servers/' + doc.id + '/'+ factor.children[0].value + '/'+ SubDoc.id)
+                            //await updateDoc(docRef.ref, data)
+                            console.log(docRef)
+                        } else if(!localStorage.getItem(localStorage.getItem('code')+"NoteText"+CurFac)){
+                            const data = {
+                                Notes: "No Notes",
+                                Rating: FactorVal,
+                                Username: localStorage.getItem('UserName'),
+                                User_Name: localStorage.getItem("User-Name"),
+                                User_Password: localStorage.getItem("User-Password")
+                            };
+                            const docRef = getDoc(db,'Servers/' + doc.id + '/'+ factor.children[0].value + '/'+ SubDoc.id)
+                            //await updateDoc(docRef.ref, data)
+                            console.log(docRef)
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
