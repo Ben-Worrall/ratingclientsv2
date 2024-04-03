@@ -133,7 +133,7 @@ const SaveAndCloseBNT = async ()=> {
 
 
    //check if user has saved put input for the clients name
-   if(document.getElementById('SavedCloseClientsName').value == ""){
+   if(document.getElementById('SaveCloseClientsName').value == ""){
        
        alert(`Inputs can't be empty`)
 
@@ -144,8 +144,19 @@ const SaveAndCloseBNT = async ()=> {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
        //get the client's name
-       let ClientName = document.getElementById('SavedCloseClientsName').value
+       let ClientName = document.getElementById('SaveCloseClientsName').value
        let ClientNameTR = document.createElement('tr')
        let ClientNameTD = document.createElement('td')
        let ClientNameTDText = document.createElement('td')
@@ -161,9 +172,9 @@ const SaveAndCloseBNT = async ()=> {
        let allFactos = document.querySelectorAll('.Resultfactor')
        allFactos.forEach(async(Factor) => {
            //get each question
-           //console.log(Factor.childNodes[0].value)
+           console.log(Factor.childNodes[0].value)
            //each question's average rating
-           //console.log(Factor.childNodes[1].innerText)
+           console.log(Factor.childNodes[1].childNodes[0].innerText)
 
 
            let EachFactorNameTD = document.createElement('td')
@@ -171,7 +182,7 @@ const SaveAndCloseBNT = async ()=> {
            let EachFactorNotesTag = document.createElement('td')
            
            EachFactorNameTD.innerText = Factor.childNodes[0].value
-           EachFactorTDavg.innerText = "Average: " + Factor.childNodes[1].innerText
+           EachFactorTDavg.innerText = "Average: " + Factor.childNodes[1].childNodes[0].innerText
            EachFactorNotesTag.innerText = "Notes: "
            EachFactorTR.appendChild(EachFactorNameTD)
            EachFactorTR.appendChild(EachFactorTDavg)
@@ -190,42 +201,30 @@ ExcelTable.appendChild(EachFactorTR)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   //get stats from db collection
 
 
   var AllUsernames = []
 
 
-  const colRef = collection(db, "SavedResults");
+  const colRef = collection(db, "Servers");
   const docsSnap = await getDocs(colRef);
   //search through and find the doc with the code
   docsSnap.forEach(async doc => {
-      var UserName = localStorage.getItem('User-Name')
-      var UserPassword = localStorage.getItem('User-Password')
-      var SavedAs = localStorage.getItem('SavedAs-Name')
+      var server_code = localStorage.getItem('code')
+      
    //find and establish the doc of the server u made
-   if(doc.data().Username == UserName){
-      if(doc.data().Password == UserPassword){
-          if(doc.data().SavedAs == SavedAs){
+   if(doc.data().code == server_code){
+      //console.log('found the server')
 
            
 
 
            let allFactos = document.querySelectorAll('.Resultfactor')
         allFactos.forEach(async(Factor) => {
+          //console.log('for each factor')
 // 2nd step is to access sub collection with id of the doc that matches the code
-var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/'+ Factor.childNodes[0].value);
+var CurFactorCol = collection(db,'Servers/' + doc.id + '/'+ Factor.childNodes[0].value);
 //search through the docs of the collection but pass through the host document
 let SubDocs = await getDocs(CurFactorCol)
 //look through the documents
@@ -241,7 +240,9 @@ SubDocs.forEach(async subDoc => {
                 //console.log(Factor.childNodes[0].value + " "+  subDoc.data().Username + " "+ subDoc.data().Rating  + " "+  subDoc.data().Notes )
                if(AllUsernames.includes(subDoc.data().Username) == false){
                   AllUsernames.push(subDoc.data().Username)
-                  //console.log(AllUsernames.length)
+                 // console.log("pushing for each user")
+
+                  
                }
 
                
@@ -257,7 +258,7 @@ SubDocs.forEach(async subDoc => {
          //loop thropugh each user and append to the users tr ratings, then appened that to the excel page
          setTimeout(async function () { 
            AllUsernames.forEach((user)=>{
-              console.log(user)
+              //console.log(user)
               let EachUserRatingsTotalTR = document.createElement('tr')
 
               
@@ -266,7 +267,7 @@ SubDocs.forEach(async subDoc => {
               let allFactos = document.querySelectorAll('.Resultfactor')
               allFactos.forEach(async(Factor) => {
      // 2nd step is to access sub collection with id of the doc that matches the code
-     var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/'+ Factor.childNodes[0].value);
+     var CurFactorCol = collection(db,'Servers/' + doc.id + '/'+ Factor.childNodes[0].value);
      //search through the docs of the collection but pass through the host document
      let SubDocs = await getDocs(CurFactorCol)
      //look through the documents
@@ -281,7 +282,7 @@ SubDocs.forEach(async subDoc => {
                           UserEachNameTD.innerText = await subDoc.data().Username 
                           UserEachRatingTD.innerText =await subDoc.data().Rating 
                           UserEachNotesTD.innerText = await subDoc.data().Notes
-                         
+                          //console.log(user)
                           EachUserRatingsTotalTR.appendChild(UserEachNameTD)
                           EachUserRatingsTotalTR.appendChild(UserEachRatingTD)
                           EachUserRatingsTotalTR.appendChild(UserEachNotesTD)
@@ -298,9 +299,9 @@ SubDocs.forEach(async subDoc => {
            })
           }, 1000);
          
-      }
       
-   }
+      
+   
 
    }
    
@@ -433,7 +434,7 @@ setTimeout(function() { exportTableToExcel();; }, 5000)
     console.log('start proceaa')
   }
 
-  setTimeout(ChangeToSuccess,6000)
+  //setTimeout(ChangeToSuccess,6000)
 
 
 
