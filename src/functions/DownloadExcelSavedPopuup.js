@@ -17,9 +17,21 @@ const db = getFirestore()
 
 const DownloadExcelSavedPopup = async () => {
     
+
+
+   //create table for excel
+   let ExcelTable = document.createElement('table')
+   ExcelTable.id = "ExcelTable"
+   ExcelTable.style.display = "none"
+   document.getElementById('Holder').appendChild(ExcelTable)
+
+
+
+
   if(document.getElementById('ClientNameInputPopup').value == ""){
     alert(`Input can't be empty`)
   }else{
+
 
 
 
@@ -45,11 +57,8 @@ if(doc.data().Username == UserName){
 
                console.log('works')
 
-                //create table for excel
-                let ExcelTable = document.createElement('table')
-                ExcelTable.id = "ExcelTable"
-                ExcelTable.style.display = "none"
-                document.getElementById('Holder').appendChild(ExcelTable)
+               
+
 
 
 
@@ -70,6 +79,14 @@ if(doc.data().Username == UserName){
 
 
 
+
+
+
+
+
+
+
+        let EachFactorTR = document.createElement('tr')
         const {Code, Password, SavedAs, Username,...otherProperties} = doc.data();
                             const personClone = {...otherProperties};
                             let allFactors = Object.keys(personClone)
@@ -104,82 +121,56 @@ if(doc.data().Username == UserName){
                          //console.log(Factor, Math.round((SavedUserRatings / SavedUserRatingsLength) * 10) / 10)
                         let EachFactorNameTD = document.createElement('td')
                         let EachFactorTDavg = document.createElement('td')
-                        let EachFactorTR = document.createElement('tr')
+                        let EachFactorNotesTag = document.createElement('td')
+                        
                         EachFactorNameTD.innerText = Factor
                         EachFactorTDavg.innerText = "Average: " + Math.round((SavedUserRatings / SavedUserRatingsLength) * 10) / 10
+                        EachFactorNotesTag.innerText = "Notes:"
+
                         EachFactorTR.appendChild(EachFactorNameTD)
                         EachFactorTR.appendChild(EachFactorTDavg)
-                        ExcelTable.appendChild(EachFactorTR)
+                        EachFactorTR.appendChild(EachFactorNotesTag)
+
+
+                      })
+
+
+
+                      ExcelTable.appendChild(EachFactorTR)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                         
-                        
-                        // 2nd step is to access sub collection with id of the doc that matches the code
-                        var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/'+ Factor);
-                        //search through the docs of the collection but pass through the host document
-                        let SubDocs2 = await getDocs(CurFactorCol)
-                        //look through the documents
-                         SubDocs2.forEach(async subDoc => {
-                                    //skip over the host doc
-                                    if(!subDoc.data().Host){
-                                        if(!subDoc.data().Anchor){
-                        
-                        
-                                      
-                                      //console.log(Factor.childNodes[0].value)
-                                      console.log(subDoc.data().Username)
-                                      console.log(subDoc.data().Rating)
-                                      console.log(subDoc.data().Notes)
-                                      let EachFactorName = document.createElement('td')
-                                      let EachFactorUserNameTD = document.createElement('td')
-                                      let EachFactorUserRatingTD = document.createElement('td')
-                                      let EachFactorUserNotesTD = document.createElement('td')
-                                      let EachFactorUserTR = document.createElement('tr')
-                        
-                                      EachFactorName.innerText = Factor
-                                      EachFactorUserNameTD.innerText = "Name: " + subDoc.data().Username
-                                      EachFactorUserRatingTD.innerText = "Rating: " + subDoc.data().Rating
-                                      EachFactorUserNotesTD.innerText = "Notes: "+subDoc.data().Notes
-                                      
-                                      EachFactorUserTR.appendChild(EachFactorName)
-                                      EachFactorUserTR.appendChild(EachFactorUserNameTD)
-                                      EachFactorUserTR.appendChild(EachFactorUserRatingTD)
-                                      EachFactorUserTR.appendChild(EachFactorUserNotesTD)
-                                      ExcelTable.appendChild(EachFactorUserTR)
-                        
-                                    
-                        
-                        
-                        
-                                        }
-                                      
-                                     }
-                                                 
-                        
-                                        
-                        
-                                    })
-                                                  
-                        
-                        
-                        
-
-
-
-
-
-
-
-
-});
-
-
-
-
-
-
-
-
 
 
 
@@ -199,10 +190,11 @@ if(doc.data().Username == UserName){
         }
                     
     }
-    })
+    
 
 
  
+  })
                 //downlaod table
                 function exportTableToExcel() {
                   console.log(document.getElementById('ClientNameInputPopup').value)
@@ -238,8 +230,8 @@ if(doc.data().Username == UserName){
                   setTimeout(function() { exportTableToExcel();; }, 5000)
 
 
-  }
+  
 }
-
+}
 
 export default DownloadExcelSavedPopup
