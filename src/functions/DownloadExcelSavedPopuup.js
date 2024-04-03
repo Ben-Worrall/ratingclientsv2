@@ -106,7 +106,7 @@ if(doc.data().Username == UserName){
                         let EachFactorTDavg = document.createElement('td')
                         let EachFactorTR = document.createElement('tr')
                         EachFactorNameTD.innerText = Factor
-                        EachFactorTDavg.innerText = "Score: " + Math.round((SavedUserRatings / SavedUserRatingsLength) * 10) / 10
+                        EachFactorTDavg.innerText = "Average: " + Math.round((SavedUserRatings / SavedUserRatingsLength) * 10) / 10
                         EachFactorTR.appendChild(EachFactorNameTD)
                         EachFactorTR.appendChild(EachFactorTDavg)
                         ExcelTable.appendChild(EachFactorTR)

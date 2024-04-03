@@ -121,11 +121,69 @@ const SaveAndCloseBNT = async ()=> {
  //DOWNLOAD AS EXCEL
 
 
-    //create table for excel
-    let ExcelTable = document.createElement('table')
-    ExcelTable.id = "ExcelTable"
-    ExcelTable.style.display = "none"
-    document.getElementById('HostRoomApp').appendChild(ExcelTable)
+  //create table for excel
+  let ExcelTable = document.createElement('table')
+  ExcelTable.id = "ExcelTable"
+  ExcelTable.style.display = "none"
+  document.getElementById('HostRoomApp').appendChild(ExcelTable)
+  
+
+
+
+
+
+   //check if user has saved put input for the clients name
+   if(document.getElementById('SavedCloseClientsName').value == ""){
+       
+       alert(`Inputs can't be empty`)
+
+   }else{
+
+
+
+
+
+
+       //get the client's name
+       let ClientName = document.getElementById('SavedCloseClientsName').value
+       let ClientNameTR = document.createElement('tr')
+       let ClientNameTD = document.createElement('td')
+       let ClientNameTDText = document.createElement('td')
+       ClientNameTDText.innerText = "Client"
+       ClientNameTD.innerText = ClientName
+       ClientNameTR.appendChild(ClientNameTDText)
+       ClientNameTR.appendChild(ClientNameTD)
+       ExcelTable.appendChild(ClientNameTR)
+       //console.log(ClientName)
+
+
+       let EachFactorTR = document.createElement('tr')
+       let allFactos = document.querySelectorAll('.Resultfactor')
+       allFactos.forEach(async(Factor) => {
+           //get each question
+           //console.log(Factor.childNodes[0].value)
+           //each question's average rating
+           //console.log(Factor.childNodes[1].innerText)
+
+
+           let EachFactorNameTD = document.createElement('td')
+           let EachFactorTDavg = document.createElement('td')
+           let EachFactorNotesTag = document.createElement('td')
+           
+           EachFactorNameTD.innerText = Factor.childNodes[0].value
+           EachFactorTDavg.innerText = "Average: " + Factor.childNodes[1].innerText
+           EachFactorNotesTag.innerText = "Notes: "
+           EachFactorTR.appendChild(EachFactorNameTD)
+           EachFactorTR.appendChild(EachFactorTDavg)
+           EachFactorTR.appendChild(EachFactorNotesTag)
+           
+
+
+});
+
+
+
+ExcelTable.appendChild(EachFactorTR)
 
 
 
@@ -133,121 +191,121 @@ const SaveAndCloseBNT = async ()=> {
 
 
 
-    //get the client's name
-    let ClientName = document.getElementById('SaveCloseClientsName').value
-    let ClientNameTR = document.createElement('tr')
-    let ClientNameTD = document.createElement('td')
-    let ClientNameTDText = document.createElement('td')
-    ClientNameTDText.innerText = "Client"
-    ClientNameTD.innerText = ClientName
-    ClientNameTR.appendChild(ClientNameTDText)
-    ClientNameTR.appendChild(ClientNameTD)
-    ExcelTable.appendChild(ClientNameTR)
-    //console.log(ClientName)
-
-
-
-    let allFactos = document.querySelectorAll('.Resultfactor')
-    allFactos.forEach(async(Factor) => {
-        //get each question
-        //console.log(Factor.childNodes[0].value)
-        //each question's average rating
-        //console.log(Factor.childNodes[1].childNodes[0].innerText)
-        let EachFactorNameTD = document.createElement('td')
-        let EachFactorTDavg = document.createElement('td')
-        let EachFactorTR = document.createElement('tr')
-        EachFactorNameTD.innerText = Factor.childNodes[0].value
-        EachFactorTDavg.innerText = "Score: " + Factor.childNodes[1].childNodes[0].innerText
-        EachFactorTR.appendChild(EachFactorNameTD)
-        EachFactorTR.appendChild(EachFactorTDavg)
-        ExcelTable.appendChild(EachFactorTR)
-
-          //get each user from each factor
 
 
 
 
-          //get each user from each factor
-
- 
 
 
 
-//get stats from db collection
 
 
 
-const colRef = collection(db, "Servers");
-const docsSnap = await getDocs(colRef);
-//search through and find the doc with the code
-docsSnap.forEach(async doc => {
-    var Code = localStorage.getItem('code')
-    
- //find and establish the doc of the server u made
- if(doc.data().code == Code){
-    
+  //get stats from db collection
 
 
+  var AllUsernames = []
+
+
+  const colRef = collection(db, "SavedResults");
+  const docsSnap = await getDocs(colRef);
+  //search through and find the doc with the code
+  docsSnap.forEach(async doc => {
+      var UserName = localStorage.getItem('User-Name')
+      var UserPassword = localStorage.getItem('User-Password')
+      var SavedAs = localStorage.getItem('SavedAs-Name')
+   //find and establish the doc of the server u made
+   if(doc.data().Username == UserName){
+      if(doc.data().Password == UserPassword){
+          if(doc.data().SavedAs == SavedAs){
+
+           
+
+
+           let allFactos = document.querySelectorAll('.Resultfactor')
+        allFactos.forEach(async(Factor) => {
 // 2nd step is to access sub collection with id of the doc that matches the code
-var CurFactorCol = collection(db,'Servers/' + doc.id + '/'+ Factor.childNodes[0].value);
+var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/'+ Factor.childNodes[0].value);
 //search through the docs of the collection but pass through the host document
 let SubDocs = await getDocs(CurFactorCol)
 //look through the documents
 SubDocs.forEach(async subDoc => {
-        //skip over the host doc
-        if(!subDoc.data().Host){
-            if(!subDoc.data().Anchor){
-
-
-          
-          //console.log(Factor.childNodes[0].value)
-          //console.log(subDoc.data().Username)
-          //console.log(subDoc.data().Rating)
-          //console.log(subDoc.data().Notes)
-          let EachFactorName = document.createElement('td')
-          let EachFactorUserNameTD = document.createElement('td')
-          let EachFactorUserRatingTD = document.createElement('td')
-          let EachFactorUserNotesTD = document.createElement('td')
-          let EachFactorUserTR = document.createElement('tr')
-
-          EachFactorName.innerText = Factor.childNodes[0].value
-          EachFactorUserNameTD.innerText = "Name: " + subDoc.data().Username
-          EachFactorUserRatingTD.innerText = "Rating: " + subDoc.data().Rating
-          EachFactorUserNotesTD.innerText = "Notes: "+subDoc.data().Notes
-          
-          EachFactorUserTR.appendChild(EachFactorName)
-          EachFactorUserTR.appendChild(EachFactorUserNameTD)
-          EachFactorUserTR.appendChild(EachFactorUserRatingTD)
-          EachFactorUserTR.appendChild(EachFactorUserNotesTD)
-          ExcelTable.appendChild(EachFactorUserTR)
-
-        
-
-
-
-            }
-          
-         }
-                     
-
+          //skip over the host doc
+          if(!subDoc.data().Host){
+              if(!subDoc.data().Anchor){
+            //console.log(Factor.childNodes[0].value)
+            //console.log(subDoc.data().Username)
+            //console.log(subDoc.data().Rating)
+            //console.log(subDoc.data().Notes)
             
+                //console.log(Factor.childNodes[0].value + " "+  subDoc.data().Username + " "+ subDoc.data().Rating  + " "+  subDoc.data().Notes )
+               if(AllUsernames.includes(subDoc.data().Username) == false){
+                  AllUsernames.push(subDoc.data().Username)
+                  //console.log(AllUsernames.length)
+               }
 
-        })
-    
- 
-
- }
-
-})
-
+               
 
 
+              }
+              
+           }
+
+          })
+          
+         })
+         //loop thropugh each user and append to the users tr ratings, then appened that to the excel page
+         setTimeout(async function () { 
+           AllUsernames.forEach((user)=>{
+              console.log(user)
+              let EachUserRatingsTotalTR = document.createElement('tr')
+
+              
+
+              //get the factors
+              let allFactos = document.querySelectorAll('.Resultfactor')
+              allFactos.forEach(async(Factor) => {
+     // 2nd step is to access sub collection with id of the doc that matches the code
+     var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/'+ Factor.childNodes[0].value);
+     //search through the docs of the collection but pass through the host document
+     let SubDocs = await getDocs(CurFactorCol)
+     //look through the documents
+     SubDocs.forEach(async subDoc => {
+                //skip over the host doc
+                if(!subDoc.data().Host){
+                    if(!subDoc.data().Anchor){
+                       if(subDoc.data().Username == user){
+                          let UserEachNameTD = document.createElement('td')
+                          let UserEachRatingTD = document.createElement('td')
+                          let UserEachNotesTD = document.createElement('td')
+                          UserEachNameTD.innerText = await subDoc.data().Username 
+                          UserEachRatingTD.innerText =await subDoc.data().Rating 
+                          UserEachNotesTD.innerText = await subDoc.data().Notes
+                         
+                          EachUserRatingsTotalTR.appendChild(UserEachNameTD)
+                          EachUserRatingsTotalTR.appendChild(UserEachRatingTD)
+                          EachUserRatingsTotalTR.appendChild(UserEachNotesTD)
+                       }
+                    }
+                }
+              })
+           })
 
 
 
+           ExcelTable.appendChild(EachUserRatingsTotalTR)
 
+           })
+          }, 1000);
+         
+      }
+      
+   }
 
-});
+   }
+   
+  })
+  
 
 
 
@@ -375,19 +433,17 @@ setTimeout(function() { exportTableToExcel();; }, 5000)
     console.log('start proceaa')
   }
 
-  //setTimeout(ChangeToSuccess,6000)
+  setTimeout(ChangeToSuccess,6000)
 
 
 
-
-
-    } else {
-      alert('Please fill in all inputs')
-    }
-
-  } else {
-    alert('Please fill in all inputs')
+   }
   }
+}
+
+    
+
+  
   
 
 
