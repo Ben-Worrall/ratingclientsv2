@@ -139,6 +139,7 @@ if(doc.data().Username == UserName){
                       ExcelTable.appendChild(EachFactorTR)
 
 
+                  
 
 
 
@@ -150,6 +151,132 @@ if(doc.data().Username == UserName){
 
 
 
+
+
+
+
+
+
+                  
+                  //get stats from db collection
+                  
+                  
+                  var AllUsernames = []
+                  
+                  
+                  const colRef = collection(db, "SavedResults");
+                  const docsSnap = await getDocs(colRef);
+                  //search through and find the doc with the code
+                  docsSnap.forEach(async doc => {
+                      var UserName = localStorage.getItem('User-Name')
+                      var UserPassword = localStorage.getItem('User-Password')
+                      var SavedAs = localStorage.getItem('SavedAs-Name')
+                   //find and establish the doc of the server u made
+                   if(doc.data().Username == UserName){
+                      if(doc.data().Password == UserPassword){
+                          if(doc.data().SavedAs == SavedAs){
+                  
+                           
+                  
+                  
+                            const {Code, Password, SavedAs, Username,...otherProperties} = doc.data();
+                            const personClone = {...otherProperties};
+                            let allFactos = Object.keys(personClone)
+                            //sort the array
+                            allFactos = allFactos.sort((a,b) => a?.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))
+                        allFactos.forEach(async(Factor) => {
+                  // 2nd step is to access sub collection with id of the doc that matches the code
+                  var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/'+ Factor);
+                  //search through the docs of the collection but pass through the host document
+                  let SubDocs = await getDocs(CurFactorCol)
+                  //look through the documents
+                  SubDocs.forEach(async subDoc => {
+                          //skip over the host doc
+                          if(!subDoc.data().Host){
+                              if(!subDoc.data().Anchor){
+                            //console.log(Factor.childNodes[0].value)
+                            //console.log(subDoc.data().Username)
+                            //console.log(subDoc.data().Rating)
+                            //console.log(subDoc.data().Notes)
+                            
+                                //console.log(Factor.childNodes[0].value + " "+  subDoc.data().Username + " "+ subDoc.data().Rating  + " "+  subDoc.data().Notes )
+                               if(AllUsernames.includes(subDoc.data().Username) == false){
+                                  AllUsernames.push(subDoc.data().Username)
+                                  //console.log(AllUsernames.length)
+                               }
+                  
+                               
+                  
+                  
+                              }
+                              
+                           }
+                  
+                          })
+                          
+                         })
+                         //loop thropugh each user and append to the users tr ratings, then appened that to the excel page
+                         setTimeout(async function () { 
+                           AllUsernames.forEach((user)=>{
+                              console.log(user)
+                              let EachUserRatingsTotalTR = document.createElement('tr')
+                  
+                              
+                  
+                              const {Code, Password, SavedAs, Username,...otherProperties} = doc.data();
+                            const personClone = {...otherProperties};
+                            let allFactors = Object.keys(personClone)
+                            //sort the array
+                            allFactors = allFactors.sort((a,b) => a?.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))
+                              allFactors.forEach(async(Factor) => {
+                     // 2nd step is to access sub collection with id of the doc that matches the code
+                     var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/'+ Factor);
+                     //search through the docs of the collection but pass through the host document
+                     let SubDocs = await getDocs(CurFactorCol)
+                     //look through the documents
+                     SubDocs.forEach(async subDoc => {
+                                //skip over the host doc
+                                if(!subDoc.data().Host){
+                                    if(!subDoc.data().Anchor){
+                                       if(subDoc.data().Username == user){
+                                          let UserEachNameTD = document.createElement('td')
+                                          let UserEachRatingTD = document.createElement('td')
+                                          let UserEachNotesTD = document.createElement('td')
+                                          UserEachNameTD.innerText = await subDoc.data().Username 
+                                          UserEachRatingTD.innerText =await subDoc.data().Rating 
+                                          UserEachNotesTD.innerText = await subDoc.data().Notes
+                                         
+                                          EachUserRatingsTotalTR.appendChild(UserEachNameTD)
+                                          EachUserRatingsTotalTR.appendChild(UserEachRatingTD)
+                                          EachUserRatingsTotalTR.appendChild(UserEachNotesTD)
+                                       }
+                                    }
+                                }
+                              })
+                           })
+                  
+                  
+                  
+                           ExcelTable.appendChild(EachUserRatingsTotalTR)
+                  
+                           })
+                          }, 1000);
+                         
+                      }
+                      
+                   }
+                  
+                   }
+                   
+                  })
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
 
 
 
