@@ -320,3 +320,46 @@
 #ToSuccess{
     display: none;
 }
+
+
+#OverallScoreDiv{
+    width: max-content;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25%;
+    font-size: 150%;
+    outline: 0.25vh solid black;
+}
+#OStext{
+    width: 50%;
+    border-right: 0.55vh solid black;
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#OSinput{
+    width: 25%;
+    border: 0vh solid black;
+    outline: 0px solid transparent;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 125%;
+    height: 100%;
+    border-right: 0.55vh solid black;
+}
+#OS10{
+    width: 25%;
+    font-size: 125%;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

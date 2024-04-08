@@ -22,6 +22,21 @@ const UserJoinedRoom =  () => {
         if (!effectRan.current) {
           console.log("effect applied - only on the FIRST mount");
 
+       //for overall score
+        document.getElementById('OSinput').addEventListener('input', function(e){
+            localStorage.setItem(localStorage.getItem('code') + 'OverallScore' , e.target.value)
+            if (this.value.length > 3) {
+                this.value = this.value.slice(0,3); 
+            }
+        })
+        if(localStorage.getItem(localStorage.getItem('code')+ 'OverallScore' )){
+            document.getElementById('OSinput').value = localStorage.getItem(localStorage.getItem('code')+ 'OverallScore' )
+        }
+
+
+
+
+
 //access database of server with server code
 let GameCode = localStorage.getItem('code')
     
@@ -264,7 +279,13 @@ addFactorsAuto()
 
 
         <div id='RatingBoard'>
-           
+
+        <div id='OverallScoreDiv'>
+            <p id='OStext'>Overall Score: </p>
+            <input id='OSinput' placeholder='?'></input>
+            <p id='OS10'>10</p>
+        </div>
+
         </div>
 
 
@@ -272,6 +293,7 @@ addFactorsAuto()
             <button id="HomeBNT" onClick={GoHome}>Home</button>
             <button id='BackBNT' onClick={GoBack}>Back</button>
             <button id='SubmitBNT' type='submit' onClick={Submit}>Submit</button>
+            
             <button  id='ToSuccess' onClick={toSuccess} ></button>
         </div>
         </div>
