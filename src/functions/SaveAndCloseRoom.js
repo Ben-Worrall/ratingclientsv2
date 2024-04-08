@@ -11,9 +11,30 @@ const db = getFirestore()
 
 const SaveAndCloseBNT = async ()=> {
     
-  if(document.getElementById('SaveCloseName').value !== ""){
-    if(document.getElementById('SaveCloseClientsName').value !== ""){
-      
+  var canRun = true
+
+
+
+
+function testFunc(){
+    if(canRun){
+      console.log('can run func')
+      CanRunFunc()
+    } else if(!canRun) {
+      alert('Already got that name saved')
+      return
+    }
+}
+
+
+
+async function CanRunFunc(){
+
+    console.log('yes it is saved and now will run this function')
+
+
+
+
 
 
 
@@ -138,6 +159,7 @@ const SaveAndCloseBNT = async ()=> {
        alert(`Inputs can't be empty`)
 
    }else{
+
 
 
 
@@ -440,16 +462,110 @@ setTimeout(function() { exportTableToExcel();; }, 5000)
 
    }
   }
+
+
+
+
+
+
+
+
+
+
+
+  if(document.getElementById('SaveCloseName').value !== ""){
+    if(document.getElementById('SaveCloseClientsName').value !== ""){
+      
+      
+     
+      
+
+  
+        //check if user has a result saved as that name
+      var CurFactorCol = collection(db,'SavedResults');
+      //search through the docs of the collection but pass through the host document
+      let SubDocs = await getDocs(CurFactorCol)
+      
+      //look through the documents
+      var subDocAmount = 0
+      var SubDocsAr = []
+      SubDocs.forEach(async(subdoc) =>{
+        await SubDocsAr.push(subdoc)
+      })
+
+
+        for(let i = 0; i < SubDocsAr.length; i++){
+        let HostUsername = localStorage.getItem('User-Name')
+        let HostPassword = localStorage.getItem('User-Password')
+        let HostSavedAs = document.getElementById('SaveCloseName').value
+  
+        
+         if(await SubDocsAr[i].data().Username == HostUsername){
+          if(await SubDocsAr[i].data().Password == HostPassword){
+            if(await SubDocsAr[i].data().SavedAs == HostSavedAs){
+              canRun = false
+              console.log('stop')
+              testFunc()
+              break
+              
+            }
+            
+            
+          }
+          
+        }
+        console.log('continue')
+        //console.log(SubDocsAr[i].data().SavedAs)
+        if(i = SubDocsAr.length - 1){
+          console.log('run func')
+          testFunc()
+        }
+        
+       }
+
+      
+
+
+
+
+
+
+      
+
+      
+
+}else{
+  alert('please fill in all inputs')
 }
+
+}else{
+alert('please fill in all inputs')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
 
     
 
   
   
 
-
-
-}
 
 
 export default SaveAndCloseBNT
