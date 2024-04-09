@@ -286,7 +286,18 @@ addFactorsAuto()
                 <input id='OSinput' placeholder='?' max={10} min={0} type='number'></input>
                 <p id='OS10'>10</p>
             </div>
-        </div>
+         </div>
+         
+
+
+
+
+
+
+
+
+
+
 
         </div>
 

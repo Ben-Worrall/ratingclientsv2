@@ -93,6 +93,7 @@ function BlackClickNotes(){
 
   //add each factor to the page and remove the button
     document.getElementById('ShowResultBNT').style.display = "none"
+    document.getElementById('ResultBNTholder').style.display = "none"
     //add factor results for each factor
     let factor = document.createElement('div')
     factor.classList.add('Resultfactor')
@@ -259,7 +260,7 @@ function BlackClickNotes(){
         var UserRatingsLength = 0
         var UserNames = 0
 
-
+         
          // 2nd step is to access sub collection with id of the doc that matches the code
          var CurFactorCol = collection(db,'Servers/' + doc.id + '/'+ SubColId);
          //search through the docs of the collection but pass through the host document
@@ -283,7 +284,7 @@ function BlackClickNotes(){
           document.getElementById('ShowResultDisplay').style.alignItems = ""
           document.getElementById('ShowResultDisplay').appendChild(factor)
 
-
+          console.log(UserRatingsLength)
       }
 
     })

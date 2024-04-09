@@ -172,12 +172,36 @@ window.addEventListener("beforeunload", beforeUnloadListener);
             <div id='HostRoomMainDisplay'>
 
                  <div id='ShowResultDisplay'>
-                  
-                  
-                    <button id='ShowResultBNT' onClick={ShowResults}>
-                      Show Final Results
-                    </button>
+                   
 
+                   <div style={{display:'flex'}}>
+                  <div id='HostOverallScoreDivBackground'>
+                     <div id='HostOverallScoreDiv'>
+                     <p id='HostOStext'>Overall Score </p>
+                     <input id='HostOSinput' placeholder='?' max={10} min={0} type='number' contentEditable='false'></input>
+                     <p id='HostOS10'>10</p>
+                    </div>
+                  </div>
+
+                  <div id='HostFinalScoreDivBackground'>
+                      <div id='HostFinalScoreDiv'>
+                      <p id='HostFStext'>Final Score </p>
+                      <input id='HostFSinput' placeholder='?' max={10} min={0} type='number' contentEditable='false'></input>
+                      <p id='HostFS10'>10</p>
+                      </div>
+                  </div>
+                  </div>
+
+
+
+
+
+
+                    <div id='ResultBNTholder'>
+                      <button id='ShowResultBNT' onClick={ShowResults}>
+                        Show Final Results
+                      </button>
+                    </div>
                 
 
                  </div>

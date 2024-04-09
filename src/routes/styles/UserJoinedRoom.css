@@ -327,13 +327,13 @@
 
 #OverallScoreDivBackground{
  width: 100%;
- height: max-content;
+ height:15%;
 
 }
 
 #OverallScoreDiv{
     width: 60%;
-    height: 12.5%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
