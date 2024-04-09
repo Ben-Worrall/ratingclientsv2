@@ -35,6 +35,7 @@
     overflow-y: scroll;
     margin-bottom: 5%;
     margin-top: 5%;
+    outline: 2vh solid chocolate;
 }
 
 /* add factor div and button */
@@ -322,44 +323,57 @@
 }
 
 
+
+
+#OverallScoreDivBackground{
+ width: 100%;
+ height: max-content;
+
+}
+
 #OverallScoreDiv{
-    width: max-content;
-    height: 10%;
+    width: 60%;
+    height: 12.5%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 25%;
-    font-size: 150%;
+    margin-left: 20%;
+    background-color: white;
     outline: 0.25vh solid black;
 }
 #OStext{
-    width: 50%;
+    width: 70%;
     border-right: 0.55vh solid black;
     height: 100%;
-    
+    font-size: 155%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
 }
 #OSinput{
-    width: 25%;
+    width: 35%;
     border: 0vh solid black;
     outline: 0px solid transparent;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 125%;
+    font-size: 165%;
     height: 100%;
     border-right: 0.55vh solid black;
+    font-weight: bold;
+
+
 }
 #OS10{
-    width: 25%;
-    font-size: 125%;
+    width: 35%;
+    font-size: 175%;
     height: 100%;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
 }
 

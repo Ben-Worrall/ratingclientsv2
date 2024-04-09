@@ -23,7 +23,10 @@ const SubmitAnswer = async () => {
    
     let AllFactors = Array.from( document.querySelectorAll('.Userfactor') )
     console.log(AllFactors)
-    
+
+
+
+   
     
 
 
@@ -44,7 +47,15 @@ const SubmitAnswer = async () => {
          } else if(FactorVal < 0){
             FactorVal = 0
          }
-
+         var OverallScore = Number(document.getElementById('OSinput').value)
+         if(OverallScore == null){
+             OverallScore = 0
+          }else if(OverallScore > 10){
+             OverallScore = 10
+          } else if(OverallScore < 0){
+             OverallScore = 0
+          }
+         
 
         // 1st step is to access the doc that matches the code(4)
         const colRef = collection(db, "Servers");
@@ -78,8 +89,8 @@ const SubmitAnswer = async () => {
                                 Rating: FactorVal,
                                 Username: localStorage.getItem('UserName'),
                                 User_Name: localStorage.getItem("User-Name"),
-                                User_Password: localStorage.getItem("User-Password")
-                                
+                                User_Password: localStorage.getItem("User-Password"),
+                                OverallScore: OverallScore
                             };
                             
                             await updateDoc(SubDoc.ref, data)
@@ -95,7 +106,8 @@ const SubmitAnswer = async () => {
                                 Rating: FactorVal,
                                 Username: localStorage.getItem('UserName'),
                                 User_Name: localStorage.getItem("User-Name"),
-                                User_Password: localStorage.getItem("User-Password")
+                                User_Password: localStorage.getItem("User-Password"),
+                                OverallScore: OverallScore
                             };
                             
                             await updateDoc(SubDoc.ref, data)

@@ -279,14 +279,18 @@ addFactorsAuto()
 
 
         <div id='RatingBoard'>
-
-        <div id='OverallScoreDiv'>
-            <p id='OStext'>Overall Score: </p>
-            <input id='OSinput' placeholder='?'></input>
-            <p id='OS10'>10</p>
+         
+         <div id='OverallScoreDivBackground'>
+            <div id='OverallScoreDiv'>
+                <p id='OStext'>Overall Score: </p>
+                <input id='OSinput' placeholder='?' max={10} min={0} type='number'></input>
+                <p id='OS10'>10</p>
+            </div>
         </div>
 
         </div>
+
+
 
 
         <div id="ButtonHolder-CreateRoom">
