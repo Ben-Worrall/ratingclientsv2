@@ -5,8 +5,73 @@ const db = getFirestore()
 
 
 
-const GetResult = () => {
+const GetResult = async () => {
   
+
+
+
+  var UserCount = 0
+  var TotalOverallScore = 0
+  var TotalQuestionAverageRating = 0
+
+
+
+//for overall score
+
+
+
+     //get collection of the factor 
+  // 1st step is to access the doc that matches the code
+  const colRef = collection(db, "Servers");
+  const docsSnap = await getDocs(colRef);
+  //search through and find the doc with the code
+
+  docsSnap.forEach(async doc => {
+     
+   //find and establish the doc of the server u made
+   if(doc.data().code == localStorage.getItem('code')){
+
+    var CurFactorColOS = collection(db,'Servers/' + doc.id + '/'+ "Overall Score");
+    const docsSnapOS = await getDocs(CurFactorColOS);
+     //search through and find the doc with the code
+     docsSnapOS .forEach(async doc => {
+         if(!doc.data().Host){
+            UserCount = UserCount + 1
+            TotalOverallScore = TotalOverallScore + Number(doc.data().OverallScore)
+         }
+     })
+
+     document.getElementById('HostOSinput').value =Number(TotalOverallScore) / Number(UserCount)
+     console.log(Number(TotalOverallScore)/Number(UserCount))
+   }
+  })
+
+ 
+
+
+
+
+
+
+
+//for final score
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
  //get factors
 
@@ -230,7 +295,7 @@ function BlackClickNotes(){
     
     document.getElementById('HostRoomMainDisplay').appendChild(div5)
     div6.style.display = ""
-    
+
   }
 
 
@@ -286,6 +351,7 @@ function BlackClickNotes(){
 
           //then add the ratings average to the div factors at the top and appened them together
           div1.innerText = Math.round((UserRatings/UserRatingsLength) * 10) / 10
+          TotalQuestionAverageRating = TotalQuestionAverageRating + Number(div1.innerText)
           factor.appendChild(factorText)
           factor.appendChild(factorRating)
           document.getElementById('ShowResultDisplay').style.display = "block"
@@ -294,10 +360,17 @@ function BlackClickNotes(){
           document.getElementById('ShowResultDisplay').appendChild(factor)
 
           console.log(UserRatingsLength)
+          let x = document.querySelectorAll('.Resultfactor')
+          console.log(x.length)
+          console.log((TotalQuestionAverageRating / x.length) * 0.9 + ((TotalOverallScore) * 0.1))
+          let finalScoreTally = ((TotalQuestionAverageRating / x.length) * 0.9 + ((TotalOverallScore) * 0.1))
+          let finalScore = Math.round(finalScoreTally * 10) / 10
+          document.getElementById('HostFSinput').value = finalScore
       }
+      
 
     })
-
+    
  
 
   })
@@ -322,10 +395,30 @@ wrapper.addEventListener("click", function(ev){
      
     }
   })
+
+  
 })
     
     
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 
 }
