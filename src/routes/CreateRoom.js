@@ -137,9 +137,13 @@ const docRef = doc(db, "Servers", docId);
  //send codes to 
  let AllFactorText = document.querySelectorAll('.factor')
 
+ //for overall score
+ const colRef = collection(docRef , "Overall Score")
+      await addDoc(colRef, {
+          Host: "Host"
+         });
 
-
-
+ //for all the questions
  for(let i = 0; i < AllFactorText.length; i++){
    let value = AllFactorText[i].childNodes[0].value.toString()
      //if the factor isnt empty then move on

@@ -28,6 +28,84 @@ const SubmitAnswer = async () => {
 
    
     
+    var OverallScore = Number(document.getElementById('OSinput').value)
+    if(OverallScore == null){
+        OverallScore = 0
+     }else if(OverallScore > 10){
+        OverallScore = 10
+     } else if(OverallScore < 0){
+        OverallScore = 0
+     }
+
+
+
+
+    const colRefOS = collection(db, "Servers");
+          const docsSnapOS = await getDocs(colRefOS);
+          docsSnapOS.forEach(async doc => {
+              if(doc.data().code == localStorage.getItem('code')){
+          console.log('found a server, we in')
+              
+            
+
+
+           //add overall score to overall score collection
+           var CurFactorColOS = collection(db,'Servers/' + doc.id + '/'+ "Overall Score");
+           var AlreadySubmittedOS = false
+           const SubDocsSnapOS = await getDocs(CurFactorColOS)
+           
+           SubDocsSnapOS.forEach(async (SubDoc) => {
+               
+               if(!SubDoc.data().Host){
+
+                
+               //if user alreayd suibmitted
+               if(SubDoc.data().User_Name == localStorage.getItem("User-Name")){
+                   if(SubDoc.data().User_Password == localStorage.getItem("User-Password")){
+                        AlreadySubmittedOS = true
+                        const data = {
+                           OverallScore: OverallScore,
+                           Username: localStorage.getItem('UserName'),
+                           User_Name: localStorage.getItem("User-Name"),
+                           User_Password: localStorage.getItem("User-Password"),
+                       };
+                       console.log('already results')
+                       await updateDoc(SubDoc.ref, data)
+                       return
+                   }
+               }
+
+            }
+
+
+              
+            })
+
+                           //user submits for first time
+                           if(AlreadySubmittedOS == false){
+                            console.log('no results in server')
+         
+         
+         
+                            
+                                await addDoc(CurFactorColOS, {
+                                    OverallScore: OverallScore,
+                                    Username: localStorage.getItem('UserName'),
+                                     User_Name: localStorage.getItem("User-Name"),
+                                     User_Password: localStorage.getItem("User-Password"),
+                                });
+         
+         
+                         }
+
+        }
+    })
+
+
+
+
+
+
 
 
     
@@ -47,15 +125,13 @@ const SubmitAnswer = async () => {
          } else if(FactorVal < 0){
             FactorVal = 0
          }
-         var OverallScore = Number(document.getElementById('OSinput').value)
-         if(OverallScore == null){
-             OverallScore = 0
-          }else if(OverallScore > 10){
-             OverallScore = 10
-          } else if(OverallScore < 0){
-             OverallScore = 0
-          }
-         
+
+
+
+        
+
+
+
 
         // 1st step is to access the doc that matches the code(4)
         const colRef = collection(db, "Servers");
@@ -90,7 +166,7 @@ const SubmitAnswer = async () => {
                                 Username: localStorage.getItem('UserName'),
                                 User_Name: localStorage.getItem("User-Name"),
                                 User_Password: localStorage.getItem("User-Password"),
-                                OverallScore: OverallScore
+                                
                             };
                             
                             await updateDoc(SubDoc.ref, data)
@@ -107,7 +183,7 @@ const SubmitAnswer = async () => {
                                 Username: localStorage.getItem('UserName'),
                                 User_Name: localStorage.getItem("User-Name"),
                                 User_Password: localStorage.getItem("User-Password"),
-                                OverallScore: OverallScore
+                                
                             };
                             
                             await updateDoc(SubDoc.ref, data)
@@ -156,17 +232,7 @@ const SubmitAnswer = async () => {
 
 
 
-
-
-
-
                 }
-
-                
-                
-                
-                // 3rd step is to add a new doc to that collection we accessed, with the data from (2) and (3)
-                
 
                 
             }

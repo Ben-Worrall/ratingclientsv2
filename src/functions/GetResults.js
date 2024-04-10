@@ -230,7 +230,16 @@ function BlackClickNotes(){
     
     document.getElementById('HostRoomMainDisplay').appendChild(div5)
     div6.style.display = ""
+    
   }
+
+
+
+
+
+
+
+
 
 
 
