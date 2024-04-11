@@ -141,6 +141,10 @@ async function addFactorsAuto(){
              div4.onclick = ShowNoteContent
              factorRating.appendChild(div4)
 
+             
+
+
+
 
              //for the notes (inside note button)
              let div5 = document.createElement('textarea')
@@ -262,6 +266,73 @@ addFactorsAuto()
     
 
 
+    
+
+
+
+
+
+
+
+
+    function ShowNoteContentOS(){
+    
+
+
+
+
+        
+         //for the notes (inside note button)
+         let div5 = document.createElement('textarea')
+         div5.classList.add('UserNoteContent')
+         div5.style.textAlign = "left"
+         div5.id = "NoteTextOS"
+         if(localStorage.getItem(document.getElementById('RoomPasswordText').innerText + "NoteTextOS")){
+                div5.innerHTML = localStorage.getItem(document.getElementById('RoomPasswordText').innerText + "NoteTextOS")
+         }else{
+            div5.innerHTML += '&nbsp;'
+         }
+
+         div5.addEventListener('input', (e)=>{
+            console.log(e.target.value)
+            console.log(document.getElementById('RoomPasswordText').innerText + e.target.id)
+            localStorage.setItem(document.getElementById('RoomPasswordText').innerText + e.target.id, e.target.value)
+         })
+     
+     
+         //for the blacvk overlay of the notes
+         let div6 = document.createElement('div')
+         div6.classList.add('UserNoteContent_overlay')
+         div6.onclick = BlackClick
+         div6.id = "OverlayForNoteOS"
+
+
+
+             //when user clicks on the black overlay, then close the details div
+             function BlackClick(){
+                //first save the notes to that certain factor
+
+
+                //then remove the factors
+               document.getElementById("NoteTextOS").remove()
+               document.getElementById("OverlayForNoteOS").remove()
+             }
+
+ //show the factors
+ document.getElementById('UserRatingRoom').appendChild(div6)
+ document.getElementById('UserRatingRoom').appendChild(div5)
+    
+ document.getElementById("NoteTextOS").style.display = ""
+ document.getElementById("OverlayForNoteOS").style.display = ""
+
+    
+        
+    }
+
+
+
+
+
 
 
 
@@ -285,6 +356,7 @@ addFactorsAuto()
                 <p id='OStext'>Overall Score: </p>
                 <input id='OSinput' placeholder='?' max={10} min={0} type='number'></input>
                 <p id='OS10'>10</p>
+                <button id='UserNoteBNTOS' onClick={ShowNoteContentOS}>Notes</button>
             </div>
          </div>
          

@@ -131,7 +131,7 @@
     background-color: lightgray;
     color: black;
     outline: 0.1vw black solid;
-    font-size: 45%;
+    font-size: 50%;
     border: 0vw solid black;
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
@@ -332,18 +332,18 @@
 }
 
 #OverallScoreDiv{
-    width: 60%;
+    width: 65%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 20%;
+    margin-left: 17.5%;
     background-color: white;
     outline: 0.25vh solid black;
 }
 #OStext{
     width: 70%;
-    border-right: 0.55vh solid black;
+    border-right: 0.25vh solid black;
     height: 100%;
     font-size: 155%;
     display: flex;
@@ -376,4 +376,15 @@
     justify-content: center;
     font-weight: bold;
 }
-
+#UserNoteBNTOS{
+    position: relative;
+    float: right;
+    margin-top: 0;
+    background-color: lightgray;
+    color: black;
+    outline: 0.1vw black solid;
+    font-size: 110%;
+    border: 0vw solid black;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+}

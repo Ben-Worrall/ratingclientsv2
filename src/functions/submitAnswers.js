@@ -55,6 +55,7 @@ const SubmitAnswer = async () => {
            const SubDocsSnapOS = await getDocs(CurFactorColOS)
            
            SubDocsSnapOS.forEach(async (SubDoc) => {
+           
                
                if(!SubDoc.data().Host){
 
@@ -65,6 +66,7 @@ const SubmitAnswer = async () => {
                         AlreadySubmittedOS = true
                         const data = {
                            OverallScore: OverallScore,
+                           OverallScoreNOTES: (localStorage.getItem(localStorage.getItem('code')+"NoteTextOS")),
                            Username: localStorage.getItem('UserName'),
                            User_Name: localStorage.getItem("User-Name"),
                            User_Password: localStorage.getItem("User-Password"),
@@ -90,6 +92,7 @@ const SubmitAnswer = async () => {
                             
                                 await addDoc(CurFactorColOS, {
                                     OverallScore: OverallScore,
+                                    OverallScoreNOTES: (localStorage.getItem(String(localStorage.getItem('code'))+"NoteTextOS")),
                                     Username: localStorage.getItem('UserName'),
                                      User_Name: localStorage.getItem("User-Name"),
                                      User_Password: localStorage.getItem("User-Password"),
