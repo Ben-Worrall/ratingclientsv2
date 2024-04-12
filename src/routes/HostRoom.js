@@ -152,6 +152,118 @@ window.addEventListener("beforeunload", beforeUnloadListener);
   }
 
   
+
+
+
+var div1 = document.createElement('div')
+div1.id = ('white_contentOS')
+div1.innerText = ""
+div1.style.display = "none"
+
+var div2 = document.createElement('div')
+div2.id = ('background_contentOS')
+div2.style.display = "none"
+div2.onclick = blackClick
+
+
+function blackClick(){
+  
+  console.log('test')
+  div1.remove()
+  div2.remove()
+  div1.innerHTML = ""
+}
+
+
+
+
+
+
+
+
+
+
+ async function ShowDetailOS (){
+
+  if(document.getElementById('HostOSinput').value !== ""){
+    //show the popup for OS
+    document.getElementById('HostRoomApp').appendChild(div1)
+    document.getElementById('HostRoomApp').appendChild(div2)
+    div2.style.display = ""
+    div1.style.display = ""
+    
+
+    //show results from each user
+    // 1st step is to access the doc that matches the code
+  const colRef = collection(db, "Servers");
+  const docsSnap = await getDocs(colRef);
+  //search through and find the doc with the code
+  docsSnap.forEach(async doc => {
+     
+   //find and establish the doc of the server u made
+   if(doc.data().code == localStorage.getItem('code')){
+
+    
+    // 2nd step is to access sub collection with id of the doc that matches the code
+    var CurFactorCol = collection(db,'Servers/' + doc.id + '/Overall Score');
+    //search through the docs of the collection but pass through the host document
+    let SubDocs = await getDocs(CurFactorCol)
+    //look through the documents
+     SubDocs.forEach(async subDoc => {
+       //skip over the host doc
+       if(!subDoc.data().Host){
+        console.log(subDoc.data().OverallScore, subDoc.data().Username, subDoc.data().OverallScoreNOTES)
+             //div4.onclick = ShowNoteContent
+          
+        div1.innerHTML +=(`<div id="UsernameTextOS">${subDoc.data().Username}</div>`)
+        div1.innerHTML +=(`<div id="RatingTextOS">${subDoc.data().OverallScore}</div>`)
+
+        div1.innerHTML +=(
+          `<button value="${ subDoc.data().Username}" 
+          class="NotesBNTResults">
+          Notes
+          </button>`
+          )
+        
+        
+        //document.getElementById(subDoc.data().Username + "_" + SubColId).style.display = "block"
+        
+
+       }
+
+     })
+     
+     
+     
+
+
+
+   }
+
+  })
+
+
+
+
+
+
+
+  }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
    
   
@@ -180,6 +292,7 @@ window.addEventListener("beforeunload", beforeUnloadListener);
                      <p id='HostOStext'>Overall Score </p>
                      <input id='HostOSinput' placeholder='?' max={10} min={0} type='number' contentEditable='false'></input>
                      <p id='HostOS10'>10</p>
+                     <button id='DetailsBNTOS' onClick={ShowDetailOS}>Details</button>
                     </div>
                   </div>
 
@@ -188,6 +301,7 @@ window.addEventListener("beforeunload", beforeUnloadListener);
                       <p id='HostFStext'>Final Score </p>
                       <input id='HostFSinput' placeholder='?' max={10} min={0} type='number' contentEditable='false'></input>
                       <p id='HostFS10'>10</p>
+                      
                       </div>
                   </div>
                   </div>

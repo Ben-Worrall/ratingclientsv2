@@ -220,6 +220,15 @@ function BlackClickNotes(){
 
 
 
+
+
+
+
+
+
+  //show further details
+
+
   
   async function ShowDetails(){
     div5.innerHTML = ""
