@@ -154,6 +154,7 @@ window.addEventListener("beforeunload", beforeUnloadListener);
   
 
 
+  //details popup
 
 var div1 = document.createElement('div')
 div1.id = ('white_contentOS')
@@ -173,6 +174,37 @@ function blackClick(){
   div2.remove()
   div1.innerHTML = ""
 }
+
+
+
+//notes popup
+
+
+
+var div3 = document.createElement('div')
+div3.id = ('Notes_white_contentOS')
+div3.innerText = ""
+div3.style.display = "none"
+
+var div4 = document.createElement('div')
+div4.id = ("Notes_background_contentOS")
+div4.style.display = "none"
+div4.onclick = NotesBlackClick
+
+function NotesBlackClick(){
+  
+  console.log('test')
+  div3.remove()
+  div4.remove()
+  div3.innerHTML = ""
+}
+
+
+
+
+
+
+
 
 
 
@@ -217,13 +249,13 @@ function blackClick(){
           
         div1.innerHTML +=(`<div id="UsernameTextOS">${subDoc.data().Username}</div>`)
         div1.innerHTML +=(`<div id="RatingTextOS">${subDoc.data().OverallScore}</div>`)
-
-        div1.innerHTML +=(
-          `<button value="${ subDoc.data().Username}" 
-          class="NotesBNTResults">
-          Notes
-          </button>`
-          )
+        let button1 = document.createElement('button')
+        button1.classList.add('NotesBNTResults1')
+        button1.innerText = "Notes"
+        button1.value = subDoc.data().Username
+        
+        div1.appendChild(button1)
+        
         
         
         //document.getElementById(subDoc.data().Username + "_" + SubColId).style.display = "block"
@@ -249,8 +281,45 @@ function blackClick(){
 
 
   }
- }
 
+
+  let testing = document.getElementById('HostRoomApp')
+        testing.addEventListener('click',async function(ev){
+          var btn_option = document.getElementsByClassName("NotesBNTResults1");
+        Object.keys(btn_option).forEach(async function(key){
+            if(ev.target == btn_option[key]){
+            console.log(ev.target.value)
+            
+            const colRef = collection(db, "Servers");
+            const docsSnap = await getDocs(colRef);
+            //search through and find the doc with the code
+            docsSnap.forEach(async doc => {
+               
+             //find and establish the doc of the server u made
+             if(doc.data().code == localStorage.getItem('code')){
+               var CurFactorCol = collection(db,'Servers/' + doc.id + '/Overall Score');
+               let SubDocs = await getDocs(CurFactorCol)
+               //look through the documents
+                SubDocs.forEach(async subDoc => {
+                  if(subDoc.data().Username === ev.target.value){
+                    div3.innerHTML = subDoc.data().OverallScoreNOTES
+                      //display the notes popup with the notes according to question and username
+                     document.getElementById('HostRoomApp').appendChild(div3)
+                     document.getElementById('HostRoomApp').appendChild(div4)
+                     div3.style.display = ""
+                     div4.style.display = ""
+                    return
+                  }
+                    
+                 
+                })
+     
+              }
+            })
+          }
+        })
+        })
+ }
 
 
 
