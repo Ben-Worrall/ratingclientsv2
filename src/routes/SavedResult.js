@@ -416,9 +416,11 @@ let SubDocs = await getDocs(CurFactorCol)
 
 
     return(
+      
         <div id='SavedResultHolder'>
         <input id='SavedAs-Text'></input>
-         
+        <input id='ClientName-Text'>{localStorage.getItem('ClientName')}</input>
+        
         
            
         <div id='RatingBoard-SavedPage'>
