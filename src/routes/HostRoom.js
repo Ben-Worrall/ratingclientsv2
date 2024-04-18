@@ -318,19 +318,8 @@ function NotesBlackClick(){
             })
           }
         })
-        })
+      })
  }
-
-
-
-
-
-
-
-
-
-
-
 
 
   

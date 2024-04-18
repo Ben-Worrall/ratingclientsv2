@@ -37,9 +37,12 @@ async function CanRunFunc(){
 
 
 
-
+    
 
 //GET EVERYTHING THAT IS NEEDED
+
+
+
 
 
   //get name of each factor
@@ -58,8 +61,32 @@ async function CanRunFunc(){
   var SavedAs = document.getElementById('SaveCloseName').value
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //CREATE A NEW DOCUMENT THAT WILL BE STORED IN SAVE RESULTS
   
+
+
+
+
+
+
+
+
+
   //create a document in the "SavedResults" collection
   const CurDocSavedResults = await addDoc(collection(db, "SavedResults"),{
     Anchor:"Anchor"
@@ -69,7 +96,10 @@ async function CanRunFunc(){
     Username: UserName,
     Password: UserPassword,
     SavedAs: SavedAs,
-    Code: ServerCode
+    ClientName: document.getElementById('SaveCloseClientsName').value,
+    Code: ServerCode,
+    FinalScore: document.getElementById('HostFSinput').value,
+    OverallScore:document.getElementById('HostOSinput').value
   }
   for(let i = 0; i < FactorsListAr.length; i++){
     //console.log(FactorsListAr[i])
@@ -84,9 +114,34 @@ async function CanRunFunc(){
   
   //ADD SUB COLLECTIONS TO THE NEWLY CREATED DOCUMENT (in "SavedResults")
 
+
+  //for overall scores
+
+  const colRef1 = collection(CurDocSavedResults, 'Overall Score')
+  var CurFactorCol = collection(db,'Servers/' + DocumentIdServer + '/Overall Score');
+  //search through the docs of the collection but pass through the host document
+  let SubDocs = await getDocs(CurFactorCol)
+  //look through the documents
+   SubDocs.forEach(async subDoc => {
+    if(!subDoc.data().Host){
+      //then append each set 
+      addDoc(colRef1, {
+        OverallScore: subDoc.data().OverallScore,
+        OverallScoreNOTES: subDoc.data().OverallScoreNOTES,
+        Username: subDoc.data().Username
+        
+      });
+     }
+   })
+   addDoc(colRef1, {
+    Anchor: "Anchor"
+ });
+
+  //for the factors
+
   for(let i = 0; i < FactorsListAr.length; i++){
     //for each factor, create subcollection
-    const colRef = collection(CurDocSavedResults, (FactorsListAr[i]))
+    const colRef2 = collection(CurDocSavedResults, (FactorsListAr[i]))
 
 
     //GET DATA FROM THE ORIGINAL SUB COLLECTION FROM THE SERVER DOC
@@ -99,14 +154,14 @@ async function CanRunFunc(){
        //skip over the host doc
        if(!subDoc.data().Host){
         //then append each set 
-        addDoc(colRef, {
+        addDoc(colRef2, {
           Notes: subDoc.data().Notes,
           Rating: subDoc.data().Rating,
           Username: subDoc.data().Username
         });
        }
      })
-     addDoc(colRef, {
+     addDoc(colRef2, {
        Anchor: "Anchor"
     });
     
@@ -139,7 +194,14 @@ async function CanRunFunc(){
 
 
 
+
  //DOWNLOAD AS EXCEL
+
+
+
+
+
+
 
 
   //create table for excel
@@ -190,6 +252,44 @@ async function CanRunFunc(){
        //console.log(ClientName)
 
 
+
+       //final score
+       let FinalScore = document.getElementById('HostFSinput').value
+       let FinalScoreTR = document.createElement('tr')
+       let FinalScoreTD = document.createElement('td')
+       let FinalScoreTDText = document.createElement('td')
+       FinalScoreTDText.innerText = "Final Score"
+       FinalScoreTD.innerText = FinalScore
+       FinalScoreTR.appendChild(FinalScoreTDText)
+       FinalScoreTR.appendChild(FinalScoreTD)
+       ExcelTable.appendChild(FinalScoreTR)
+
+
+
+
+
+
+       //overall score
+       let OverallScore = document.getElementById('HostOSinput').value
+       let OverallScoreTR = document.createElement('tr')
+       let OverallScoreTD = document.createElement('td')
+       let OverallScoreTDText = document.createElement('td')
+       OverallScoreTDText.innerText = "Overall Score"
+       OverallScoreTDText.style.fontWeight = "bold"
+       OverallScoreTD.innerText = OverallScore
+       OverallScoreTR.appendChild(OverallScoreTDText)
+       OverallScoreTR.appendChild(OverallScoreTD)
+       ExcelTable.appendChild(OverallScoreTR)
+
+
+
+
+
+
+
+
+
+
        let EachFactorTR = document.createElement('tr')
        let allFactos = document.querySelectorAll('.Resultfactor')
        allFactos.forEach(async(Factor) => {
@@ -204,6 +304,7 @@ async function CanRunFunc(){
            let EachFactorNotesTag = document.createElement('td')
            
            EachFactorNameTD.innerText = Factor.childNodes[0].value
+           EachFactorNameTD.style.fontWeight = "bold"
            EachFactorTDavg.innerText = "Average: " + Factor.childNodes[1].childNodes[0].innerText
            EachFactorNotesTag.innerText = "Notes: "
            EachFactorTR.appendChild(EachFactorNameTD)
