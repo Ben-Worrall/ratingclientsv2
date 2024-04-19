@@ -119,7 +119,7 @@ const SavedResult = () => {
         if(doc.data().Password == UserPassword){
             if(doc.data().SavedAs == SavedAs){
 
-
+   
 // 2nd step is to access sub collection with id of the doc that matches the code
 var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/'+ SubColId);
 //search through the docs of the collection but pass through the host document
@@ -267,9 +267,16 @@ let SubDocs = await getDocs(CurFactorCol)
                     if(doc.data().Password == UserPassword){
                         if(doc.data().SavedAs == SavedAs){
 
+                          localStorage.setItem('code', doc.data().Code)
+                          document.getElementById('ClientName-Text').value = doc.data().ClientName
+                          document.getElementById('ResultFSinput').value = doc.data().FinalScore
+                          document.getElementById('ResultOSinput').value = doc.data().OverallScore
+
+
+
                             //get everything except the following
                             //code, password, SavedAs, Username
-                            const {Code, Password, SavedAs, Username,...otherProperties} = doc.data();
+                            const {FinalScore, OverallScore, ClientName, Code, Password, SavedAs, Username,...otherProperties} = doc.data();
                             const personClone = {...otherProperties};
                             let ArrOfFactors = Object.keys(personClone)
                             //sort the array
@@ -413,6 +420,188 @@ let SubDocs = await getDocs(CurFactorCol)
 
 
 
+      
+  //details popup
+
+var div1 = document.createElement('div')
+div1.id = ('white_contentOS')
+div1.innerText = ""
+div1.style.display = "none"
+
+var div2 = document.createElement('div')
+div2.id = ('background_contentOS')
+div2.style.display = "none"
+div2.onclick = blackClick
+
+
+function blackClick(){
+  
+  console.log('test')
+  div1.remove()
+  div2.remove()
+  div1.innerHTML = ""
+}
+
+
+
+//notes popup
+
+
+
+var div3 = document.createElement('div')
+div3.id = ('Notes_white_contentOS')
+div3.innerText = ""
+div3.style.display = "none"
+
+var div4 = document.createElement('div')
+div4.id = ("Notes_background_contentOS")
+div4.style.display = "none"
+div4.onclick = NotesBlackClick
+
+function NotesBlackClick(){
+  
+  console.log('test')
+  div3.remove()
+  div4.remove()
+  div3.innerHTML = ""
+}
+
+
+
+
+
+
+
+
+
+
+
+
+      async function ShowDetailOS (){
+
+        if(document.getElementById('RatingBoard-SavedPage').value !== ""){
+          //show the popup for OS
+          document.getElementById('SavedResultHolder').appendChild(div1)
+          document.getElementById('SavedResultHolder').appendChild(div2)
+          div2.style.display = ""
+          div1.style.display = ""
+          
+      
+          //show results from each user
+          // 1st step is to access the doc that matches the code
+        const colRef = collection(db, "Servers");
+        const docsSnap = await getDocs(colRef);
+        //search through and find the doc with the code
+        docsSnap.forEach(async doc => {
+           
+         //find and establish the doc of the server u made
+         if(doc.data().code == localStorage.getItem('code')){
+      
+          
+          // 2nd step is to access sub collection with id of the doc that matches the code
+          var CurFactorCol = collection(db,'Servers/' + doc.id + '/Overall Score');
+          //search through the docs of the collection but pass through the host document
+          let SubDocs = await getDocs(CurFactorCol)
+          //look through the documents
+           SubDocs.forEach(async subDoc => {
+             //skip over the host doc
+             if(!subDoc.data().Host){
+              console.log(subDoc.data().OverallScore, subDoc.data().Username, subDoc.data().OverallScoreNOTES)
+                   //div4.onclick = ShowNoteContent
+                
+              div1.innerHTML +=(`<div id="UsernameTextOS">${subDoc.data().Username}</div>`)
+              div1.innerHTML +=(`<div id="RatingTextOS">${subDoc.data().OverallScore}</div>`)
+              let button1 = document.createElement('button')
+              button1.classList.add('NotesBNTResults1')
+              button1.innerText = "Notes"
+              button1.value = subDoc.data().Username
+              
+              div1.appendChild(button1)
+              
+              
+              
+              //document.getElementById(subDoc.data().Username + "_" + SubColId).style.display = "block"
+              
+      
+             }
+      
+           })
+           
+           
+           
+      
+      
+      
+         }
+      
+        })
+      
+      
+      
+      
+      
+      
+      
+        }
+      
+      
+        let testing = document.getElementById('SavedResultHolder')
+              testing.addEventListener('click',async function(ev){
+                var btn_option = document.getElementsByClassName("NotesBNTResults1");
+              Object.keys(btn_option).forEach(async function(key){
+                  if(ev.target == btn_option[key]){
+                  console.log(ev.target.value)
+                  
+                  const colRef = collection(db, "Servers");
+                  const docsSnap = await getDocs(colRef);
+                  //search through and find the doc with the code
+                  docsSnap.forEach(async doc => {
+                     
+                   //find and establish the doc of the server u made
+                   if(doc.data().code == localStorage.getItem('code')){
+                     var CurFactorCol = collection(db,'Servers/' + doc.id + '/Overall Score');
+                     let SubDocs = await getDocs(CurFactorCol)
+                     //look through the documents
+                      SubDocs.forEach(async subDoc => {
+                        if(subDoc.data().Username === ev.target.value){
+                          div3.innerHTML = subDoc.data().OverallScoreNOTES
+                            //display the notes popup with the notes according to question and username
+                           document.getElementById('SavedResultHolder').appendChild(div3)
+                           document.getElementById('SavedResultHolder').appendChild(div4)
+                           div3.style.display = ""
+                           div4.style.display = ""
+                          return
+                        }
+                          
+                       
+                      })
+           
+                    }
+                  })
+                }
+              })
+            })
+       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     return(
@@ -424,7 +613,27 @@ let SubDocs = await getDocs(CurFactorCol)
         
            
         <div id='RatingBoard-SavedPage'>
-           
+
+              <div style={{display:'flex'}}>
+                  <div id='ResultOverallScoreDivBackground'>
+                     <div id='ResultOverallScoreDiv'>
+                     <p id='ResultOStext'>Overall Score </p>
+                     <input id='ResultOSinput' placeholder='?' max={10} min={0} type='number' contentEditable='false'></input>
+                     <p id='ResultOS10'>10</p>
+                     <button id='DetailsBNTOS' onClick={ShowDetailOS}>Details</button>
+                    </div>
+                  </div>
+
+                  <div id='ResultFinalScoreDivBackground'>
+                      <div id='ResultFinalScoreDiv'>
+                      <p id='ResultFStext'>Final Score </p>
+                      <input id='ResultFSinput' placeholder='?' max={10} min={0} type='number' contentEditable='false'></input>
+                      <p id='ResultFS10'>10</p>
+                      
+                      </div>
+                  </div>
+              </div>
+
         </div>
    
    

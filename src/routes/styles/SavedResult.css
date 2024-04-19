@@ -255,3 +255,274 @@ position: absolute;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ResultOverallScoreDivBackground{
+    width: 50%;
+    height: 15%;
+    margin: 0px;
+    padding: 0px;
+   }
+   
+   #ResultOverallScoreDiv{
+       width: 100%;
+       height: 100%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin: 0px;
+       padding: 0px;
+       background-color: white;
+       outline: 0.25vh solid black;
+   }
+   #ResultOStext{
+       width: 75%;
+       border-right: 0.55vh solid black;
+       height: 100%;
+       font-size: 145%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-weight: bold;
+       margin: 0px;
+       padding: 0px;
+   }
+   #ResultOSinput{
+       width: 35%;
+       border: 0vh solid black;
+       outline: 0px solid transparent;
+       text-align: center;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-size: 165%;
+       height: 100%;
+       border-right: 0.55vh solid black;
+       font-weight: bold;
+       margin: 0px;
+       padding: 0px;
+       pointer-events: none;
+   }
+   #ResultOS10{
+       width: 35%;
+       font-size: 175%;
+       height: 100%;
+       padding: 0;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-weight: bold;
+       margin: 0px;
+       padding: 0px;
+   }
+   #DetailsBNTOS{
+    
+    margin-top: 0;
+    background-color: lightgray;
+    color: black;
+    outline: 0.1vw black solid;
+    font-size: 95%;
+    border: 0vw solid black;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+   #ResultFinalScoreDivBackground{
+    width: 50%;
+    height: 15%;
+    margin: 0px;
+       padding: 0px;
+   }
+   
+   #ResultFinalScoreDiv{
+       width: 100%;
+       height: 100%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin: 0px;
+       padding: 0px;
+       background-color: white;
+       outline: 0.25vh solid black;
+   }
+   #ResultFStext{
+       width: 75%;
+       border-right: 0.55vh solid black;
+       height: 100%;
+       font-size: 145%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-weight: bold;
+       margin: 0px;
+       padding: 0px;
+   }
+   #ResultFSinput{
+       width: 35%;
+       border: 0vh solid black;
+       outline: 0px solid transparent;
+       text-align: center;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-size: 165%;
+       height: 100%;
+       border-right: 0.55vh solid black;
+       font-weight: bold;
+       margin: 0px;
+       padding: 0px;
+       pointer-events: none;
+   
+   }
+   #ResultFS10{
+       width: 35%;
+       font-size: 175%;
+       height: 100%;
+       padding: 0;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-weight: bold;
+       margin: 0px;
+       padding: 0px;
+   }
+
+
+
+
+
+
+
+
+
+#white_contentOS{
+    width: 65%;
+    height: 65%;
+    background-color: white;
+    position: absolute;
+    z-index: 1010;
+    left: 0; 
+    right: 0; 
+    top: 0;
+    bottom: 0;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: auto; 
+    margin-bottom: auto; 
+  
+}
+#background_contentOS{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .60;
+    filter: alpha(opacity=60);
+}
+#UsernameTextOS{
+    width: 45%;
+    float: left;
+    outline: 0.1vw black solid;
+    height: 10%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#RatingTextOS{
+    width: 45%;
+    float: left;
+    outline: 0.1vw black solid;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+}
+
+.NotesBNTResults1{
+    width: 10%;
+    float: right;
+    outline: 0.1vw black solid;
+    background-color: lightgray;
+    border: 0vw solid black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+
+
+
+}
+
+#Notes_white_contentOS{
+    width: 65%;
+    height: 65%;
+    background-color: white;
+    position: absolute;
+    z-index: 1010;
+    font-size: 150%;
+    left: 0; 
+    right: 0; 
+    top: 0;
+    bottom: 0;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: auto; 
+    margin-bottom: auto; 
+}
+
+#Notes_background_contentOS{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .60;
+    filter: alpha(opacity=55);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
