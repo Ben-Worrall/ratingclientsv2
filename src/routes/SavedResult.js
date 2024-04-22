@@ -29,7 +29,7 @@ const SavedResult = () => {
     localStorage.removeItem('code')
     localStorage.removeItem('SavedAs-Name')
     navigate('/')
-    window.location.reload()
+    //window.location.reload()
   }
 
   //create popup

@@ -161,17 +161,44 @@ root.render(
   
   async function JoinRoomURL(){
     navigate('/routes/JoinRoom/')
-    window.location.reload()
+    //window.location.reload()
    
  }
 
  function ToSavedResult(){
   navigate('/routes/SavedResult')
-  window.location.reload()
+  //window.location.reload()
  }
 
 
 
+
+async function HostRoomURL(){
+  //if user has a host room open, then go to host page, else alert the user
+
+
+  //search through localstorage
+  Object.keys(localStorage).forEach(async function(key){
+   
+    //if first 4 letters of key is a code that is in (live)servers collection in db
+    console.log(key.slice(0,4));
+    //search through servers
+    const querySnapshot = await getDocs(collection(db, "Servers"));
+  querySnapshot.forEach((doc) => {
+         if(doc.data().code == key.slice(0,4)){
+          localStorage.setItem('code',  key.slice(0,4))
+          
+          navigate('/routes/HostRoom')
+          return
+         }
+  }
+  
+  )
+
+  
+
+ });
+}
 
 
 
@@ -232,6 +259,7 @@ root.render(
           
           <button className="BNT" onClick={CreateRoomURL}>CreateRoom</button>
           <button className="BNT" onClick={JoinRoomURL}>JoinRoom</button>
+          <button className="BNT" onClick={HostRoomURL}>HostRoom</button>
           <button  id='ToSavedResult' style={{display:"none"}} onClick={ToSavedResult} ></button>
         
         </div>
