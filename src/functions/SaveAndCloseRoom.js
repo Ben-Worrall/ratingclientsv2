@@ -268,7 +268,7 @@ async function CanRunFunc(){
 
 
 
-
+/*
        //overall score
        let OverallScore = document.getElementById('HostOSinput').value
        let OverallScoreTR = document.createElement('tr')
@@ -280,6 +280,7 @@ async function CanRunFunc(){
        OverallScoreTR.appendChild(OverallScoreTDText)
        OverallScoreTR.appendChild(OverallScoreTD)
        ExcelTable.appendChild(OverallScoreTR)
+*/
 
 
 
@@ -289,8 +290,28 @@ async function CanRunFunc(){
 
 
 
-
+ 
        let EachFactorTR = document.createElement('tr')
+
+       //overall score
+       let overallScoreText = document.createElement('td')
+       let overallScoreAverage = document.createElement('td')
+       let overallScoreNotes = document.createElement('td')
+
+       overallScoreText.innerText = "Overall Score"
+       overallScoreText.style.fontWeight = "bold"
+
+       overallScoreAverage.innerText = "Average: " + document.getElementById('HostOSinput').value
+       
+       overallScoreNotes.innerText = "Notes:"
+
+       EachFactorTR.appendChild(overallScoreText)
+       EachFactorTR.appendChild(overallScoreAverage)
+       EachFactorTR.appendChild(overallScoreNotes)
+
+
+
+       //quesitons
        let allFactos = document.querySelectorAll('.Resultfactor')
        allFactos.forEach(async(Factor) => {
            //get each question
@@ -380,11 +401,57 @@ SubDocs.forEach(async subDoc => {
          })
          //loop thropugh each user and append to the users tr ratings, then appened that to the excel page
          setTimeout(async function () { 
-           AllUsernames.forEach((user)=>{
+           AllUsernames.forEach(async(user)=>{
               //console.log(user)
               let EachUserRatingsTotalTR = document.createElement('tr')
 
               
+
+
+
+
+              
+              //USERS RESULTS
+
+
+
+
+
+
+              //overall score
+
+              var CurFactorCol = collection(db,'Servers/' + doc.id + '/Overall Score');
+              //search through the docs of the collection but pass through the host document
+              let SubDocs = await getDocs(CurFactorCol)
+              //look through the documents
+              SubDocs.forEach(async subDoc => {
+                      if(!subDoc.data().Host){
+
+                        if(subDoc.data().Username == user){
+                          
+                          let UserEachNameTD_OS = document.createElement('td')
+                          let UserEachRatingTD_OS = document.createElement('td')
+                          let UserEachNotesTD_OS = document.createElement('td')
+                          UserEachNameTD_OS.innerText = await subDoc.data().Username 
+                          UserEachRatingTD_OS.innerText =await subDoc.data().OverallScore
+                          UserEachNotesTD_OS.innerText = await subDoc.data().OverallScoreNOTES
+                          //console.log(user)
+                          EachUserRatingsTotalTR.appendChild(UserEachNameTD_OS)
+                          EachUserRatingsTotalTR.appendChild(UserEachRatingTD_OS)
+                          EachUserRatingsTotalTR.appendChild(UserEachNotesTD_OS)
+
+                        }
+                        
+                      }
+              })
+
+
+
+
+
+
+
+              //quesitons
 
               //get the factors
               let allFactos = document.querySelectorAll('.Resultfactor')
@@ -557,7 +624,7 @@ setTimeout(function() { exportTableToExcel();; }, 5000)
     console.log('start proceaa')
   }
 
-  //setTimeout(ChangeToSuccess,6000)
+  setTimeout(ChangeToSuccess,6000)
 
 
 
