@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom/client'
 import { txtDB } from '../firebase/firebaseConfig';
 import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, deleteDoc, onSnapshot } from 'firebase/firestore'
 import $ from 'jquery'
-import DownloadExcelFunc from '../functions/DownloadExcel';
+import DownloadExcelFunc from './DownloadExcelSavedResult';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 
 const db = getFirestore()

@@ -294,6 +294,7 @@ async function CanRunFunc(){
        let EachFactorTR = document.createElement('tr')
 
        //overall score
+       
        let overallScoreText = document.createElement('td')
        let overallScoreAverage = document.createElement('td')
        let overallScoreNotes = document.createElement('td')

@@ -43,7 +43,7 @@ const DownloadExcelFunc = async () => {
 
 
 
-        //get the client's name
+        // client's name
         let ClientName = document.getElementById('ClientNameInput').value
         let ClientNameTR = document.createElement('tr')
         let ClientNameTD = document.createElement('td')
@@ -56,7 +56,48 @@ const DownloadExcelFunc = async () => {
         //console.log(ClientName)
 
 
+        //final score
+       let FinalScore = document.getElementById('ResultFSinput').value
+       let FinalScoreTR = document.createElement('tr')
+       let FinalScoreTD = document.createElement('td')
+       let FinalScoreTDText = document.createElement('td')
+       FinalScoreTDText.innerText = "Final Score"
+       FinalScoreTD.innerText = FinalScore
+       FinalScoreTR.appendChild(FinalScoreTDText)
+       FinalScoreTR.appendChild(FinalScoreTD)
+       ExcelTable.appendChild(FinalScoreTR)
+
+
+
+
+
+
+
+
+        
         let EachFactorTR = document.createElement('tr')
+
+
+         //overall score
+       
+       let overallScoreText = document.createElement('td')
+       let overallScoreAverage = document.createElement('td')
+       let overallScoreNotes = document.createElement('td')
+
+       overallScoreText.innerText = "Overall Score"
+       overallScoreText.style.fontWeight = "bold"
+
+       overallScoreAverage.innerText = "Average: " + document.getElementById('ResultOSinput').value
+       
+       overallScoreNotes.innerText = "Notes:"
+
+       EachFactorTR.appendChild(overallScoreText)
+       EachFactorTR.appendChild(overallScoreAverage)
+       EachFactorTR.appendChild(overallScoreNotes)
+
+
+
+        //questions
         let allFactos = document.querySelectorAll('.SavedFactor')
         allFactos.forEach(async(Factor) => {
             //get each question
@@ -70,6 +111,7 @@ const DownloadExcelFunc = async () => {
             let EachFactorNotesTag = document.createElement('td')
             
             EachFactorNameTD.innerText = Factor.childNodes[0].value
+            EachFactorNameTD.style.fontWeight = "bold"
             EachFactorTDavg.innerText = "Average: " + Factor.childNodes[1].innerText
             EachFactorNotesTag.innerText = "Notes: "
             EachFactorTR.appendChild(EachFactorNameTD)
@@ -155,11 +197,48 @@ SubDocs.forEach(async subDoc => {
           })
           //loop thropugh each user and append to the users tr ratings, then appened that to the excel page
           setTimeout(async function () { 
-            AllUsernames.forEach((user)=>{
+            AllUsernames.forEach(async (user)=>{
                console.log(user)
                let EachUserRatingsTotalTR = document.createElement('tr')
 
+
+
+               //overall score
+               var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/Overall Score');
+               //search through the docs of the collection but pass through the host document
+               let SubDocs = await getDocs(CurFactorCol)
+               //look through the documents
+               SubDocs.forEach(async subDoc => {
+                       if(!subDoc.data().Host){
+ 
+                         if(subDoc.data().Username == user){
+                           
+                           let UserEachNameTD_OS = document.createElement('td')
+                           let UserEachRatingTD_OS = document.createElement('td')
+                           let UserEachNotesTD_OS = document.createElement('td')
+                           UserEachNameTD_OS.innerText = await subDoc.data().Username 
+                           UserEachRatingTD_OS.innerText =await subDoc.data().OverallScore
+                           UserEachNotesTD_OS.innerText = await subDoc.data().OverallScoreNOTES
+                           //console.log(user)
+                           EachUserRatingsTotalTR.appendChild(UserEachNameTD_OS)
+                           EachUserRatingsTotalTR.appendChild(UserEachRatingTD_OS)
+                           EachUserRatingsTotalTR.appendChild(UserEachNotesTD_OS)
+ 
+                         }
+                         
+                       }
+               })
+
+
+
+
+
+
+
+
                
+ 
+               //for questions 
 
                //get the factors
                let allFactos = document.querySelectorAll('.SavedFactor')
