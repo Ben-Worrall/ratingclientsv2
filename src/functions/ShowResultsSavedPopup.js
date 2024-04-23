@@ -102,12 +102,7 @@ const ShowResultsSavedPopup = async () => {
 
  //function to show the download popups
  function ShowDownloadPopup(e){
-    console.log(e.target.previousSibling.innerText)
-    localStorage.setItem('SavedAs-Name', e.target.previousSibling.innerText)
-    document.getElementById('DownloadPopupDiv').style.display = ""
-    document.getElementById('DownloadPopupDivBG').style.display = ""
-    document.getElementById('SavedResPopups')
-    document.getElementById('SavedResBackground')
+  DownloadExcelSavedPopup(e)
 
 
     

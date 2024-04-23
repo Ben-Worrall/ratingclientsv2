@@ -15,9 +15,9 @@ const db = getFirestore()
 
 
 
-const DownloadExcelSavedPopup = async () => {
+const DownloadExcelSavedPopup = async (e) => {
     
-
+  var ClientNameText = ""
 
    //create table for excel
    let ExcelTable = document.createElement('table')
@@ -28,17 +28,15 @@ const DownloadExcelSavedPopup = async () => {
 
 
 
-  if(document.getElementById('ClientNameInputPopup').value == ""){
-    alert(`Input can't be empty`)
-  }else{
+  
+
+      
+//console.log(e.target.previousSibling.innerText)
+
+ localStorage.setItem('SavedAs-Name', e.target.previousSibling.innerText)
 
 
-
-
-
-
-
-
+   
 
     
 
@@ -64,14 +62,20 @@ if(doc.data().Username == UserName){
 
 
 
+              
+              
+              ClientNameText = doc.data().ClientName
+              
+              
+
 
                   //get the client's name
-        let ClientName = document.getElementById('ClientNameInputPopup').value
+        let ClientNameResult = doc.data().ClientName
         let ClientNameTR = document.createElement('tr')
         let ClientNameTD = document.createElement('td')
         let ClientNameTDText = document.createElement('td')
         ClientNameTDText.innerText = "Client"
-        ClientNameTD.innerText = ClientName
+        ClientNameTD.innerText = ClientNameResult
         ClientNameTR.appendChild(ClientNameTDText)
         ClientNameTR.appendChild(ClientNameTD)
         ExcelTable.appendChild(ClientNameTR)
@@ -84,10 +88,86 @@ if(doc.data().Username == UserName){
 
 
 
+        //Final Score
+        let FinalScoreResult = doc.data().FinalScore
+        let FinalScoreTR = document.createElement('tr')
+        let FinalScoreTD = document.createElement('td')
+        let FinalScoreTDText = document.createElement('td')
+        FinalScoreTDText.innerText = "Final Score "
+        FinalScoreTD.innerText = FinalScoreResult
+        FinalScoreTR.appendChild(FinalScoreTDText)
+        FinalScoreTR.appendChild(FinalScoreTD)
+        ExcelTable.appendChild(FinalScoreTR)
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     //for quesitons, average rating, notes
+
+
 
 
         let EachFactorTR = document.createElement('tr')
-        const {Code, Password, SavedAs, Username,...otherProperties} = doc.data();
+
+
+
+           //overall score
+           let EachFactorNameTD_OS = document.createElement('td')
+           let EachFactorTDavg_OS = document.createElement('td')
+           let EachFactorNotesTag_OS = document.createElement('td')
+           
+           EachFactorNameTD_OS.innerText = "Overall Score"
+           EachFactorNameTD_OS.style.fontWeight = "bold"
+           EachFactorTDavg_OS.innerText = "Average: " + doc.data().OverallScore
+           EachFactorNotesTag_OS.innerText = "Notes:"
+
+           EachFactorTR.appendChild(EachFactorNameTD_OS)
+           EachFactorTR.appendChild(EachFactorTDavg_OS)
+           EachFactorTR.appendChild(EachFactorNotesTag_OS)
+
+           
+
+
+
+
+        //for each question
+        const {ClientName,FinalScore, OverallScore, Code, Password, SavedAs, Username,...otherProperties} = doc.data();
                             const personClone = {...otherProperties};
                             let allFactors = Object.keys(personClone)
                             //sort the array
@@ -124,6 +204,7 @@ if(doc.data().Username == UserName){
                         let EachFactorNotesTag = document.createElement('td')
                         
                         EachFactorNameTD.innerText = Factor
+                        EachFactorNameTD.style.fontWeight = "bold"
                         EachFactorTDavg.innerText = "Average: " + Math.round((SavedUserRatings / SavedUserRatingsLength) * 10) / 10
                         EachFactorNotesTag.innerText = "Notes:"
 
@@ -157,9 +238,14 @@ if(doc.data().Username == UserName){
 
 
 
+                  //details from each user
                   
+
+
+
+
                   //get stats from db collection
-                  
+                  //get how many users are in the server
                   
                   var AllUsernames = []
                   
@@ -176,10 +262,8 @@ if(doc.data().Username == UserName){
                       if(doc.data().Password == UserPassword){
                           if(doc.data().SavedAs == SavedAs){
                   
-                           
-                  
-                  
-                            const {Code, Password, SavedAs, Username,...otherProperties} = doc.data();
+                          
+                            const {ClientName,FinalScore, OverallScore, Code, Password, SavedAs, Username,...otherProperties} = doc.data();
                             const personClone = {...otherProperties};
                             let allFactos = Object.keys(personClone)
                             //sort the array
@@ -215,15 +299,58 @@ if(doc.data().Username == UserName){
                           })
                           
                          })
+
+
+
+
+
+
+
                          //loop thropugh each user and append to the users tr ratings, then appened that to the excel page
                          setTimeout(async function () { 
-                           AllUsernames.forEach((user)=>{
+                           AllUsernames.forEach(async(user)=>{
                               console.log(user)
                               let EachUserRatingsTotalTR = document.createElement('tr')
-                  
+
+
+                              //for overall score
+
+
+                              var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/Overall Score');
+                              //search through the docs of the collection but pass through the host document
+                              let SubDocs = await getDocs(CurFactorCol)
+                              //look through the documents
+                              SubDocs.forEach(async subDoc => {
+                                         //skip over the host doc
+                                         if(!subDoc.data().Host){
+                                             if(!subDoc.data().Anchor){
+                                                if(subDoc.data().Username == user){
+                                                  let UserEachNameTD_OS = document.createElement('td')
+                                                  let UserEachRatingTD_OS = document.createElement('td')
+                                                  let UserEachNotesTD_OS = document.createElement('td')
+                                                  UserEachNameTD_OS.innerText = await subDoc.data().Username 
+                                                  UserEachRatingTD_OS.innerText =await subDoc.data().OverallScore
+                                                  UserEachNotesTD_OS.innerText = await subDoc.data().OverallScoreNOTES
+                                                
+                                                  EachUserRatingsTotalTR.appendChild(UserEachNameTD_OS)
+                                                  EachUserRatingsTotalTR.appendChild(UserEachRatingTD_OS)
+                                                  EachUserRatingsTotalTR.appendChild(UserEachNotesTD_OS)
+
+                                                }
+                                             }
+                                            }
+                                          })
+
+
+
+
+
+
+                             //for the other questions
+
                               
                   
-                              const {Code, Password, SavedAs, Username,...otherProperties} = doc.data();
+                              const {ClientName,FinalScore, OverallScore, Code, Password, SavedAs, Username,...otherProperties} = doc.data();
                             const personClone = {...otherProperties};
                             let allFactors = Object.keys(personClone)
                             //sort the array
@@ -269,48 +396,13 @@ if(doc.data().Username == UserName){
                    }
                    
                   })
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        
-
-
-
-
-
                 
                 
                 
                 
                 
                 
-               
-                    
+              
                 
                                 
             }
@@ -322,9 +414,21 @@ if(doc.data().Username == UserName){
 
  
   })
+
+
+
+
+
+
+
+
+
+
+
+
                 //downlaod table
                 function exportTableToExcel() {
-                  console.log(document.getElementById('ClientNameInputPopup').value)
+                  console.log(ClientNameText)
                     // Get the table element using the provided ID
                     const table = document.getElementById('ExcelTable');
                   
@@ -342,7 +446,7 @@ if(doc.data().Username == UserName){
                     a.href = url;
                   
                     // Set the desired filename for the downloaded file
-                    a.download = `${document.getElementById('ClientNameInputPopup').value}.xls`;
+                    a.download = `${ClientNameText}.xls`;
                   
                     // Simulate a click on the anchor to trigger download
                     a.click();
@@ -358,7 +462,7 @@ if(doc.data().Username == UserName){
 
 
   
-}
+
 }
 
 export default DownloadExcelSavedPopup

@@ -46,12 +46,6 @@ async function CheckCodes(){
        console.log('no server is ther')
       }
      } 
-     
-     
-     
-    
- 
- 
  
  
  }
