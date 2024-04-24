@@ -587,7 +587,7 @@ position: absolute;
     margin-bottom: auto; 
     border: 0px solid black;
     border-radius:  15px 15px 15px 15px;
-
+    text-align: center;
 
 }
 
@@ -600,6 +600,7 @@ position: absolute;
     -moz-opacity: 0.8;
     opacity: .60;
     filter: alpha(opacity=65);
+    
 }
 
 

@@ -605,6 +605,7 @@ function NotesBlackClick(){
 
 
 
+
  
 
 
@@ -620,14 +621,14 @@ function NotesBlackClick(){
         <div id='SavedResultHolder'>
           <input id='EditValuePopup' style={{display:"none"}}>
           </input>
-          <div id='EditValuePopupBG' style={{display:"none"}}></div>
+          <div id='EditValuePopupBG'  style={{display:"none"}}> </div>
 
         <div className='inputText'>Saved As</div>
         <input id='SavedAs-Text' ></input>
         <button className='EditBNT' onClick={EditValueFunc}>✎</button>
 
         <div className='inputText'>Client's Name</div>
-        <input id='ClientName-Text'  >{localStorage.getItem('ClientName')}</input>
+        <input id='ClientName-Text'></input>
         <button className='EditBNT' onClick={EditValueFunc}>✎</button>
         
            
