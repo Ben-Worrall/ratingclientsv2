@@ -10,7 +10,7 @@ import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, deleteDo
 import $ from 'jquery'
 import DownloadExcelFunc from '../functions/DownloadExcelSavedResult';
 import { useDownloadExcel } from 'react-export-table-to-excel';
-
+import EditValues from '../functions/EditValues';
 const db = getFirestore()
 
 
@@ -590,12 +590,22 @@ function NotesBlackClick(){
 
 
 
+    //edit the valuies
+
+    
+
+
+
+    function EditValueFunc(e){
+
+      EditValues(e)
+
+    }
 
 
 
 
-
-
+ 
 
 
 
@@ -606,10 +616,19 @@ function NotesBlackClick(){
 
     return(
       
-        <div id='SavedResultHolder'>
-        <input id='SavedAs-Text'></input>
-        <input id='ClientName-Text'>{localStorage.getItem('ClientName')}</input>
         
+        <div id='SavedResultHolder'>
+          <input id='EditValuePopup' style={{display:"none"}}>
+          </input>
+          <div id='EditValuePopupBG' style={{display:"none"}}></div>
+
+        <div className='inputText'>Saved As</div>
+        <input id='SavedAs-Text' ></input>
+        <button className='EditBNT' onClick={EditValueFunc}>✎</button>
+
+        <div className='inputText'>Client's Name</div>
+        <input id='ClientName-Text'  >{localStorage.getItem('ClientName')}</input>
+        <button className='EditBNT' onClick={EditValueFunc}>✎</button>
         
            
         <div id='RatingBoard-SavedPage'>
