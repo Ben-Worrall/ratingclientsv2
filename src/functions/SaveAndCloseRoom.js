@@ -590,6 +590,21 @@ setTimeout(function() { exportTableToExcel();; }, 5000)
   //delete the server sub collections (factors)
   //otherwise documents will still apear and only the server code will be deleted
   //access tlocalstorage to get the factors(collection names)
+  const querySnapshot = await getDocs(collection(db, "Servers", DocId, "Overall Score"));
+    
+  querySnapshot.forEach(async(docs) => {
+   //get collections documents ids
+     let DocRefId = docs.id
+     console.log(DocRefId)
+     //get sub collection
+     let CurCollection = collection(db, "Servers", DocId, "Overall Score")
+     //get doc from sub collection
+     let curDoc = doc(CurCollection, DocRefId)
+     await deleteDoc(curDoc)
+   
+ });
+
+
   var AllFactorsAr = JSON.parse(localStorage.getItem('factors'))
   for(let i = 0; i< AllFactorsAr.length; i++){
     //get the collection

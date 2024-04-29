@@ -35,6 +35,26 @@ const DeleteSavedResultPopup = async () => {
                 if(doc.data().Password == UserPassword){
                     if(doc.data().SavedAs == SavedAs){
 
+
+                        const querySnapshot = await getDocs(collection(db, "Servers", doc.id, "Overall Score"));
+    
+                        querySnapshot.forEach(async(docs) => {
+                         //get collections documents ids
+                           let DocRefId = docs.id
+                           console.log(DocRefId)
+                           //get sub collection
+                           let CurCollection = collection(db, "Servers", doc.id, "Overall Score")
+                           //get doc from sub collection
+                           let curDoc = doc(CurCollection, DocRefId)
+                           await deleteDoc(curDoc)
+                         
+                       });
+
+
+
+
+
+
                         //get everything except the following
                         //code, password, SavedAs, Username
                         const {Code, Password, SavedAs, Username,...otherProperties} = doc.data();

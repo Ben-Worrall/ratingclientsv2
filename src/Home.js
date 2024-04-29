@@ -185,19 +185,34 @@ async function HostRoomURL(){
           navigate('/routes/HostRoom')
           return
          }
-  }
+         
+  })
   
-  )
-
   
 
  });
+ alert('You have no Live Server')
 }
 
 
 
+//show the register option
+function Show_Register(){
+  document.getElementById('RegisterHolderBNT').style.display = ""
+  document.getElementById('Login-Option').style.display = ""
+  document.getElementById('Register-Option').style.display = "none"
+  document.getElementById('LoginHolderBNT').style.display = "none"
 
 
+
+}
+//show the login option
+function Show_Login(){
+  document.getElementById('LoginHolderBNT').style.display = ""
+  document.getElementById('Register-Option').style.display = ""
+  document.getElementById('Login-Option').style.display = "none"
+  document.getElementById('RegisterHolderBNT').style.display = "none"
+}
 
 
 
@@ -211,13 +226,115 @@ async function HostRoomURL(){
 
     return (
       <div id="Holder">
-
         <input id="ShowUsername"></input>
         <button id="SavedResultsHomeScreen" onClick={ShowResultsSavedPopup}>Saved Results</button>
-
         <button id="LogOutBNT" onClick={LogOut}>Log Out</button>
+
+
+
+
+
+        <div id="LoginRegisterPOPUP-background" ></div>
         <div id="LoginRegisterPOPUP">
-             <div id="LoginHolderBNT">
+
+        
+          <div id="LoginHolderBNT">
+                <p style={{margin:"1%", fontWeight:"bold",  fontSize: "150%", textDecoration:"underline"}}>Login:</p>
+                <div className="infoClassLogReg">
+                  <div className="TextClassLogReg">Username:</div> 
+                  <input className="InputClassLogReg" id="LoginNameInput"></input>
+                </div>
+
+                <div className="infoClassLogReg">
+                  <div className="TextClassLogReg">Password:</div> 
+                  <input className="InputClassLogReg" id="LoginPasswordInput"></input>
+                </div>
+                <button id="LoginBNT-logres" onClick={Login}>Login</button>
+          </div>
+            <button id="Register-Option" onClick={Show_Register}>Register</button>
+             
+
+
+
+
+
+            <div id="RegisterHolderBNT" style={{display:"none"}}>
+                <p style={{margin:"1%", fontWeight:"bold", fontSize: "150%", textDecoration:"underline"}}>Register:</p>
+                <div className="infoClassLogReg">
+                  <div className="TextClassLogReg">Username:</div> 
+                  <input className="InputClassLogReg" id="RegNameInput"></input>
+                </div>
+
+                <div className="infoClassLogReg">
+                  <div className="TextClassLogReg">Password:</div>
+                  <input className="InputClassLogReg" id="RegPasswordInput"></input>
+                </div>
+                <button id="RegisterBNT-logres" onClick={Register}>Register</button>
+            </div>
+            <button id="Login-Option" onClick={Show_Login} style={{display:"none"}}>Login</button>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+           
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+        <div id="ButtonHolder">
+          
+          
+          <button className="BNT" onClick={CreateRoomURL}>CreateRoom</button>
+          <button className="BNT" onClick={JoinRoomURL}>JoinRoom</button>
+          <button className="BNT" onClick={HostRoomURL}>HostRoom</button>
+          <button  id='ToSavedResult' style={{display:"none"}} onClick={ToSavedResult} ></button>
+        
+        </div>
+        </div>
+  
+    )
+}
+
+
+export default Home
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+
+
+              <div id="LoginHolderBNT">
                 <p style={{margin:"1%", fontWeight:"bold"}}>Login:</p>
                 <div className="infoClassLogReg">
                   <div className="TextClassLogReg">Username:</div> 
@@ -244,24 +361,15 @@ async function HostRoomURL(){
                 </div>
                 <button id="RegisterBNT-logres" onClick={Register}>Register</button>
               </div>
-        </div>
-        <div id="LoginRegisterPOPUP-background" ></div>
 
 
-        <div id="ButtonHolder">
-          
-          
-          <button className="BNT" onClick={CreateRoomURL}>CreateRoom</button>
-          <button className="BNT" onClick={JoinRoomURL}>JoinRoom</button>
-          <button className="BNT" onClick={HostRoomURL}>HostRoom</button>
-          <button  id='ToSavedResult' style={{display:"none"}} onClick={ToSavedResult} ></button>
-        
-        </div>
-        </div>
-  
-    )
-}
 
 
-export default Home
 
+
+
+
+
+
+
+*/

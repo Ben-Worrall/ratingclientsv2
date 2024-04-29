@@ -73,7 +73,27 @@ window.addEventListener("beforeunload", beforeUnloadListener);
   //delete the server from the Servers collection
   let DocId = localStorage.getItem('DocId')
 
+
+
+
+
   //delete the server sub collections (factors)
+  const querySnapshot = await getDocs(collection(db, "Servers", DocId, "Overall Score"));
+    
+  querySnapshot.forEach(async(docs) => {
+   //get collections documents ids
+     let DocRefId = docs.id
+     console.log(DocRefId)
+     //get sub collection
+     let CurCollection = collection(db, "Servers", DocId, "Overall Score")
+     //get doc from sub collection
+     let curDoc = doc(CurCollection, DocRefId)
+     await deleteDoc(curDoc)
+   
+ });
+
+
+
   //otherwise documents will still apear and only the server code will be deleted
   //access tlocalstorage to get the factors(collection names)
   var AllFactorsAr = JSON.parse(localStorage.getItem('factors'))
