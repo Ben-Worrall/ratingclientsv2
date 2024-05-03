@@ -473,10 +473,6 @@ function NotesBlackClick(){
 
 
 
-
-
-
-
       async function ShowDetailOS (){
 
         if(document.getElementById('RatingBoard-SavedPage').value !== ""){
@@ -489,26 +485,27 @@ function NotesBlackClick(){
       
           //show results from each user
           // 1st step is to access the doc that matches the code
-        const colRef = collection(db, "Servers");
+        const colRef = collection(db, "SavedResults");
         const docsSnap = await getDocs(colRef);
         //search through and find the doc with the code
         docsSnap.forEach(async doc => {
-           
+         
          //find and establish the doc of the server u made
-         if(doc.data().code == localStorage.getItem('code')){
+         if(doc.data().Code == localStorage.getItem('code')){
       
-          
+          console.log('testing OS')
           // 2nd step is to access sub collection with id of the doc that matches the code
-          var CurFactorCol = collection(db,'Servers/' + doc.id + '/Overall Score');
+          var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/Overall Score');
           //search through the docs of the collection but pass through the host document
           let SubDocs = await getDocs(CurFactorCol)
           //look through the documents
            SubDocs.forEach(async subDoc => {
+           
              //skip over the host doc
-             if(!subDoc.data().Host){
+             if(!subDoc.data().Anchor){
               console.log(subDoc.data().OverallScore, subDoc.data().Username, subDoc.data().OverallScoreNOTES)
                    //div4.onclick = ShowNoteContent
-                
+                  
               div1.innerHTML +=(`<div id="UsernameTextOS">${subDoc.data().Username}</div>`)
               div1.innerHTML +=(`<div id="RatingTextOS">${subDoc.data().OverallScore}</div>`)
               let button1 = document.createElement('button')
@@ -552,14 +549,14 @@ function NotesBlackClick(){
                   if(ev.target == btn_option[key]){
                   console.log(ev.target.value)
                   
-                  const colRef = collection(db, "Servers");
+                  const colRef = collection(db, "SavedResults");
                   const docsSnap = await getDocs(colRef);
                   //search through and find the doc with the code
                   docsSnap.forEach(async doc => {
                      
                    //find and establish the doc of the server u made
-                   if(doc.data().code == localStorage.getItem('code')){
-                     var CurFactorCol = collection(db,'Servers/' + doc.id + '/Overall Score');
+                   if(doc.data().Code == localStorage.getItem('code')){
+                     var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/Overall Score');
                      let SubDocs = await getDocs(CurFactorCol)
                      //look through the documents
                       SubDocs.forEach(async subDoc => {
