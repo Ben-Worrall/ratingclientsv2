@@ -221,6 +221,8 @@ body{
   z-index: 1000;
   overflow-y: auto;
   display: block;
+  border-radius:  5px 5px 5px 5px;
+  border: 0.5vh solid rgba(0, 0, 0, 0.75);
 }
 
 #SavedResBackground{

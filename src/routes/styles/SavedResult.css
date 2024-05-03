@@ -192,7 +192,8 @@
     width: 55%;
     height: 55%;
     padding: 16px;
-    
+    border-radius:  5px 5px 5px 5px;
+    border: 0.5vh solid rgba(0, 0, 0, 0.75);
     background-color: white;
     z-index: 10010;
     overflow-y: auto;
@@ -265,7 +266,8 @@ position: absolute;
     background-color: white;
     z-index: 10010;
     overflow: hidden;
-    
+    border-radius:  5px 5px 5px 5px;
+    border: 0.5vh solid rgba(0, 0, 0, 0.75);
 }
 
 #DownloadPopupDivBG{
@@ -489,7 +491,8 @@ position: absolute;
     margin-right: auto; 
     margin-top: auto; 
     margin-bottom: auto; 
-  
+    border-radius:  5px 5px 5px 5px;
+    border: 0.5vh solid rgba(0, 0, 0, 0.75);
 }
 #background_contentOS{
     position: absolute;
@@ -585,8 +588,8 @@ position: absolute;
     margin-right: auto; 
     margin-top: auto; 
     margin-bottom: auto; 
-    border: 0px solid black;
     border-radius:  15px 15px 15px 15px;
+    border: 0.5vh solid rgba(0, 0, 0, 0.75);
     text-align: center;
 
 }

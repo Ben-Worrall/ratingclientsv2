@@ -44,7 +44,7 @@ const SavedResult = () => {
   DownloadExcel.id = "DownloadExcel"
   DownloadExcel.onclick = DownloadExcelFunc
 
-  DownloadPopupDiv.appendChild(ClientNameInput)
+
   DownloadPopupDiv.appendChild(DownloadExcel)
   //popup background
   let DownloadPopupDivBG = document.createElement('div')

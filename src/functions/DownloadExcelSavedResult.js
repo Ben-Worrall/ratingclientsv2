@@ -32,7 +32,7 @@ const DownloadExcelFunc = async () => {
 
 
     //check if user has saved put input for the clients name
-    if(document.getElementById('ClientNameInput').value == ""){
+    if(document.getElementById('ClientName-Text').value == ""){
         
         alert(`Inputs can't be empty`)
 
@@ -44,7 +44,7 @@ const DownloadExcelFunc = async () => {
 
 
         // client's name
-        let ClientName = document.getElementById('ClientNameInput').value
+        let ClientName = document.getElementById('ClientName-Text').value
         let ClientNameTR = document.createElement('tr')
         let ClientNameTD = document.createElement('td')
         let ClientNameTDText = document.createElement('td')
@@ -319,7 +319,7 @@ SubDocs.forEach(async subDoc => {
     a.href = url;
   
     // Set the desired filename for the downloaded file
-    a.download = `${document.getElementById('ClientNameInput').value}.xls`;
+    a.download = `${document.getElementById('ClientName-Text').value}.xls`;
   
     // Simulate a click on the anchor to trigger download
     a.click();
