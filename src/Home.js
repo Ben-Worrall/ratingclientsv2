@@ -53,10 +53,38 @@ async function CheckCodes(){
  //CheckCodes()
 
 
+ //check if server is still alive
+ var CurStorage = [];
+ for (var i = 0; i<localStorage.length; i++) {
+     CurStorage[i] = localStorage.key(i);
+ }
 
 
+for(let i =0; i < CurStorage.length; i++){
+  
+  var safeCodes = []
 
+  if(Number(CurStorage[i].slice(0, 4))){
+    //console.log(CurStorage[i].slice(0, 4))
 
+    const querySnapshot = await getDocs(collection(db, "Servers"));
+    
+     querySnapshot.forEach(async(docs) => {
+      if(docs.data().code == CurStorage[i].slice(0, 4)){
+        console.log('code: ', CurStorage[i].slice(0, 4)  , 'is still alive')
+        safeCodes.push( CurStorage[i].slice(0, 4))
+      }
+     })
+     
+     //console.log('code not there! MUST TERMINATE CODE: ', CurStorage[i].slice(0, 4))
+     if(safeCodes.includes(CurStorage[i].slice(0, 4))){
+        console.log('code is alive and wont be deleted', CurStorage[i].slice(0, 4))
+     }else{
+        console.log('terminate code: ',CurStorage[i].slice(0, 4))
+        localStorage.removeItem(CurStorage[i])
+     }
+  }
+}
 
 
 

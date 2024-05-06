@@ -13,7 +13,7 @@ const JoinRoom = () => {
     let navigate = useNavigate();
     async function GoHomeBNT(){
         navigate('/')
-        window.location.reload()
+        
         
 }
 
@@ -40,7 +40,7 @@ async function JoinRoomBNT(){
                     localStorage.setItem('UserName', Username)
                     localStorage.setItem('code', roomcodeINPUT)
                     navigate('/routes/UserJoinedRoom')
-                    window.location.reload()
+                   // window.location.reload()
                     ServerCodeAlive = true
                 } 
                 
