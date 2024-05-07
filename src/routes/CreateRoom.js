@@ -113,7 +113,9 @@ const CreateRoomHTML= () => {
       //add server code in the form of a document
       const dbRef = collection(db, "Servers")
       const data = {
-        code: Number(document.getElementById('RoomPasswordText').innerHTML)
+        code: Number(document.getElementById('RoomPasswordText').innerHTML),
+        UserName: localStorage.getItem('User-Name'),
+        UserPassword: localStorage.getItem('User-Password')
      };
 
      for(let i = 0; i < document.querySelectorAll('.factor').length; i++){

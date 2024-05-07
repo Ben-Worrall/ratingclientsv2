@@ -53,7 +53,11 @@ async function CheckCodes(){
  //CheckCodes()
 
 
+
+
+
  //check if server is still alive
+ //if not then terminate the localstorage with regard to old server
  var CurStorage = [];
  for (var i = 0; i<localStorage.length; i++) {
      CurStorage[i] = localStorage.key(i);
@@ -195,32 +199,76 @@ root.render(
 
 
 
+
+
+
+
+
+//option for user to go back to any open server
+
+
+
+
+//div popup for servers
+let ServersPopup = document.createElement('div')
+ServersPopup.id = "ServersPopup"
+let ServersPopupText = document.createElement('div')
+ServersPopupText.innerText = "Live Servers"
+ServersPopupText.id = "ServersPopupText"
+ServersPopup.appendChild(ServersPopupText)
+
+//div popup background for servers
+let ServersPopupBackground = document.createElement('div')
+ServersPopupBackground.id = "ServersPopupBackground"
+ServersPopupBackground.onclick = ServersBGclick
+
+
+
+
+
 async function HostRoomURL(){
-  //if user has a host room open, then go to host page, else alert the user
+  //show popups
+  document.getElementById('Holder').appendChild(ServersPopup)
+  document.getElementById('Holder').appendChild(ServersPopupBackground)
+  
 
-
-  //search through localstorage
-  Object.keys(localStorage).forEach(async function(key){
-   
-    //if first 4 letters of key is a code that is in (live)servers collection in db
-    console.log(key.slice(0,4));
-    //search through servers
+  //get data to see if user has any that are live
+  //access servers collection search through the lives servers using the username and password
     const querySnapshot = await getDocs(collection(db, "Servers"));
-  querySnapshot.forEach((doc) => {
-         if(doc.data().code == key.slice(0,4)){
-          localStorage.setItem('code',  key.slice(0,4))
-          
-          navigate('/routes/HostRoom')
-          return
-         }
-         
-  })
-  
-  
+    querySnapshot.forEach((doc) => {
+      if(doc.data().UserName == localStorage.getItem('User-Name')){
+        if(doc.data().UserPassword == localStorage.getItem('User-Password')){
+          let button = document.createElement('button')
+          button.classList.add('LiveServerButton')
+          button.innerText = `Live Server - Code: ${doc.data().code}`
+          button.value = doc.data().code
+          button.onclick = liveServerOnclick
+          document.getElementById('ServersPopup').appendChild(button)
 
- });
- alert('You have no Live Server')
+        }
+      }
+  })
+
+
+  
 }
+function ServersBGclick(){
+  document.querySelectorAll('.LiveServerButton').forEach(e => e.remove())
+  document.getElementById('Holder').removeChild(document.getElementById('ServersPopup'))
+  document.getElementById('Holder').removeChild(document.getElementById('ServersPopupBackground'))
+  
+}
+function liveServerOnclick(e){
+  console.log(e.target.value)
+  localStorage.setItem('code', e.target.value)
+  navigate('/routes/HostRoom/')
+}
+
+
+
+
+
+
 
 
 

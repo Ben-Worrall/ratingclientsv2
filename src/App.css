@@ -352,5 +352,45 @@ body{
 
 
 
+#ServersPopup{
+  position: absolute;
+  width: 60%;
+  height: 50%;
+  z-index: 1021;
+  background-color: blanchedalmond;
+  padding: 5px;
+  overflow-y: scroll;
+  border-radius:  5px 5px 5px 5px;
+  border: 0.5vh solid rgba(0, 0, 0, 0.75);
+
+}
+#ServersPopupBackground{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1020;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+#ServersPopupText{
+  width: 100%;
+  font-size: 125%;
+  font-weight: bold;
+  border-bottom: 1vh solid black;
+  position: sticky;
+}
+
+.LiveServerButton{
+   width: 75%;
+   color: white;
+   background-color: rgb(99, 99, 99);
+   border-radius:  5px 5px 5px 5px;
+   border: 0.1vh solid black;
+   font-size: 115%;
+   margin: 1%;
+}
+
+
+
+
 
 
