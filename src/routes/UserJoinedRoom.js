@@ -51,7 +51,7 @@ async function addFactorsAuto(){
             //get all the values from the doc excpet for the gamecode
             //values are used for the sub collection Ids
             //but add the factors to the Users page (values)
-            const {code ,...otherProperties} = doc.data();
+            const {code, UserName, UserPassword ,...otherProperties} = doc.data();
             const personClone = {...otherProperties};
             //console.log(personClone)
 

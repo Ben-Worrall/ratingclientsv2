@@ -76,7 +76,7 @@ const GetResult = async () => {
  //get factors
 
 
- let factors = JSON.parse(localStorage.getItem('factors'))
+ let factors = JSON.parse(localStorage.getItem(`${localStorage.getItem('code')}factors`))
  //sort factors into right order
 
  factors = factors.sort((a,b) => a?.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))

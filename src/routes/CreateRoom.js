@@ -167,11 +167,11 @@ const docRef = doc(db, "Servers", docId);
 
   })
   .then(function(){
-
+    let Code = document.getElementById('RoomPasswordText').innerText
 //push the factors to local storage
-localStorage.setItem('factors', JSON.stringify(factorListAr))
+localStorage.setItem(`${Code}factors`, JSON.stringify(factorListAr))
 //send code to local storage
-let Code = document.getElementById('RoomPasswordText').innerText
+
 //send code to local storage for hostroom to access
  localStorage.setItem('code', Code)
 
