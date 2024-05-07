@@ -138,6 +138,19 @@
 
         
 }
+#HomeButton{
+    background-color: blue;
+
+    font-size: 200%;
+    border-radius:  15px 15px 15px 15px;
+    border: 0.25vh solid black;
+    margin-right: 1%;
+    color: #ffffff;
+    text-shadow:
+    0 0 5px rgb(255, 255, 255);
+}
+
+
 
 .Resultfactor{
     outline: 0.25vh solid black;

@@ -26,7 +26,7 @@ const HostRoomHTML = () => {
 
   function toSuccess(){
     navigate('/')
-    window.location.reload()
+    
     console.log('should change')
 }
 
@@ -341,9 +341,11 @@ function NotesBlackClick(){
       })
  }
 
-
-  
+ useEffect(()=>{
+  localStorage.setItem(document.getElementById('RoomPasswordText').innerText+'LiveServer',   document.getElementById('RoomPasswordText').innerText)
    
+}, [])
+  
   
     return(
        
@@ -409,6 +411,7 @@ function NotesBlackClick(){
                 <button id="CloseRoomButton"  onClick={ConfirmNoSave}>Close Room</button>
                 <button id="goHomNoSave" style={{display:"none"}}  onClick={GoHome}>Close Room</button>
                 <button id="SaveCloseRoomButton"  onClick={SaveGoHomeBNT}>Save & Close Room</button>
+                <button id='HomeButton' onClick={toSuccess}>Home</button>
                 <button  id='ToHomeAfterSave' style={{display:"none"}} onClick={toSuccess} ></button>
             </div>
 
