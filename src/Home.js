@@ -252,15 +252,58 @@ async function HostRoomURL(){
 
   
 }
+
+
 function ServersBGclick(){
   document.querySelectorAll('.LiveServerButton').forEach(e => e.remove())
   document.getElementById('Holder').removeChild(document.getElementById('ServersPopup'))
   document.getElementById('Holder').removeChild(document.getElementById('ServersPopupBackground'))
   
 }
-function liveServerOnclick(e){
+
+
+async function liveServerOnclick(e){
   console.log(e.target.value)
   localStorage.setItem('code', e.target.value)
+
+
+
+  //get all the factors and add it to localstorage
+
+  let factorListAr = []
+
+  const querySnapshot = await getDocs(collection(db, "Servers"));
+  querySnapshot.forEach((doc) => {
+    if(doc.data().UserName == localStorage.getItem('User-Name')){
+      if(doc.data().UserPassword == localStorage.getItem('User-Password')){
+        if(doc.data().code == e.target.value){
+          const {code, UserName, UserPassword ,...otherProperties} = doc.data();
+            const personClone = {...otherProperties};
+            
+
+
+            //turn all the values (factor names) into an array to access
+            let ArrOfFactors = Object.keys(personClone)
+            ArrOfFactors = ArrOfFactors.sort((a,b) => a?.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))
+
+           
+              //for each factor
+            for(let i =0; i<ArrOfFactors.length; i++){
+              factorListAr.push(ArrOfFactors[i])
+            }
+
+        }
+
+      }
+    }
+  })
+
+  
+  localStorage.setItem(`${e.target.value}factors`, JSON.stringify(factorListAr))
+
+
+
+
   navigate('/routes/HostRoom/')
 }
 
