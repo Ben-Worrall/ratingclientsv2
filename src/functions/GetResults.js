@@ -43,6 +43,9 @@ const GetResult = async () => {
 
      document.getElementById('HostOSinput').value =Number(TotalOverallScore) / Number(UserCount)
      console.log(Number(TotalOverallScore)/Number(UserCount))
+     if(document.getElementById('HostOSinput').value == ""){
+      document.getElementById('HostOSinput').value = 0
+     }
    }
   })
 
@@ -359,7 +362,16 @@ function BlackClickNotes(){
           })
 
           //then add the ratings average to the div factors at the top and appened them together
-          div1.innerText = Math.round((UserRatings/UserRatingsLength) * 10) / 10
+          let QuestionRating = Math.round((UserRatings/UserRatingsLength) * 10) / 10
+          div1.innerText = QuestionRating
+          if(div1.innerText == "NaN"){
+            div1.innerText = "0"
+          }
+          
+
+          
+
+
           TotalQuestionAverageRating = TotalQuestionAverageRating + Number(div1.innerText)
           factor.appendChild(factorText)
           factor.appendChild(factorRating)
