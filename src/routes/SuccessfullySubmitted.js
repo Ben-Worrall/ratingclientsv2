@@ -15,7 +15,7 @@ const Success = () => {
         localStorage.removeItem('UserName')
         localStorage.removeItem('code')
         navigate('/')
-        window.location.reload()
+        
     }
 
 

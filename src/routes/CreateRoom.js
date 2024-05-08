@@ -78,13 +78,13 @@ const CreateRoomHTML= () => {
         await updateDoc(docRef, CurData)
         localStorage.removeItem("code")
         
-         await navigate('/')
+          navigate('/')
           
         
 
 
         
-          await window.location.reload()
+          
        
         
        
@@ -180,7 +180,7 @@ localStorage.setItem(`${Code}factors`, JSON.stringify(factorListAr))
 
 
     navigate('/routes/HostRoom/')
-    window.location.reload()
+    
 
 
   })

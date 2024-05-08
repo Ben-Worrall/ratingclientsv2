@@ -241,18 +241,18 @@ addFactorsAuto()
         localStorage.removeItem('UserName')
         localStorage.removeItem('code')
         navigate('/routes/JoinRoom/')
-    window.location.reload()
+   
 
     }
     function GoHome(){
         localStorage.removeItem('UserName')
         localStorage.removeItem('code')
         navigate('/')
-        window.location.reload()
+        
     }
     function toSuccess(){
         navigate('/routes/SuccessfullySubmitted')
-        window.location.reload()
+        
     }
 
     async function Submit(){
