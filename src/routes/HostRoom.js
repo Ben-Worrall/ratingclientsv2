@@ -323,6 +323,9 @@ function NotesBlackClick(){
                 SubDocs.forEach(async subDoc => {
                   if(subDoc.data().Username === ev.target.value){
                     div3.innerHTML = subDoc.data().OverallScoreNOTES
+                    if(div3.innerHTML == ""){
+                      div3.innerHTML = "No Notes"
+                    }
                       //display the notes popup with the notes according to question and username
                      document.getElementById('HostRoomApp').appendChild(div3)
                      document.getElementById('HostRoomApp').appendChild(div4)

@@ -46,11 +46,22 @@ async function CanRunFunc(){
 
 
   //get name of each factor
-  var FactorsListAr = JSON.parse(localStorage.getItem('factors'))
+  var FactorsListAr = JSON.parse(localStorage.getItem(`${document.getElementById('RoomPasswordText').innerText}factors`))
     //sort the factors list out
     FactorsListAr = FactorsListAr.sort((a,b) => a?.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))
   //get document id from server list
-  var DocumentIdServer = localStorage.getItem('DocId')
+  var DocId = ""
+  const querySnapshotID = await getDocs(collection(db, "Servers"))
+  querySnapshotID.forEach(async(docs)=>{
+    if(docs.data().UserName == localStorage.getItem('User-Name')){
+      if(docs.data().UserPassword == localStorage.getItem('User-Password')){
+        if(docs.data().code == document.getElementById('RoomPasswordText').innerText){
+          DocId = docs.id
+        }
+      }
+    }
+  })
+  var DocumentIdServer = DocId
   // get code
   var ServerCode = localStorage.getItem('code')
   // get username
@@ -585,8 +596,17 @@ setTimeout(function() { exportTableToExcel();; }, 5000)
   const docRef = doc(db, "AvailableCodes", "bTqLQ7U8f7ScZu6uXXjj")
   await updateDoc(docRef, {[y]: z})
   //delete the server from the Servers collection
-  let DocId = localStorage.getItem('DocId')
-
+  var DocId = ""
+  const querySnapshotID = await getDocs(collection(db, "Servers"))
+  querySnapshotID.forEach(async(docs)=>{
+    if(docs.data().UserName == localStorage.getItem('User-Name')){
+      if(docs.data().UserPassword == localStorage.getItem('User-Password')){
+        if(docs.data().code == document.getElementById('RoomPasswordText').innerText){
+          DocId = docs.id
+        }
+      }
+    }
+  })
   //delete the server sub collections (factors)
   //otherwise documents will still apear and only the server code will be deleted
   //access tlocalstorage to get the factors(collection names)
@@ -605,7 +625,7 @@ setTimeout(function() { exportTableToExcel();; }, 5000)
  });
 
 
-  var AllFactorsAr = JSON.parse(localStorage.getItem('factors'))
+  var AllFactorsAr = JSON.parse(localStorage.getItem(`${document.getElementById('RoomPasswordText').innerText}factors`))
   for(let i = 0; i< AllFactorsAr.length; i++){
     //get the collection
     const querySnapshot = await getDocs(collection(db, "Servers", DocId, AllFactorsAr[i]));
@@ -630,11 +650,6 @@ setTimeout(function() { exportTableToExcel();; }, 5000)
 
 
 
-     //back to normal
-     
-    localStorage.removeItem("code")
-    localStorage.removeItem("factors")
-    localStorage.removeItem("DocId")
 
     document.getElementById('ToHomeAfterSave').click()
     console.log('start proceaa')
