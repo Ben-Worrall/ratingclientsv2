@@ -71,7 +71,19 @@ window.addEventListener("beforeunload", beforeUnloadListener);
   const docRef = doc(db, "AvailableCodes", "bTqLQ7U8f7ScZu6uXXjj")
   await updateDoc(docRef, {[y]: z})
   //delete the server from the Servers collection
-  let DocId = localStorage.getItem('DocId')
+  let DocId = ""
+   
+  const queryDocid = await getDocs(collection(db, "Servers"))
+  queryDocid.forEach(async(docs)=>{
+    if(docs.data().UserName == localStorage.getItem('User-Name')){
+      if(docs.data().UserPassword == localStorage.getItem('User-Password')){
+        if(docs.data().code == document.getElementById('RoomPasswordText').innerText){
+          DocId = docs.id
+        }
+      }
+    }
+  })
+
 
 
 
@@ -96,7 +108,7 @@ window.addEventListener("beforeunload", beforeUnloadListener);
 
   //otherwise documents will still apear and only the server code will be deleted
   //access tlocalstorage to get the factors(collection names)
-  var AllFactorsAr = JSON.parse(localStorage.getItem('factors'))
+  var AllFactorsAr = JSON.parse(localStorage.getItem(`${document.getElementById('RoomPasswordText').innerText}factors`))
   for(let i = 0; i< AllFactorsAr.length; i++){
     //get the collection
     const querySnapshot = await getDocs(collection(db, "Servers", DocId, AllFactorsAr[i]));
