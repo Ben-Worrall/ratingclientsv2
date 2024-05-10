@@ -133,13 +133,9 @@ window.addEventListener("beforeunload", beforeUnloadListener);
 
 
 
-     //back to normal
-     
-    localStorage.removeItem("code")
-    localStorage.removeItem("factors")
-    localStorage.removeItem("DocId")
+
     navigate('/')
-    window.location.reload()
+    
      
     
     
