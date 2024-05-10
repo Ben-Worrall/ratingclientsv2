@@ -180,7 +180,7 @@ localStorage.setItem(`${Code}factors`, JSON.stringify(factorListAr))
 
 
     navigate('/routes/HostRoom/')
-    
+    window.location.reload()
 
 
   })

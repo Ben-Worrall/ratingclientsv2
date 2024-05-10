@@ -247,7 +247,20 @@ async function HostRoomURL(){
 
         }
       }
+      
   })
+  if(document.getElementById('ServersPopup').getElementsByClassName('LiveServerButton')[0]) {
+    return 
+  }else{
+    let Text = document.createElement('div')
+    Text.innerText = "You Have No Live Servers"
+    Text.style.margin = "2vh"
+    Text.style.fontSize = "110%"
+    Text.style.fontWeight = "bold"
+    Text.style.color = "red"
+    document.getElementById('ServersPopup').appendChild(Text)
+   
+  }
 
 
   
