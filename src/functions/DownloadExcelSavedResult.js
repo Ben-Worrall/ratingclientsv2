@@ -219,6 +219,9 @@ SubDocs.forEach(async subDoc => {
                            UserEachNameTD_OS.innerText = await subDoc.data().Username 
                            UserEachRatingTD_OS.innerText =await subDoc.data().OverallScore
                            UserEachNotesTD_OS.innerText = await subDoc.data().OverallScoreNOTES
+                           if(UserEachNotesTD_OS.innerText == ""){
+                              UserEachNotesTD_OS.innerText = "No Notes"
+                           }
                            //console.log(user)
                            EachUserRatingsTotalTR.appendChild(UserEachNameTD_OS)
                            EachUserRatingsTotalTR.appendChild(UserEachRatingTD_OS)
@@ -259,6 +262,10 @@ SubDocs.forEach(async subDoc => {
                            UserEachNameTD.innerText = await subDoc.data().Username 
                            UserEachRatingTD.innerText =await subDoc.data().Rating 
                            UserEachNotesTD.innerText = await subDoc.data().Notes
+
+                           if(UserEachNotesTD.innerText == ""){
+                              UserEachNotesTD.innerText = "No Notes"
+                           }
                           
                            EachUserRatingsTotalTR.appendChild(UserEachNameTD)
                            EachUserRatingsTotalTR.appendChild(UserEachRatingTD)

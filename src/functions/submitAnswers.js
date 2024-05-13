@@ -59,14 +59,24 @@ const SubmitAnswer = async () => {
                
                if(!SubDoc.data().Host){
 
-                
+                var UserOSnotes
                //if user alreayd suibmitted
                if(SubDoc.data().User_Name == localStorage.getItem("User-Name")){
                    if(SubDoc.data().User_Password == localStorage.getItem("User-Password")){
                         AlreadySubmittedOS = true
+                        
+                        if((localStorage.getItem(localStorage.getItem('code')+"NoteTextOS"))){
+                            UserOSnotes = (localStorage.getItem(localStorage.getItem('code')+"NoteTextOS"))
+                        }else if((localStorage.getItem(localStorage.getItem('code')+"NoteTextOS")) == ""){
+                            UserOSnotes = "No Notes"
+                        } else{
+                            UserOSnotes = "No Notes"
+                        }
+
+                        alert(UserOSnotes)
                         const data = {
                            OverallScore: OverallScore,
-                           OverallScoreNOTES: (localStorage.getItem(localStorage.getItem('code')+"NoteTextOS")),
+                           OverallScoreNOTES: UserOSnotes,
                            Username: localStorage.getItem('UserName'),
                            User_Name: localStorage.getItem("User-Name"),
                            User_Password: localStorage.getItem("User-Password"),

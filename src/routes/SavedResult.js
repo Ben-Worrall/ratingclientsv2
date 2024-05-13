@@ -567,6 +567,9 @@ function NotesBlackClick(){
                            document.getElementById('SavedResultHolder').appendChild(div4)
                            div3.style.display = ""
                            div4.style.display = ""
+                           if(div3.innerHTML == ""){
+                            div3.innerHTML = "No Notes"
+                           }
                           return
                         }
                           
