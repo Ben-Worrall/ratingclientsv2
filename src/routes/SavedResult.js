@@ -619,6 +619,10 @@ function NotesBlackClick(){
       
         
         <div id='SavedResultHolder'>
+          <div id='circle' style={{display:"none"}}></div>
+          <div id='circleBackground' style={{display:"none"}}></div>
+
+
           <input id='EditValuePopup' style={{display:"none"}}>
           </input>
           <div id='EditValuePopupBG'  style={{display:"none"}}> </div>
@@ -633,7 +637,7 @@ function NotesBlackClick(){
         
            
         <div id='RatingBoard-SavedPage'>
-
+        
               <div style={{display:'flex'}}>
                   <div id='ResultOverallScoreDivBackground'>
                      <div id='ResultOverallScoreDiv'>
@@ -662,6 +666,7 @@ function NotesBlackClick(){
                <button id='DownloadBNTSavedPage' onClick={DownloadPopup}>Download as excel file</button>
                <button id='DownloadAsExcel' style={{display:"none"}} ></button>
            </div>
+           
 
         </div>
    

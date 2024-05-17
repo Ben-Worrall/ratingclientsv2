@@ -18,7 +18,10 @@ const db = getFirestore()
 
 
 const DownloadExcelFunc = async () => {
-
+ document.getElementById('circle').style.display = ""
+ document.getElementById('circleBackground').style.display = ""
+ document.getElementById('DownloadPopupDiv').style.display = "none"
+ document.getElementById('DownloadPopupDivBG').style.display = "none"
 
    //create table for excel
    let ExcelTable = document.createElement('table')
@@ -338,7 +341,7 @@ SubDocs.forEach(async subDoc => {
 
 
 
-  setTimeout(function() { exportTableToExcel();; }, 5000)
+  setTimeout(function() { exportTableToExcel(); document.getElementById('circle').style.display = "none";document.getElementById('circleBackground').style.display = "none" }, 5000)
   }
 
 
