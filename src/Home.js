@@ -227,10 +227,17 @@ ServersPopupBackground.onclick = ServersBGclick
 
 
 async function HostRoomURL(){
+ //spinning circle for popup
+ let LoadingCircle = document.createElement('div')
+ LoadingCircle.id = "SavedPopupCircle"
+
+
+ ServersPopup.appendChild(LoadingCircle)
+
   //show popups
   document.getElementById('Holder').appendChild(ServersPopup)
   document.getElementById('Holder').appendChild(ServersPopupBackground)
-  
+     
 
   //get data to see if user has any that are live
   //access servers collection search through the lives servers using the username and password
@@ -245,6 +252,11 @@ async function HostRoomURL(){
           button.onclick = liveServerOnclick
           document.getElementById('ServersPopup').appendChild(button)
 
+
+
+          if(ServersPopup.contains(LoadingCircle)){
+            ServersPopup.removeChild(LoadingCircle)
+          }
         }
       }
       
@@ -252,6 +264,13 @@ async function HostRoomURL(){
   if(document.getElementById('ServersPopup').getElementsByClassName('LiveServerButton')[0]) {
     return 
   }else{
+
+
+    if(ServersPopup.contains(LoadingCircle)){
+      ServersPopup.removeChild(LoadingCircle)
+    }
+    
+
     let Text = document.createElement('div')
     Text.innerText = "You Have No Live Servers"
     Text.style.margin = "2vh"
@@ -269,6 +288,11 @@ async function HostRoomURL(){
 
 function ServersBGclick(){
   document.querySelectorAll('.LiveServerButton').forEach(e => e.remove())
+  var liToKill = document.getElementById('ServersPopup').childNodes[1];
+  if(liToKill){
+    liToKill.parentNode.removeChild( liToKill )
+  }
+ 
   document.getElementById('Holder').removeChild(document.getElementById('ServersPopup'))
   document.getElementById('Holder').removeChild(document.getElementById('ServersPopupBackground'))
   
