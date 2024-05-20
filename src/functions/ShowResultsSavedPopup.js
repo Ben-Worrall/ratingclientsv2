@@ -147,6 +147,17 @@ const ShowResultsSavedPopup = async () => {
     SavedResBackground.id = "SavedResBackground"
     SavedResBackground.onclick = CloseBackground
 
+    //spinning circle for popup
+    let LoadingCircle = document.createElement('div')
+    LoadingCircle.id = "SavedPopupCircle"
+
+    
+
+
+
+    SavedResPopups.appendChild(LoadingCircle)
+    
+
    document.getElementById('Holder').appendChild(SavedResPopups)
    document.getElementById('Holder').appendChild(SavedResBackground)
 
@@ -177,6 +188,11 @@ const ShowResultsSavedPopup = async () => {
             document.getElementById('SavedResPopups').appendChild(DeleteSaved)
             document.getElementById('SavedResPopups').appendChild(SavedResButton)
             document.getElementById('SavedResPopups').appendChild(downloadExcelBNT)
+            
+
+            if(SavedResPopups.contains(LoadingCircle)){
+              SavedResPopups.removeChild(LoadingCircle)
+            }
         }
     }
     })
