@@ -11,7 +11,8 @@ const SubmitAnswer = async () => {
      
     console.log('should run once in submit answer func')
     
-
+    document.getElementById('circleRatingRoom').style.display = ""
+    document.getElementById('circleRatingRoomBackground').style.display = ""
    //console.log('test')
    //go through the factors and for each factor do the following (0)
    //get the factor name (1)

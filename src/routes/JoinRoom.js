@@ -81,6 +81,7 @@ async function JoinRoomBNT(){
         
         
         <div id='JoinRoomHolder'>
+            
         <div id="circleJoinRoom" style={{display:"none"}}></div>
         <div id="circleJoinRoomBackground" style={{display:"none"}}></div>
 

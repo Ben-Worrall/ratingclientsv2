@@ -388,3 +388,74 @@
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+#circleRatingRoom{
+    margin: 100px auto 0;
+    width: 12vh;
+    height: 12vh;
+    border-radius: 50%;
+    position: absolute;
+    border: 6px solid transparent;
+    border-top-color: rgb(0, 0, 0);;
+    border-bottom-color: rgb(0, 0, 0);
+    z-index: 10012;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    animation: turn 2s infinite linear;
+    
+  }
+  #circleRatingRoomBackground{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .60;
+    filter: alpha(opacity=50);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  
+  
+  
+  @keyframes turn{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+  }
+
+
+
+
+
+
+
+
+
+

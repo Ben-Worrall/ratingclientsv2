@@ -341,6 +341,11 @@ addFactorsAuto()
     return (
         <div className="App">
             <div id='UserRatingRoom'>
+
+            <div id="circleRatingRoom" style={{display:"none"}}></div>
+            <div id="circleRatingRoomBackground" style={{display:"none"}}></div>
+
+
             
         <div id="RoomPassword">
             <div id="RoomPasswordTextOnly">Room Password:</div>
