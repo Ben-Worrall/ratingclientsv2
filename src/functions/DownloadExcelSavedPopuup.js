@@ -26,6 +26,9 @@ const DownloadExcelSavedPopup = async (e) => {
    document.getElementById('Holder').appendChild(ExcelTable)
 
 
+   document.getElementById('circleSavedResPopupDownload').style.display = ""
+   document.getElementById('circleBackgroundSavedResPopupDownload').style.display = ""
+
 
 
   
@@ -458,7 +461,7 @@ if(doc.data().Username == UserName){
                 
                 
                 
-                  setTimeout(function() { exportTableToExcel();; }, 5000)
+                  setTimeout(function() { exportTableToExcel();document.getElementById('circleSavedResPopupDownload').style.display = "none";document.getElementById('circleBackgroundSavedResPopupDownload').style.display = "none"; }, 5000)
 
 
   

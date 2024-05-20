@@ -358,6 +358,12 @@ function Show_Login(){
 
     return (
       <div id="Holder">
+
+        <div id="circleSavedResPopupDownload" style={{display:"none"}}></div>
+        <div id="circleBackgroundSavedResPopupDownload" style={{display:"none"}}></div>
+
+
+
         <input id="ShowUsername"></input>
         <button id="SavedResultsHomeScreen" onClick={ShowResultsSavedPopup}>Saved Results</button>
         <button id="LogOutBNT" onClick={LogOut}>Log Out</button>
