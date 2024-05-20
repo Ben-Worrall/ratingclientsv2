@@ -74,7 +74,7 @@ const SubmitAnswer = async () => {
                             UserOSnotes = "No Notes"
                         }
 
-                        alert(UserOSnotes)
+                        
                         const data = {
                            OverallScore: OverallScore,
                            OverallScoreNOTES: UserOSnotes,
