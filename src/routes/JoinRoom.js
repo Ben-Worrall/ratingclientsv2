@@ -26,11 +26,16 @@ async function JoinRoomBNT(){
     if(roomcodeINPUT.length == 4){
         if(roomcodeINPUT >= 1000 && roomcodeINPUT <= 9999){
             
+            document.getElementById('circleJoinRoom').style.display = ""
+            document.getElementById('circleJoinRoomBackground').style.display = ""
             //now that u have a legal code, check if its in the database, 
             //if its not in the database then its being usedi n a server and u can connect
             let ServerCodeAlive = false
             const querySnapshot = await getDocs(collection(db, "Servers"));
                 querySnapshot.forEach((doc) => {
+
+                    
+
                 
                 if(roomcodeINPUT == doc.data().code){
                     //code expected to be a server and not in the databaase
@@ -46,6 +51,9 @@ async function JoinRoomBNT(){
                 
                });
                if(ServerCodeAlive == false){
+                
+                document.getElementById('circleJoinRoom').style.display = "none"
+            document.getElementById('circleJoinRoomBackground').style.display = "none"
                 console.log('in database')
                 alert('There is no server with that code. Please check code and try agian')
                }
@@ -73,6 +81,8 @@ async function JoinRoomBNT(){
         
         
         <div id='JoinRoomHolder'>
+        <div id="circleJoinRoom" style={{display:"none"}}></div>
+        <div id="circleJoinRoomBackground" style={{display:"none"}}></div>
 
            
             <button id='JoinRoomBackBNT' onClick={GoHomeBNT}>back</button>
