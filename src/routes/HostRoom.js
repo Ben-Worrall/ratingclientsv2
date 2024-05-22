@@ -59,7 +59,8 @@ window.addEventListener("beforeunload", beforeUnloadListener);
     async function GoHome(){ 
       
     window.removeEventListener("beforeunload", beforeUnloadListener);
-
+    document.getElementById('CircleHostRoom').style.display = ""
+    document.getElementById('CircleHostRoomBackground').style.display = ""
   // quits the website or refreshes then get put code back in data base and delete the server
 
  //get code
@@ -361,6 +362,8 @@ function NotesBlackClick(){
     return(
        
         <div className='HostRoomApp' id='HostRoomApp' >
+          <div id='CircleHostRoom' style={{display:"none"}}></div>
+          <div id='CircleHostRoomBackground'  style={{display:"none"}}></div>
 
          
          {/*  display room code  */}

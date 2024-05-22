@@ -13,7 +13,8 @@ const SaveAndCloseBNT = async ()=> {
     
   var canRun = true
 
-
+  document.getElementById('CircleHostRoom').style.display = ""
+  document.getElementById('CircleHostRoomBackground').style.display = ""
 
 
 function testFunc(){

@@ -107,6 +107,10 @@ const CreateRoomHTML= () => {
     var factorListAr = []
      
      async function GoHostRoom(){
+
+      document.getElementById('CircleCreateRoom').style.display = ""
+      document.getElementById('CircleCreateRoomBackground').style.display = ""
+
       let docId 
       
 
@@ -180,7 +184,7 @@ localStorage.setItem(`${Code}factors`, JSON.stringify(factorListAr))
 
 
     navigate('/routes/HostRoom/')
-    window.location.reload()
+    //window.location.reload()
 
 
   })
@@ -205,6 +209,8 @@ localStorage.setItem(`${Code}factors`, JSON.stringify(factorListAr))
 
     return (
         <div className="App">
+        <div id='CircleCreateRoom' style={{display:"none"}}></div>
+        <div id='CircleCreateRoomBackground' style={{display:"none"}}></div>
             
             <div id="RoomPassword">
                 <div id="RoomPasswordTextOnly">Room Password:</div>

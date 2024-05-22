@@ -22,35 +22,7 @@ const db = getFirestore()
 
 
 
-async function CheckCodes(){
 
-  console.log('run checkcodes()')
- 
-   
-     if(localStorage.getItem('code')){
-      
-       const colRef = collection(db, "Servers");
-    const docsSnap = await getDocs(colRef);
-    let expectedServerAlive = false
-    docsSnap.forEach(doc => {
-        //console.log(doc.data());
-        //if server doc.code matches with gamecode 
-        if(doc.data().code == localStorage.getItem('code')){
-         console.log('servers are still live')
-         expectedServerAlive = true
-   
-        }
-      })
-      if(expectedServerAlive == false){
-       localStorage.removeItem('code')
-       console.log('no server is ther')
-      }
-     } 
- 
- 
- }
- 
- //CheckCodes()
 
 
 
@@ -127,6 +99,13 @@ const Home =  () => {
   
 
 
+
+
+
+
+
+
+
   //create room button function
   async function CreateRoomURL(){
 
@@ -135,55 +114,83 @@ const Home =  () => {
    //generate random code
 
 var randomCode 
-var readyToUse
-var CurStringCode
+var readyToDirect = false
+
+var codeIsReady = true
+
 function GenerateCode(){
   randomCode = Math.floor(1000 + Math.random() * 9000)
   //randomCode = 1000
+  //alert('generate code until found suitable one')
+  
 }
 
 //generate random code from database
 GenerateCode()
+
 const GetRandomCode = async () => {
+  document.getElementById('circleSavedResPopupDownload').style.display = ""
+  document.getElementById('circleBackgroundSavedResPopupDownload').style.display = ""
+
+  //check if code is in live servers database
+  const queryCodes = await getDocs(collection(db, "Servers"));
+  queryCodes.forEach((doc) => { 
+    if(doc.data().code == randomCode){
+      
+      codeIsReady = false
+      //alert('stop, code is the same as in the live server')
+      CreateRoomURL()
+      return
+    }
+  })
 
     
     
   //query the random code and then get that code from the database
-
-  const querySnapshot = await getDocs(collection(db, "AvailableCodes"));
-  querySnapshot.forEach((doc) => {
-  if(doc.data()[randomCode] = randomCode){
-    readyToUse = doc.data()[randomCode]
+  if(codeIsReady == true){
+    localStorage.setItem('code', randomCode)
+    readyToDirect = true
+    navigate('/routes/CreateRoom/')
   }
-  localStorage.setItem('code', readyToUse)
+  
  
- });
+ 
 
- CurStringCode = String(readyToUse)
+ //CurStringCode = String(readyToUse)
  //delete the code from the database after accessing it
- const deleteFields = doc(db, "AvailableCodes", "bTqLQ7U8f7ScZu6uXXjj")
- await updateDoc(deleteFields, {[CurStringCode]: deleteField()})
+ //const deleteFields = doc(db, "AvailableCodes", "bTqLQ7U8f7ScZu6uXXjj")
+ //await updateDoc(deleteFields, {[CurStringCode]: deleteField()})
  
 
 }
 
-
 GetRandomCode()
 
-setTimeout(navigate('/routes/CreateRoom/'), 2000)
-setTimeout(function(){const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-    <CreateRoomHTML />
-  </BrowserRouter>,
-  document.getElementById('root')
-)}, 2050)
+
+
+
+
+
+
+
 
 
 
 
   }
   
+
+
+
+
+
+
+
+
+
+
+
+
   
   async function JoinRoomURL(){
     navigate('/routes/JoinRoom/')
