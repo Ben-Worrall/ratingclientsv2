@@ -453,7 +453,7 @@ body{
   width: 100vw;
   height: 100vh;
   background-color: black;
-  z-index: 1001;
+  z-index: 10011;
   -moz-opacity: 0.8;
   opacity: .60;
   filter: alpha(opacity=50);

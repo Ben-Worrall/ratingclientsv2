@@ -17,7 +17,8 @@ const db = getFirestore()
 
 const DeleteSavedResultPopup = async () => {
 
-   
+    document.getElementById('circleSavedResPopupDownload').style.display = ""
+    document.getElementById('circleBackgroundSavedResPopupDownload').style.display = ""
     //console.log(localStorage.getItem('SavedAsText'))
         //get the username
         //get users password
@@ -98,6 +99,9 @@ const DeleteSavedResultPopup = async () => {
                         document.getElementById('DeletePopup').style.display = "none"
                         document.getElementById('DeletePopupBG').style.display = "none"
                         document.getElementById('SavedResBackground').style.display = ""
+
+                        document.getElementById('circleSavedResPopupDownload').style.display = "none"
+                        document.getElementById('circleBackgroundSavedResPopupDownload').style.display = "none"
                         
                     }
                 }
