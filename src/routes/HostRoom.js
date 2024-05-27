@@ -7,11 +7,16 @@ import ReactDOM from 'react-dom/client'
 import { txtDB } from '../firebase/firebaseConfig';
 import { getFirestore, updateDoc, doc, collection,getDocs, deleteField, deleteDoc, onSnapshot } from 'firebase/firestore'
 import $ from 'jquery'
+
 import LOADED from '../functions/HostGetCode';
 import { useEffect } from 'react';
+import { useRef } from 'react';
 import GetResult from '../functions/GetResults';
 import SaveAndCloseBNT from '../functions/SaveAndCloseRoom';
 import ConfirmNoSave from '../functions/ConfirmNoSave';
+import OverAllScoreDetails from '../functions/OverAllScoreDetails';
+import GoHomeNoSave from '../functions/GoHomeNoSave';
+
 const db = getFirestore()
 
 
@@ -22,6 +27,10 @@ const db = getFirestore()
 
 
 const HostRoomHTML = () => {
+
+
+
+
   let navigate = useNavigate();
 
   function toSuccess(){
@@ -55,89 +64,10 @@ window.addEventListener("beforeunload", beforeUnloadListener);
  
 
 
-  //go home  
+  //go home  without saving
     async function GoHome(){ 
-      
-    window.removeEventListener("beforeunload", beforeUnloadListener);
-    document.getElementById('CircleHostRoom').style.display = ""
-    document.getElementById('CircleHostRoomBackground').style.display = ""
-  // quits the website or refreshes then get put code back in data base and delete the server
-
- //get code
- 
-  let x = document.getElementById('RoomPasswordText').innerText
-  let y = String(x)
-  let z = Number(y)
-  //put the server code back
-  const docRef = doc(db, "AvailableCodes", "bTqLQ7U8f7ScZu6uXXjj")
-  await updateDoc(docRef, {[y]: z})
-  //delete the server from the Servers collection
-  let DocId = ""
-   
-  const queryDocid = await getDocs(collection(db, "Servers"))
-  queryDocid.forEach(async(docs)=>{
-    if(docs.data().UserName == localStorage.getItem('User-Name')){
-      if(docs.data().UserPassword == localStorage.getItem('User-Password')){
-        if(docs.data().code == document.getElementById('RoomPasswordText').innerText){
-          DocId = docs.id
-        }
-      }
-    }
-  })
-
-
-
-
-
-
-  //delete the server sub collections (factors)
-  const querySnapshot = await getDocs(collection(db, "Servers", DocId, "Overall Score"));
     
-  querySnapshot.forEach(async(docs) => {
-   //get collections documents ids
-     let DocRefId = docs.id
-     console.log(DocRefId)
-     //get sub collection
-     let CurCollection = collection(db, "Servers", DocId, "Overall Score")
-     //get doc from sub collection
-     let curDoc = doc(CurCollection, DocRefId)
-     await deleteDoc(curDoc)
-   
- });
-
-
-
-  //otherwise documents will still apear and only the server code will be deleted
-  //access tlocalstorage to get the factors(collection names)
-  var AllFactorsAr = JSON.parse(localStorage.getItem(`${document.getElementById('RoomPasswordText').innerText}factors`))
-  for(let i = 0; i< AllFactorsAr.length; i++){
-    //get the collection
-    const querySnapshot = await getDocs(collection(db, "Servers", DocId, AllFactorsAr[i]));
-    
-     querySnapshot.forEach(async(docs) => {
-      //get collections documents ids
-        let DocRefId = docs.id
-        console.log(DocRefId)
-        //get sub collection
-        let CurCollection = collection(db, "Servers", DocId, AllFactorsAr[i])
-        //get doc from sub collection
-        let curDoc = doc(CurCollection, DocRefId)
-        await deleteDoc(curDoc)
-      
-    });
-
-   
-  }
-
-  //delete the server document
-  await deleteDoc(doc(db, "Servers", DocId))
-
-
-
-
-    navigate('/')
-    
-     
+     GoHomeNoSave()
     
     
   }
@@ -185,6 +115,12 @@ window.addEventListener("beforeunload", beforeUnloadListener);
 
   //details popup
 
+
+  const effectRan = useRef(false);
+  useEffect(() => {
+    if (!effectRan.current) {
+
+
 var div1 = document.createElement('div')
 div1.id = ('white_contentOS')
 div1.innerText = ""
@@ -195,12 +131,14 @@ div2.id = ('background_contentOS')
 div2.style.display = "none"
 div2.onclick = blackClick
 
+document.querySelector('#HostRoomApp').appendChild(div1)
+document.querySelector('#HostRoomApp').appendChild(div2)
 
 function blackClick(){
   
   console.log('test')
-  div1.remove()
-  div2.remove()
+  div1.style.display = "none"
+  div2.style.display = "none"
   div1.innerHTML = ""
 }
 
@@ -220,16 +158,23 @@ div4.id = ("Notes_background_contentOS")
 div4.style.display = "none"
 div4.onclick = NotesBlackClick
 
+document.querySelector('#HostRoomApp').appendChild(div3)
+document.querySelector('#HostRoomApp').appendChild(div4)
+
 function NotesBlackClick(){
   
   console.log('test')
-  div3.remove()
-  div4.remove()
+  div3.style.display = "none"
+  div4.style.display = "none"
   div3.innerHTML = ""
 }
 
 
 
+}
+      
+return () => effectRan.current = true;
+}, []);
 
 
 
@@ -241,117 +186,15 @@ function NotesBlackClick(){
 
 
 
-
-
+//show details for overall score popup
 
  async function ShowDetailOS (){
 
-  if(document.getElementById('HostOSinput').value !== ""){
-    //show the popup for OS
-    document.getElementById('HostRoomApp').appendChild(div1)
-    document.getElementById('HostRoomApp').appendChild(div2)
-    div2.style.display = ""
-    div1.style.display = ""
-    
-
-    //show results from each user
-    // 1st step is to access the doc that matches the code
-  const colRef = collection(db, "Servers");
-  const docsSnap = await getDocs(colRef);
-  //search through and find the doc with the code
-  docsSnap.forEach(async doc => {
-     
-   //find and establish the doc of the server u made
-   if(doc.data().code == localStorage.getItem('code')){
-
-    
-    // 2nd step is to access sub collection with id of the doc that matches the code
-    var CurFactorCol = collection(db,'Servers/' + doc.id + '/Overall Score');
-    //search through the docs of the collection but pass through the host document
-    let SubDocs = await getDocs(CurFactorCol)
-    //look through the documents
-     SubDocs.forEach(async subDoc => {
-       //skip over the host doc
-       if(!subDoc.data().Host){
-        console.log(subDoc.data().OverallScore, subDoc.data().Username, subDoc.data().OverallScoreNOTES)
-             //div4.onclick = ShowNoteContent
-          
-        div1.innerHTML +=(`<div id="UsernameTextOS">${subDoc.data().Username}</div>`)
-        div1.innerHTML +=(`<div id="RatingTextOS">${subDoc.data().OverallScore}</div>`)
-        let button1 = document.createElement('button')
-        button1.classList.add('NotesBNTResults1')
-        button1.innerText = "Notes"
-        button1.value = subDoc.data().Username
-        
-        div1.appendChild(button1)
-        
-        
-        
-        //document.getElementById(subDoc.data().Username + "_" + SubColId).style.display = "block"
-        
-
-       }
-
-     })
-     
-     
-     
-
-
-
-   }
-
-  })
-
-
-
-
-
-
-
-  }
-
-
-  let testing = document.getElementById('HostRoomApp')
-        testing.addEventListener('click',async function(ev){
-          var btn_option = document.getElementsByClassName("NotesBNTResults1");
-        Object.keys(btn_option).forEach(async function(key){
-            if(ev.target == btn_option[key]){
-            console.log(ev.target.value)
-            
-            const colRef = collection(db, "Servers");
-            const docsSnap = await getDocs(colRef);
-            //search through and find the doc with the code
-            docsSnap.forEach(async doc => {
-               
-             //find and establish the doc of the server u made
-             if(doc.data().code == localStorage.getItem('code')){
-               var CurFactorCol = collection(db,'Servers/' + doc.id + '/Overall Score');
-               let SubDocs = await getDocs(CurFactorCol)
-               //look through the documents
-                SubDocs.forEach(async subDoc => {
-                  if(subDoc.data().Username === ev.target.value){
-                    div3.innerHTML = subDoc.data().OverallScoreNOTES
-                    if(div3.innerHTML == ""){
-                      div3.innerHTML = "No Notes"
-                    }
-                      //display the notes popup with the notes according to question and username
-                     document.getElementById('HostRoomApp').appendChild(div3)
-                     document.getElementById('HostRoomApp').appendChild(div4)
-                     div3.style.display = ""
-                     div4.style.display = ""
-                    return
-                  }
-                    
-                 
-                })
-     
-              }
-            })
-          }
-        })
-      })
+  OverAllScoreDetails()
+ 
  }
+
+
 
  useEffect(()=>{
   localStorage.setItem(document.getElementById('RoomPasswordText').innerText+'LiveServer',   document.getElementById('RoomPasswordText').innerText)
