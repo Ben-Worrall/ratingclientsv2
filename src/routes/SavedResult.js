@@ -12,7 +12,7 @@ import DownloadExcelFunc from '../functions/DownloadExcelSavedResult';
 import { useDownloadExcel } from 'react-export-table-to-excel';
 import EditValues from '../functions/EditValues';
 import ShowDetailsSaved from '../functions/ShowDetailsSaved'
-
+import ShowDetailsOSsaved from '../functions/ShowDetailsOSsaved';
 
 const db = getFirestore()
 
@@ -361,8 +361,8 @@ div2.onclick = blackClick
 function blackClick(){
   
   console.log('test')
-  div1.remove()
-  div2.remove()
+  div1.style.display = "none"
+  div2.style.display = "none"
   div1.innerHTML = ""
 }
 
@@ -382,11 +382,12 @@ div4.id = ("Notes_background_contentOS")
 div4.style.display = "none"
 div4.onclick = NotesBlackClick
 
+
 function NotesBlackClick(){
   
   console.log('test')
-  div3.remove()
-  div4.remove()
+  div3.style.display = "none"
+  div4.style.display = "none"
   div3.innerHTML = ""
 }
 
@@ -399,112 +400,8 @@ function NotesBlackClick(){
 
       async function ShowDetailOS (){
 
-        if(document.getElementById('RatingBoard-SavedPage').value !== ""){
-          //show the popup for OS
-          document.getElementById('SavedResultHolder').appendChild(div1)
-          document.getElementById('SavedResultHolder').appendChild(div2)
-          div2.style.display = ""
-          div1.style.display = ""
-          
-      
-          //show results from each user
-          // 1st step is to access the doc that matches the code
-        const colRef = collection(db, "SavedResults");
-        const docsSnap = await getDocs(colRef);
-        //search through and find the doc with the code
-        docsSnap.forEach(async doc => {
-         
-         //find and establish the doc of the server u made
-         if(doc.data().Code == localStorage.getItem('code')){
-      
-          console.log('testing OS')
-          // 2nd step is to access sub collection with id of the doc that matches the code
-          var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/Overall Score');
-          //search through the docs of the collection but pass through the host document
-          let SubDocs = await getDocs(CurFactorCol)
-          //look through the documents
-           SubDocs.forEach(async subDoc => {
-           
-             //skip over the host doc
-             if(!subDoc.data().Anchor){
-              console.log(subDoc.data().OverallScore, subDoc.data().Username, subDoc.data().OverallScoreNOTES)
-                   //div4.onclick = ShowNoteContent
-                  
-              div1.innerHTML +=(`<div id="UsernameTextOS">${subDoc.data().Username}</div>`)
-              div1.innerHTML +=(`<div id="RatingTextOS">${subDoc.data().OverallScore}</div>`)
-              let button1 = document.createElement('button')
-              button1.classList.add('NotesBNTResults1')
-              button1.innerText = "Notes"
-              button1.value = subDoc.data().Username
-              
-              div1.appendChild(button1)
-              
-              
-              
-              //document.getElementById(subDoc.data().Username + "_" + SubColId).style.display = "block"
-              
-      
-             }
-      
-           })
-           
-           
-           
-      
-      
-      
-         }
-      
-        })
-      
-      
-      
-      
-      
-      
-      
-        }
-      
-      
-        let testing = document.getElementById('SavedResultHolder')
-              testing.addEventListener('click',async function(ev){
-                var btn_option = document.getElementsByClassName("NotesBNTResults1");
-              Object.keys(btn_option).forEach(async function(key){
-                  if(ev.target == btn_option[key]){
-                  console.log(ev.target.value)
-                  
-                  const colRef = collection(db, "SavedResults");
-                  const docsSnap = await getDocs(colRef);
-                  //search through and find the doc with the code
-                  docsSnap.forEach(async doc => {
-                     
-                   //find and establish the doc of the server u made
-                   if(doc.data().Code == localStorage.getItem('code')){
-                     var CurFactorCol = collection(db,'SavedResults/' + doc.id + '/Overall Score');
-                     let SubDocs = await getDocs(CurFactorCol)
-                     //look through the documents
-                      SubDocs.forEach(async subDoc => {
-                        if(subDoc.data().Username === ev.target.value){
-                          div3.innerHTML = subDoc.data().OverallScoreNOTES
-                            //display the notes popup with the notes according to question and username
-                           document.getElementById('SavedResultHolder').appendChild(div3)
-                           document.getElementById('SavedResultHolder').appendChild(div4)
-                           div3.style.display = ""
-                           div4.style.display = ""
-                           if(div3.innerHTML == ""){
-                            div3.innerHTML = "No Notes"
-                           }
-                          return
-                        }
-                          
-                       
-                      })
-           
-                    }
-                  })
-                }
-              })
-            })
+        ShowDetailsOSsaved()
+        
        }
 
 
@@ -531,9 +428,14 @@ function NotesBlackClick(){
 
 
  
-
-
-
+    const effectRan2 = useRef(false);
+    useEffect(() => {
+    document.getElementById('SavedResultHolder').appendChild(div1)
+    document.getElementById('SavedResultHolder').appendChild(div2)
+    document.getElementById('SavedResultHolder').appendChild(div3)
+    document.getElementById('SavedResultHolder').appendChild(div4)
+    return () => effectRan2.current = true;
+  }, []);
 
 
 
